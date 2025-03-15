@@ -7,7 +7,7 @@ import random
 
 def extract_faces_from_image(
     image_path,
-    output_dir="/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/Python/CapstoneCode/backend/python/ageandrace/extracted_faces"):
+    output_dir="/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/Python/CapstoneCode/backend/python/extracted_faces"):
     """
     Detects faces in an image, extracts and saves them, computes embeddings,
     and returns the list of saved file paths.
