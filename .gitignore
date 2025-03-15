@@ -22,10 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# random files 
 __pycache__
 extracted_faces
 .venv
 venv
 .vscode
 
+
+# test files
 harrypassport.jpg
+janedl.png

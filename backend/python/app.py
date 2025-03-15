@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
-from ageandrace import ageandrace
+from src.age_and_race import ageandrace
 app = Flask(__name__)
 
 # Define upload folder and allowed extensions
@@ -43,3 +43,6 @@ def upload_image():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
+
+

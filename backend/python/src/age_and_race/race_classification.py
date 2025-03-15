@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import filedialog
 from ultralytics import YOLO
 
+
 def get_top_class_from_image(model, image_path):
     """
     Runs the YOLOv8 classification model on the given image and returns the class label 
@@ -112,7 +113,8 @@ def race_classification(folder_path):
       2. Prompts the user to select an image folder.
       3. Loads the classification model and processes each image in the folder.
     """
-    model_file = "/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/Python/PipelineTesting/models/Race-CLS-FairFace_yolo11l.pt"
+    model_file = "models/Race-CLS-FairFace_yolo11l.pt"
     model = YOLO(model_file)
     tag = process_images(model, folder_path)
     return f"{tag}"
+    

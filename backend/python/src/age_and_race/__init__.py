@@ -1,11 +1,12 @@
 # __init__.py
-from face_extraction import extract_faces_from_image
-from age_classification import age_classification
-from race_classification import race_classification
-from helper import get_folder_from_path
-from helper import move_folder_contents
-from helper import parse_age_data
-from helper import write_output_file
+from .face_extraction import extract_faces_from_image
+from .age_classification import age_classification
+from .race_classification import race_classification
+from .helper import get_folder_from_path
+from .helper import move_folder_contents
+from .helper import parse_age_data
+from .helper import write_output_file
+
 import os
 
 def ageandrace(image_path):
