@@ -3,10 +3,11 @@ const multer = require("multer");
 const path = require("path");
 const FormData = require("form-data")
 const axios = require("axios");
+const cors = require('cors');
 
 const app = express();
 const PORT = 5151;
-
+app.use(cors({ origin: "http://localhost:5173" }));
 // Set up storage with filename preservation
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -67,7 +68,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
                 console.error("Error deleting file:", err);
             }
         });
-        res.json({ message: `Age and Race Found Successfully ${JSON.stringify(ageAndRace)}`, filename: req.file.filename });
+        res.json(ageAndRace);
     } catch (error) {
         console.error(error)
         return res.status(500).json({ error: error });
