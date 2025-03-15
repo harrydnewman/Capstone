@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
-from src.age_and_race import ageandrace
+from pipelines.age_and_race import ageandrace
 app = Flask(__name__)
 
 # Define upload folder and allowed extensions
