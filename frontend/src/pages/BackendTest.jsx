@@ -1,4 +1,4 @@
-import TestImage from '../assets/harrypassport.jpg?url';
+import TestImage from '../assets/janedl.png?url';
 import styles from '../styles/backendtest.module.css';
 import { useState } from 'react';
 
@@ -10,7 +10,7 @@ const uploadFile = async (fileUrl) => {
     const response = await fetch(fileUrl);
     const blob = await response.blob();
     
-    formData.append("file", blob, "harrypassport.jpg");
+    formData.append("file", blob, TestImage);
 
     try {
         const uploadResponse = await fetch(url, {
