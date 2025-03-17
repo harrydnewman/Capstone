@@ -2,8 +2,10 @@ import os
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 from pipelines.age_and_race import ageandrace
-app = Flask(__name__)
+from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app) 
 # Define upload folder and allowed extensions
 UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
