@@ -28,8 +28,6 @@ __pycache__
 extracted_faces
 .venv
 venv
-.vscode
-
 
 # test files
 harrypassport.jpg
