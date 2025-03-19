@@ -79,7 +79,9 @@ puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
     console.log("Upload Photo button clicked!");
 
-    // 
+    // Solve Captcha here
+
+    return;
 
     // Wait for the upload area to appear
     await page.waitForSelector('[class="dropzone-blue dropzone"]', { visible: true });
