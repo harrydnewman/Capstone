@@ -24,6 +24,18 @@
   background: rgb(234, 234, 234);
 }
 
+.flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 9999;
+  }
+
 .webcam {
   border-radius: 10px;
 }
