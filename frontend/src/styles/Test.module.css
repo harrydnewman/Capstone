@@ -1,33 +1,78 @@
 .container {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    transition: all 0.5s ease;
-  }
-  
-  .box {
-    transition: width 0.5s ease;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-  }
-  
-  /* Width transitions */
-  .leftExpanded {
-    width: 100%;
-  }
-  
-  .leftCollapsed {
-    width: 50%;
-  }
-  
-  .rightExpanded {
-    width: 50%;
-  }
-  
-  .rightCollapsed {
-    width: 0%;
-  }
-  
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  transition: all 0.7s ease;
+}
+
+.box {
+  transition: width 0.7s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+}
+
+.webcamDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background: rgb(234, 234, 234);
+}
+
+.webcam {
+  border-radius: 10px;
+}
+
+.takeButtonDiv {
+  width: 55%;
+  height: 6%;
+  margin-top: 2%;
+  transition: transform 0.3s ease;
+}
+
+.takeButton {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(86, 146, 212);
+  border: 0;
+  border-radius: 10px;
+}
+
+.takeButton:hover {
+  cursor: pointer;
+}
+
+.takeButtonDiv:hover {
+  transform: scale(1.1);
+}
+
+.takeButton p {
+  color: white;
+  font-size: 20px;
+}
+
+video {
+  transform: scaleX(-1);
+}
+
+/* Width transitions */
+.leftExpanded {
+  width: 100%;
+}
+
+.leftCollapsed {
+  width: 60%;
+}
+
+.rightExpanded {
+  width: 40%;
+}
+
+.rightCollapsed {
+  width: 0%;
+}
