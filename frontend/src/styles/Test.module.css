@@ -78,8 +78,6 @@
     pointer-events: none;
 }
 
-
-
 video {
   transform: scaleX(-1);
 }
@@ -90,11 +88,11 @@ video {
 }
 
 .leftCollapsed {
-  width: 60%;
+  width: 40%;
 }
 
 .rightExpanded {
-  width: 40%;
+  width: 60%;
 }
 
 .rightCollapsed {
