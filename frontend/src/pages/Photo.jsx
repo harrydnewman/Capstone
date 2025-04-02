@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
 import Webcam from "react-webcam";
-import styles from '../styles/Photo.module.css'
-
-const videoConstraints = {
-    width: 500,
-    height: 800,
-    facingMode: "user"
-  };
+import styles from "../styles/Photo.module.css";
 
 export default function Photo() {
-    return (
-        <div className={styles.photoDiv}>
-            <div className={styles.webcamDiv}>
-                <Webcam className={styles.webcam} height={800} width={500} videoConstraints={videoConstraints}/>
-            </div>
-            <div className={styles.infoDiv}>
-                <h1>Take Photo</h1>
-            </div>
-        </div>
-    )
+  const webcamRef = useRef(null);
+
+  return (
+    <div className={styles.photoDiv}>
+      <div className={styles.webcamDiv}>
+        <Webcam
+          ref={webcamRef}
+          style={{
+            width: "60%",
+            height: "80%",
+            objectFit: "cover",
+          }}
+          className={styles.webcam}
+        />
+      </div>
+      <div className={styles.infoDiv}>
+        <h1>Take Photo</h1>
+      </div>
+    </div>
+  );
 }

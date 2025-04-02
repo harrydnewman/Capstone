@@ -1,25 +1,33 @@
 .photoDiv {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    background-color: purple;
-    height: 100vh;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background-color: purple;
+  height: 100vh;
 }
 
 .webcamDiv {
-    height: 100vh;
-    background-color: aqua;
-    width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: aqua;
+  width: 50vw;
+  height: 100vh;
 }
+
 .webcam {
-    border-radius: 10px;
-    background: rgb(0, 28, 128);
-    /* width: 70%;
-    height: 80% */
+  border-radius: 10px;
+  background: rgb(0, 28, 128);
 }
 
 .infoDiv {
-    background-color: burlywood;
-    height: 100vh;
-    width: 50vw;
+  background-color: burlywood;
+  height: 100vh;
+  width: 50vw;
+}
+
+video {
+  transform: scaleX(-1);
 }
