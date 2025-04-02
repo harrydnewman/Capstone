@@ -1,0 +1,12 @@
+.photoDiv {
+    background-color: green;
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+
+.photoDiv h1 {
+    margin-top: 0;
+    margin-left: 0;
+}
