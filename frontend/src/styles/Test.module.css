@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.5s ease;
+  }
+  
+  .box {
+    transition: width 0.5s ease;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+  }
+  
+  /* Width transitions */
+  .leftExpanded {
+    width: 100%;
+  }
+  
+  .leftCollapsed {
+    width: 50%;
+  }
+  
+  .rightExpanded {
+    width: 50%;
+  }
+  
+  .rightCollapsed {
+    width: 0%;
+  }
+  
