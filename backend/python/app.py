@@ -1,58 +1,88 @@
-# import os
-# from flask import Flask, request, jsonify
-# from werkzeug.utils import secure_filename
-# from pipelines.age_and_race import ageandrace
-# from flask_cors import CORS
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+from pipelines.age_and_race import ageandrace
+import base64
+import os
+import uuid
+from PIL import Image
 
-# app = Flask(__name__)
-# CORS(app) 
-# # Define upload folder and allowed extensions
-# UPLOAD_FOLDER = "uploads"
-# ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+# Initialize Flask app
+app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 32 * 1024 * 1024  # 32 MB upload limit
+app.config['UPLOAD_FOLDER'] = "uploads"
 
-# # Ensure the upload folder exists
-# os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+# Ensure upload folder exists
+os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
-# app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+# Enable CORS for requests from your React frontend
+CORS(app, origins=["http://localhost:3000"])
 
-# # Function to check allowed file types
-# def allowed_file(filename):
-#     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+# Allowed file types (currently not used but here for future use)
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
-# @app.route("/upload", methods=["POST"])
-# def upload_image():
+# Optional helper (not used right now)
+def allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
-#     if "file" not in request.files:
-#         return jsonify({"error": "No file part"}), 400  # 🛑 This is where it's failing
+# Upload route
+@app.route("/upload", methods=["POST"])
+def upload_image():
+    if not request.is_json:
+        return jsonify({"error": "Expected JSON"}), 400
 
-#     file = request.files["file"]
+    data = request.get_json()
+    base64_data = data.get("file")
 
-#     if file.filename == "":
-#         return jsonify({"error": "No selected file"}), 400
+    if not base64_data:
+        return jsonify({"error": "No image data provided"}), 400
 
-#     filepath = os.path.join(app.config["UPLOAD_FOLDER"], file.filename)
-#     file.save(filepath)
+    try:
+        # Strip "data:image/jpeg;base64,..." if present
+        if "," in base64_data:
+            _, base64_data = base64_data.split(",", 1)
 
-#     ageAndRaceClassification = ageandrace(filepath)
-#     print(ageAndRaceClassification)
+        image_data = base64.b64decode(base64_data)
+    except Exception as e:
+        print("❌ Base64 decode error:", e)
+        return jsonify({"error": "Invalid base64", "details": str(e)}), 400
 
-#     os.remove(filepath)
+    try:
+        filename = f"{uuid.uuid4().hex}.jpg"
+        filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
 
-#     return jsonify({"ageRange": ageAndRaceClassification["AgeRange"], 
-#                     "ageAccuracy": ageAndRaceClassification["AgeAccuracy"],
-#                     "raceClassification": ageAndRaceClassification["Race"]
-#                     }), 200
+        with open(filepath, "wb") as f:
+            f.write(image_data)
+
+        print(f"✅ Saved image to {filepath}")
+
+        # Replace this with your actual processing function
+        ageAndRaceClassification = ageandrace(filepath)
+
+        os.remove(filepath)
+
+        return jsonify({
+            "ageRange": ageAndRaceClassification["AgeRange"],
+            "ageAccuracy": ageAndRaceClassification["AgeAccuracy"],
+            "raceClassification": ageAndRaceClassification["Race"]
+        }), 200
+
+    except Exception as e:
+        print("❌ Processing error:", e)
+        return jsonify({"error": "Processing error", "details": str(e)}), 500
+
+# Run the app
+if __name__ == "__main__":
+    app.run(debug=True)
+
+# FACE SEARCH
+    
+# import asyncio
+
+# from pipelines.face_search import face_search
+
+# async def main():
+#     await face_search()
 
 # if __name__ == "__main__":
-#     app.run(debug=True)
-    
-import asyncio
-
-from pipelines.face_search import face_search
-
-async def main():
-    await face_search()
-
-if __name__ == "__main__":
-    asyncio.run(main())  # ✅ Fix: Run the async function properly
-    # app.run(debug=True)
+#     asyncio.run(main())  # ✅ Fix: Run the async function properly
+#     # app.run(debug=True)
