@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from '../styles/Test.module.css'
 import Webcam from "react-webcam";
 import Spinner from "../components/Spinner";
+import fetchAgeAndRace from "../api/fetchAgeAndRace";
 
 export default function Test() {
     const [expanded, setExpanded] = useState(false);
@@ -18,21 +19,28 @@ export default function Test() {
 
     useEffect(() => {
         if (image) {
-            const timer = setTimeout(() => {
-                setExpanded(prev => !prev);
-
-
-            }, FLASH_DURATION);
-            return () => clearTimeout(timer);
+          const timer = setTimeout(() => {
+            setExpanded(prev => !prev);
+          }, FLASH_DURATION);
+      
+          const fetch = async () => {
+            const data = await fetchAgeAndRace(image);
+            console.log(data);
+          };
+      
+          fetch();
+      
+          return () => clearTimeout(timer);
         }
-    }, [image]);
+      }, [image]);
+      
 
     useEffect(() => {
         setTimeout(() => setLoading(false), 20000);
     }, [loading]);
 
 
-    const handleClick = () => {
+    const handleClick = async () => {
         console.log('Button clicked!');
         setFlashActive(true);
         capture()
@@ -40,7 +48,14 @@ export default function Test() {
         setTimeout(() => setFlashActive(false), FLASH_DURATION);
         setLoading(true)
         setPhotoTaken(true)
+        
     };
+
+    const getAgeAndRace = async () => {
+        const data = await fetchAgeAndRace(image)
+        console.log(data)
+    }
+
     const capture = React.useCallback(
         () => {
             const imageSrc = webcamRef.current.getScreenshot();
@@ -64,17 +79,17 @@ export default function Test() {
                         }} />
                     ) : (
                         <Webcam
-                        ref={webcamRef}
-                        screenshotFormat="image/png"
-                        style={{
-                            width: "60%",
-                            height: "85%",
-                            objectFit: "cover",
-                        }}
-                        className={styles.webcam}
-                    />
+                            ref={webcamRef}
+                            screenshotFormat="image/png"
+                            style={{
+                                width: "60%",
+                                height: "85%",
+                                objectFit: "cover",
+                            }}
+                            className={styles.webcam}
+                        />
                     )}
-                    
+
                     <div className={`${styles.takeButtonDiv} ${showTakeButton ? styles.takeButtonShown : styles.takeButtonHidden}`}>
                         {/* <div className={styles.takeButtonDiv}> */}
                         <button className={styles.takeButton} onClick={handleClick}>
