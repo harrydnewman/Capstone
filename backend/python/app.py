@@ -11,20 +11,15 @@ app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 32 * 1024 * 1024  # 32 MB upload limit
 app.config['UPLOAD_FOLDER'] = "uploads"
 
-# Ensure upload folder exists
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
-# Enable CORS for requests from your React frontend
 CORS(app, origins=["http://localhost:3000"])
 
-# Allowed file types (currently not used but here for future use)
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
-# Optional helper (not used right now)
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# Upload route
 @app.route("/ageandrace", methods=["POST"])
 def upload_image():
     if not request.is_json:
@@ -37,7 +32,6 @@ def upload_image():
         return jsonify({"error": "No image data provided"}), 400
 
     try:
-        # Strip "data:image/jpeg;base64,..." if present
         if "," in base64_data:
             _, base64_data = base64_data.split(",", 1)
 
@@ -55,10 +49,10 @@ def upload_image():
 
         print(f"✅ Saved image to {filepath}")
 
-        # Replace this with your actual processing function
         ageAndRaceClassification = ageandrace(filepath)
 
-        os.remove(filepath)
+        # Turn this off for testing
+        # os.remove(filepath) 
 
         return jsonify({
             "ageRange": ageAndRaceClassification["AgeRange"],
@@ -74,16 +68,3 @@ def upload_image():
 # Run the app
 if __name__ == "__main__":
     app.run(debug=True)
-
-# FACE SEARCH
-    
-# import asyncio
-
-# from pipelines.face_search import face_search
-
-# async def main():
-#     await face_search()
-
-# if __name__ == "__main__":
-#     asyncio.run(main())  # ✅ Fix: Run the async function properly
-#     # app.run(debug=True)
