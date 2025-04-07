@@ -1,18 +1,18 @@
 .main {
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
   align-items: center;
 }
 
 .pageTitle {
+  width: 100%;
   padding-top: 2%;
   opacity: 0;
   animation: fadeInUp 0.8s ease forwards;
   animation-delay: 0.2s;
-  width: 100%;
-  /* background-color: purple; */
+  text-align: center;
 }
 
 .pageTitle h1 {
@@ -22,15 +22,13 @@
 }
 
 .lastPageResults {
-  display: flex;
   width: 100%;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 10%;
-  padding-right: 10%;
   margin-top: 1%;
-  /* background-color: pink; */
+  padding: 0 10%;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  align-items: center;
 }
 
 .lastPageResultsSection {
@@ -56,10 +54,12 @@
 
 .dataHeader {
   font-size: 25px;
+  text-align: center;
 }
 
 .dataText {
   font-size: 30px;
+  text-align: center;
 }
 
 @keyframes fadeInUp {
