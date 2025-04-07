@@ -1,5 +1,6 @@
 import styles from '../styles/Online.module.css'
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 
 const sampleData = {
     ageRange: '20-29',
@@ -7,9 +8,11 @@ const sampleData = {
     raceClassification: 'White',
 };
 
-export default function Online({ data }) {
-    const { ageRange, ageAccuracy, raceClassification } = { ...sampleData, ...data };
-    
+export default function Online({ data: propData }) {
+    const location = useLocation();
+    const routerData = location.state?.data;
+
+    const { ageRange, ageAccuracy, raceClassification } = { ...sampleData, ...routerData, ...propData };
 
     return (
         <div className={styles.main}>
