@@ -51,8 +51,7 @@ def upload_image():
 
         ageAndRaceClassification = ageandrace(filepath)
 
-        # Turn this off for testing
-        # os.remove(filepath) 
+        os.remove(filepath) 
 
         return jsonify({
             "ageRange": ageAndRaceClassification["AgeRange"],
