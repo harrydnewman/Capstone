@@ -167,7 +167,7 @@ export default function Start({ onChangeToOnline, onChangeData }) {
                         {photoTaken && (
                             <img
                                 src={image}
-                                alt="Captured"
+                                alt=""
                                 className={styles.fadeIn}
                                 style={{
                                     width: "100%",
