@@ -9,26 +9,22 @@
   transition: width 0.7s ease;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 1px solid #ccc;
   height: 100vh;
 }
 
-.webcamDiv {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+.webcamContainer {
+  position: relative;
   width: 100%;
-  background: rgb(234, 234, 234);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.webcam {
-  border-radius: 10px;
-}
 
 .takeButtonDiv {
   margin-top: 1%;
@@ -36,15 +32,16 @@
 }
 
 .takeButtonShown {
-    width: 55%;
-    height: 6%;
+  width: 55%;
+  height: 6%;
 }
 
+
 .takeButtonHidden {
-    width: 0%;
-    height: 0%;
-    display: hidden;
-    pointer-events: none;
+  width: 0%;
+  height: 0%;
+  display: none;
+  pointer-events: none;
 }
 
 .takeButton {
@@ -53,14 +50,15 @@
   background-color: rgb(86, 146, 212);
   border: 0;
   border-radius: 10px;
+  transition: transform 0.5s linear;
 }
 
 .takeButton:hover {
   cursor: pointer;
 }
 
-.takeButtonDiv:hover {
-  transform: scale(1.1);
+.takeButtonDiv:hover .takeButton {
+  transform: scale(1.05);
 }
 
 .takeButtonTextShown {
@@ -74,9 +72,9 @@
 }
 
 .takeButtonTextHidden {
-    display: hidden;
-    opacity: 0;
-    pointer-events: none;
+  display: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 video {
@@ -95,7 +93,7 @@ video {
 }
 
 .resultsDiv {
-  animation: expandFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* smoother */
+  animation: expandFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   animation-fill-mode: both;
   overflow: hidden;
   display: flex;
@@ -107,22 +105,19 @@ video {
   text-align: center;
 }
 
-@keyframes sectionFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.resultsSection {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.6s ease, height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    margin 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
 }
 
-.resultsSection {
-  animation: sectionFadeIn 0.6s ease-out forwards;
-  margin-top: 5%;
-  margin-bottom: 0;
+.resultsSection.visible {
+  opacity: 1;
   height: 100px;
+  margin-top: 5%;
 }
 
 @keyframes growFadeIn {
@@ -136,53 +131,64 @@ video {
   }
 }
 
+.resultsHeader,
+.resultsText {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.resultsSection.visible .resultsHeader,
+.resultsSection.visible .resultsText {
+  animation: growFadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.resultsSection.visible .resultsHeader {
+  animation-delay: 0.1s;
+}
+
+.resultsSection.visible .resultsText {
+  animation-delay: 0.2s;
+}
+
 .resultsHeader {
   font-size: 30px;
-  animation: growFadeIn 0.6s ease-out;
-  animation-delay: 0.1s;
-  animation-fill-mode: both;
 }
 
 .resultsText {
   font-size: 40px;
-  animation: growFadeIn 0.6s ease-out;
-  animation-delay: 0.2s;
-  animation-fill-mode: both;
 }
 
-.resultsDiv, .resultsSection, .resultsHeader, .resultsText {
+.resultsDiv,
+.resultsSection,
+.resultsHeader,
+.resultsText {
   will-change: transform, opacity;
 }
-/* 
-.resultsText,
-.resultsHeader {
-  animation: growFadeIn 0.6s ease-out;
-} */
-
 
 .whereYouShowUpOnlineButtonDiv {
   margin-top: 1%;
   transition: transform 0.5s linear;
   width: 100%;
   animation: growFadeIn 1s ease-out;
-  /* animation-delay: 0.5s; */
-   animation-delay: 0.1s; 
+  animation-delay: 0.1s;
   animation-fill-mode: both;
 }
 
 .whereYouShowUpOnlineButton {
   width: 50%;
   height: 6vh;
-  background-color: rgb(86, 146, 212);
+  background-color: rgb(197, 201, 206);
   border: 0;
   border-radius: 10px;
 }
 
-.whereYouShowUpOnlineButton:hover {
-  cursor: pointer;
+.dataLoaded {
+  background-color: rgb(86, 146, 212);
 }
 
-.expandOnHover:hover {
+.dataLoaded:hover {
+  cursor: pointer;
   transform: scale(1.1);
   transition: transform 0.3s ease;
 }
@@ -192,19 +198,16 @@ video {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* width: 50%; */
   width: auto;
-  gap: 10px; /* add spacing between text and spinner */
+  gap: 10px; 
 }
 
 .loadingOnlineDataButtonDiv p {
   padding: 0;
   margin: 0;
-  line-height: 1; /* Optional: keeps text tightly aligned */
+  line-height: 1;
 }
-/* .whereYouShowUpOnlineButtonDiv:hover {
-  transform: scale(1.1);
-} */
+
 
 .whereYouShowUpOnlineButtonTextShown {
   color: white;
@@ -216,12 +219,11 @@ video {
 }
 
 .whereYouShowUpOnlineButtonTextHidden {
-    display: hidden;
-    opacity: 0;
-    pointer-events: none;
+  display: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* Width transitions */
 .leftExpanded {
   width: 100%;
 }
@@ -247,27 +249,79 @@ video {
 }
 
 .flashOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  animation: flashAnim 0.7s ease-out;
+  z-index: 9999;
+}
+
+@keyframes flashAnim {
+  0% {
     opacity: 0;
-    pointer-events: none;
-    animation: flashAnim 0.7s ease-out;
-    z-index: 9999;
   }
-  
-  @keyframes flashAnim {
-    0% {
-      opacity: 0;
-    }
-    25% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
+  25% {
+    opacity: 1;
   }
-  
+  100% {
+    opacity: 0;
+  }
+}
+.webcamDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background: rgb(234, 234, 234);
+}
+
+.mediaContainer {
+  position: relative;
+  width: 60%;
+  height: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mediaContainer > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fadeIn {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.fadeInDelayed {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+  transition-delay: 0.6s; 
+}
+
+.fadeInDelayedMore {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+  transition-delay: 0.8s; 
+}
