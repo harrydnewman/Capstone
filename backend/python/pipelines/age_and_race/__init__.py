@@ -23,7 +23,8 @@ def ageandrace(image_path):
                 "AgeAccuracy": ageData["Accuracy"],
                 "Race": raceClassification
             }
-            os.remove(path)
+            # remove this for testing
+            # os.remove(path)
             return data
     else:
         print("No faces were extracted.")
