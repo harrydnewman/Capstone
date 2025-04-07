@@ -4,6 +4,7 @@ import styles from '../styles/Test.module.css'
 import Webcam from "react-webcam";
 import Spinner from "../components/Spinner";
 import fetchAgeAndRace from "../api/fetchAgeAndRace";
+import LittleSpinner from "../components/littleSpinner";
 
 export default function Test() {
     const [expanded, setExpanded] = useState(false);
@@ -46,20 +47,25 @@ export default function Test() {
         setTimeout(() => setLoading(false), 2000);
         if (data) {
 
-            setAgeRange(data.ageRange)
-            setAgeAccuracy(data.ageAccuracy)
-            setRace(data.raceClassification)
+            // setAgeRange(data.ageRange)
+            // setAgeAccuracy(data.ageAccuracy)
+            // setRace(data.raceClassification)
 
-            // uncomment these later
+            const ageRangeTimeout = setTimeout(() => setAgeRange(data.ageRange), 2000);
+            const ageAccuracyTimeout = setTimeout(() => setAgeAccuracy(data.ageAccuracy), 3000);
+            const raceTimeout = setTimeout(() => setRace(data.raceClassification), 4000);
+            const showButtonTimeout = setTimeout(() => setShowOnlineDataButton(true), 6000);
+            const onlineDataTimeout = setTimeout(() => setOnlineData("This is still in development"), 15000);
 
-            
-            // setTimeout(() => setAgeRange(data.ageRange), 3000);
-            // setTimeout(() => setAgeAccuracy(data.ageAccuracy), 4000);
-            // setTimeout(() => setRace(data.raceClassification), 5000);
-            // setTimeout(() => setShowOnlineDataButton(true), 10000);
+            // Cleanup function
+            return () => {
+                clearTimeout(ageRangeTimeout);
+                clearTimeout(ageAccuracyTimeout);
+                clearTimeout(raceTimeout);
+                clearTimeout(showButtonTimeout);
+                clearTimeout(onlineDataTimeout);
+            };
         }
-
-
     }, [data]);
 
     const rightClass = expanded
@@ -82,13 +88,19 @@ export default function Test() {
 
 
 
-    const handleClick = async () => {
+    const takePhoto = async () => {
         setFlashActive(true);
         capture()
         setShowTakeButton(prev => !prev)
         setTimeout(() => setFlashActive(false), FLASH_DURATION);
         setLoading(true)
         setPhotoTaken(true)
+    };
+
+    const whereYouShowUpOnlineClick = () => {
+        console.log("Where you show up online")
+
+        // not done yet
     };
 
     const capture = React.useCallback(
@@ -127,7 +139,7 @@ export default function Test() {
 
                     <div className={`${styles.takeButtonDiv} ${showTakeButton ? styles.takeButtonShown : styles.takeButtonHidden}`}>
                         {/* <div className={styles.takeButtonDiv}> */}
-                        <button className={styles.takeButton} onClick={handleClick}>
+                        <button className={styles.takeButton} onClick={takePhoto}>
                             <p className={`${showTakeButton ? styles.takeButtonTextShown : styles.takeButtonTextHidden}`}>Take Photo</p>
                         </button>
                     </div>
@@ -140,33 +152,49 @@ export default function Test() {
                     <Spinner />
                     :
                     <div className={styles.resultsDiv}>
-                        {/* {ageRange !== null && ( */}
+                        {ageRange !== null && (
                             <div className={styles.resultsSection}>
                                 <p className={styles.resultsHeader}>Estimated Age Range</p>
                                 <p className={styles.resultsText}><strong>{ageRange}</strong></p>
                             </div>
-                        {/* )} */}
+                        )}
 
-                        {/* {ageAccuracy !== null && ( */}
+                        {ageAccuracy !== null && (
                             <div className={styles.resultsSection}>
-                            <p className={styles.resultsHeader}>Age Detection Confidence</p>
-                            <p className={styles.resultsText}><strong>{ageAccuracy}</strong></p>
-                        </div>
-                        {/* )} */}
+                                <p className={styles.resultsHeader}>Age Detection Confidence</p>
+                                <p className={styles.resultsText}><strong>{ageAccuracy}</strong></p>
+                            </div>
+                        )}
 
-                        {/* {race !== null && ( */}
+                        {race !== null && (
                             <div className={styles.resultsSection}>
-                            <p className={styles.resultsHeader}>Identified Race</p>
-                            <p className={styles.resultsText}><strong>{race}</strong></p>
-                        </div>
-                        {/* )} */}
+                                <p className={styles.resultsHeader}>Identified Race</p>
+                                <p className={styles.resultsText}><strong>{race}</strong></p>
+                            </div>
+                        )}
 
-                       
+                        {showOnlineDataButton && (
+                           
+                            
 
-                       
-                        <div className={styles.whereYouShowUpOnlineButton}>
+                                <div className={`${styles.whereYouShowUpOnlineButtonDiv} ${onlineData != null ? styles.expandOnHover : ''}`}>
+                                <p className={styles.resultsHeader}>Where You Show Up Online</p>
+                                <button className={styles.whereYouShowUpOnlineButton} onClick={onlineData != null ? whereYouShowUpOnlineClick : undefined}>
+                                        {onlineData != null ?
+                                            <p className={`${showOnlineDataButton ? styles.whereYouShowUpOnlineButtonTextShown : styles.whereYouShowUpOnlineButtonTextHidden}`}>Loaded</p>
+                                            :
+                                            <div className={styles.loadingOnlineDataButtonDiv}>
 
-                        </div>
+                                                <p className={`${showOnlineDataButton ? styles.whereYouShowUpOnlineButtonTextShown : styles.whereYouShowUpOnlineButtonTextHidden}`}>Loading</p>
+                                                <LittleSpinner />
+                                            </div> 
+                                        }
+                                    </button>
+                                </div>
+                            
+                        )}
+
+
                     </div>
                 }
 
