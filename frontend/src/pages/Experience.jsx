@@ -24,7 +24,7 @@ export default function Experience() {
     return (
         <div className={`${styles.screenContainer} ${styles[fade]}`}>
             {currentScreen === 'start' && <Start onChangeToOnline={handleChangeOnline} onChangeData={setData}/>}
-            {currentScreen === 'online' && <Online />}
+            {currentScreen === 'online' && <Online data={data} />}
         </div>
     );
 }

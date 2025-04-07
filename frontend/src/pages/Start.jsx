@@ -51,18 +51,16 @@ export default function Start({ onChangeToOnline, onChangeData }) {
             setAgeAccuracy(data.ageAccuracy)
             setRace(data.raceClassification)
 
-            // const ageRangeTimeout = setTimeout(() => setAgeRange(data.ageRange), 2000);
-            // const ageAccuracyTimeout = setTimeout(() => setAgeAccuracy(data.ageAccuracy), 3000);
-            // const raceTimeout = setTimeout(() => setRace(data.raceClassification), 4000);
-            const showButtonTimeout = setTimeout(() => setShowOnlineDataButton(true), 100);
-            const onlineDataTimeout = setTimeout(() => setOnlineData("This is still in development"), 100);
-            // const showButtonTimeout = setTimeout(() => setShowOnlineDataButton(true), 6000);
-            // const onlineDataTimeout = setTimeout(() => setOnlineData("This is still in development"), 15000);
+            const ageRangeTimeout = setTimeout(() => setAgeRange(data.ageRange), 2000);
+            const ageAccuracyTimeout = setTimeout(() => setAgeAccuracy(data.ageAccuracy), 3000);
+            const raceTimeout = setTimeout(() => setRace(data.raceClassification), 4000);
+            const showButtonTimeout = setTimeout(() => setShowOnlineDataButton(true), 6000);
+            const onlineDataTimeout = setTimeout(() => setOnlineData("This is still in development"), 10000);
             // Cleanup function
             return () => {
-                // clearTimeout(ageRangeTimeout);
-                // clearTimeout(ageAccuracyTimeout);
-                // clearTimeout(raceTimeout);
+                clearTimeout(ageRangeTimeout);
+                clearTimeout(ageAccuracyTimeout);
+                clearTimeout(raceTimeout);
                 clearTimeout(showButtonTimeout);
                 clearTimeout(onlineDataTimeout);
             };
