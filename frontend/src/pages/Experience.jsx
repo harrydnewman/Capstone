@@ -6,6 +6,7 @@ import styles from '../styles/Experience.module.css';
 export default function Experience() {
     const [currentScreen, setCurrentScreen] = useState('start');
     const [fade, setFade] = useState('fadeIn');
+    const [data, setData] = useState(null);
 
     const handleChangeOnline = () => {
         setFade('fadeOut');
@@ -13,12 +14,16 @@ export default function Experience() {
         setTimeout(() => {
             setCurrentScreen('online');
             setFade('fadeIn');
-        }, 500); // match CSS duration
+        }, 500); 
     };
+    useEffect(() => {
+        console.log("data:", data)
+    }, [data]);
+
 
     return (
         <div className={`${styles.screenContainer} ${styles[fade]}`}>
-            {currentScreen === 'start' && <Start onChangeToOnline={handleChangeOnline} />}
+            {currentScreen === 'start' && <Start onChangeToOnline={handleChangeOnline} onChangeData={setData}/>}
             {currentScreen === 'online' && <Online />}
         </div>
     );

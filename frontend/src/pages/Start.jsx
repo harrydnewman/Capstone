@@ -4,13 +4,14 @@ import Webcam from "react-webcam";
 import Spinner from "../components/Spinner";
 import fetchAgeAndRace from "../api/fetchAgeAndRace";
 import LittleSpinner from "../components/littleSpinner";
+import PropTypes from 'prop-types';
 
-export default function Start({ onChangeToOnline }) {
+
+export default function Start({ onChangeToOnline, onChangeData }) {
     const [expanded, setExpanded] = useState(false);
     const [showTakeButton, setShowTakeButton] = useState(true)
     const [image, setImage] = useState(null);
     const [flashActive, setFlashActive] = useState(false);
-    const webcamRef = useRef(null);
     const [loading, setLoading] = useState(null);
     const [photoTaken, setPhotoTaken] = useState(false);
     const [data, setData] = useState(null)
@@ -21,12 +22,9 @@ export default function Start({ onChangeToOnline }) {
     const [onlineData, setOnlineData] = useState(null)
     const [webcamReady, setWebcamReady] = useState(false);
     const [hold, setHold] = useState(false)
+    const webcamRef = useRef(null);
 
     const FLASH_DURATION = 400;
-
-    useEffect(() => {
-        console.log("Loading set to true")
-    }, [loading]);
 
     useEffect(() => {
         if (image) {
@@ -71,10 +69,6 @@ export default function Start({ onChangeToOnline }) {
         }
     }, [data]);
 
-    useEffect(() => {
-        console.log("webcam set to ready")
-    }, [webcamReady]);
-
     const rightClass = expanded
         ? (data && !loading && hold ? styles.rightFullExpanded : styles.rightExpanded)
         : styles.rightCollapsed;
@@ -105,11 +99,9 @@ export default function Start({ onChangeToOnline }) {
     };
 
     const whereYouShowUpOnlineClick = () => {
-        console.log("Where you show up online")
-
-        // not done yet
         setHold(true)
         onChangeToOnline();
+        onChangeData(data);
     };
 
     const capture = React.useCallback(
@@ -215,3 +207,9 @@ export default function Start({ onChangeToOnline }) {
         </div>
     );
 }
+
+
+Start.propTypes = {
+    onChangeToOnline: PropTypes.func,
+    onChangeData: PropTypes.func
+};
