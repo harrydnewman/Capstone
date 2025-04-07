@@ -1,5 +1,6 @@
 .main {
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -71,4 +72,14 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.holder {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  animation-delay: 5s;
+  animation: fadeInUp 0.8s ease forwards;
 }
