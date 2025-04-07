@@ -5,6 +5,8 @@ import Spinner from "../components/Spinner";
 import fetchAgeAndRace from "../api/fetchAgeAndRace";
 import LittleSpinner from "../components/littleSpinner";
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function Start({ onChangeToOnline, onChangeData }) {
@@ -21,8 +23,12 @@ export default function Start({ onChangeToOnline, onChangeData }) {
     const [showOnlineDataButton, setShowOnlineDataButton] = useState(false)
     const [onlineData, setOnlineData] = useState(null)
     const [webcamReady, setWebcamReady] = useState(false);
-    const [hold, setHold] = useState(false)
+    const [hold, setHold] = useState(false);
+    const [animateAgeRange, setAnimateAgeRange] = useState(false);
+    const [animateAgeAccuracy, setAnimateAgeAccuracy] = useState(false);
+    const [animateRace, setAnimateRace] = useState(false);
     const webcamRef = useRef(null);
+    const navigate = useNavigate();
 
     const FLASH_DURATION = 400;
 
@@ -43,19 +49,33 @@ export default function Start({ onChangeToOnline, onChangeData }) {
         }
     }, [image]);
 
+    const startOnlineData = async () => {
+        console.log("Still in developmenttttt")
+
+        // probably make sure that online data can even be reached, and then come up with a "what this wouldve done route instead"
+        setOnlineData(true)
+    }
+
     useEffect(() => {
         setTimeout(() => setLoading(false), 2000);
         if (data) {
+            const ageRangeTimeout = setTimeout(() => {
+                setAgeRange(data.ageRange);
+                setAnimateAgeRange(true);
+            }, 2000);
 
-            setAgeRange(data.ageRange)
-            setAgeAccuracy(data.ageAccuracy)
-            setRace(data.raceClassification)
+            const ageAccuracyTimeout = setTimeout(() => {
+                setAgeAccuracy(data.ageAccuracy);
+                setAnimateAgeAccuracy(true);
+            }, 3000);
 
-            const ageRangeTimeout = setTimeout(() => setAgeRange(data.ageRange), 2000);
-            const ageAccuracyTimeout = setTimeout(() => setAgeAccuracy(data.ageAccuracy), 3000);
-            const raceTimeout = setTimeout(() => setRace(data.raceClassification), 4000);
+            const raceTimeout = setTimeout(() => {
+                setRace(data.raceClassification);
+                setAnimateRace(true);
+            }, 4000);
+
             const showButtonTimeout = setTimeout(() => setShowOnlineDataButton(true), 6000);
-            const onlineDataTimeout = setTimeout(() => setOnlineData("This is still in development"), 10000);
+            const onlineDataTimeout = setTimeout(() => startOnlineData(), 10000);
             // Cleanup function
             return () => {
                 clearTimeout(ageRangeTimeout);
@@ -85,8 +105,6 @@ export default function Start({ onChangeToOnline, onChangeData }) {
         leftClass,
     ].filter(Boolean).join(' ');
 
-
-
     const takePhoto = async () => {
         setFlashActive(true);
         capture()
@@ -97,10 +115,17 @@ export default function Start({ onChangeToOnline, onChangeData }) {
     };
 
     const whereYouShowUpOnlineClick = () => {
-        setHold(true)
-        onChangeToOnline();
-        onChangeData(data);
+        setHold(true);
+    
+        if (onChangeToOnline && onChangeData) {
+            onChangeToOnline();
+            onChangeData(data);
+        } else {
+            console.log("Not being accessed by experience")
+            navigate('/online', { state: { data } });
+        }
     };
+    
 
     const capture = React.useCallback(
         () => {
@@ -148,6 +173,7 @@ export default function Start({ onChangeToOnline, onChangeData }) {
                                     width: "100%",
                                     height: "100%",
                                     objectFit: "cover",
+                                    borderRadius: "10px"
                                 }}
                             />
                         )}
@@ -160,9 +186,6 @@ export default function Start({ onChangeToOnline, onChangeData }) {
                         </button>
                     </div>
                 </div>
-
-
-
             </div>
             <div className={rightBoxClassName}>
                 {loading ?
@@ -170,20 +193,17 @@ export default function Start({ onChangeToOnline, onChangeData }) {
                     :
                     <div className={styles.resultsDiv}>
                         <div className={`${styles.resultsSection} ${ageRange !== null ? styles.visible : ''}`}>
-                            <p className={styles.resultsHeader}>Estimated Age Range</p>
-                            <p className={styles.resultsText}><strong>{ageRange ?? ''}</strong></p>
+                            <p className={`${styles.resultsHeader} ${animateAgeRange ? styles.animate : ''}`}>Estimated Age Range</p>
+                            <p className={`${styles.resultsText} ${animateAgeRange ? styles.animate : ''}`}><strong>{ageRange ?? ''}</strong></p>
                         </div>
-
                         <div className={`${styles.resultsSection} ${ageAccuracy !== null ? styles.visible : ''}`}>
-                            <p className={styles.resultsHeader}>Age Detection Confidence</p>
-                            <p className={styles.resultsText}><strong>{ageAccuracy ?? ''}</strong></p>
+                            <p className={`${styles.resultsHeader} ${animateAgeAccuracy ? styles.animate : ''}`}>Age Detection Confidence</p>
+                            <p className={`${styles.resultsText} ${animateAgeAccuracy ? styles.animate : ''}`}><strong>{ageAccuracy ?? ''}</strong></p>
                         </div>
-
                         <div className={`${styles.resultsSection} ${race !== null ? styles.visible : ''}`}>
-                            <p className={styles.resultsHeader}>Identified Race</p>
-                            <p className={styles.resultsText}><strong>{race ?? ''}</strong></p>
+                            <p className={`${styles.resultsHeader} ${animateRace ? styles.animate : ''}`}>Identified Race</p>
+                            <p className={`${styles.resultsText} ${animateRace ? styles.animate : ''}`}><strong>{race ?? ''}</strong></p>
                         </div>
-
                         <div className={`${styles.resultsSection} ${showOnlineDataButton ? styles.visible : ''}`}>
                             <div className={`${styles.whereYouShowUpOnlineButtonDiv} ${onlineData != null ? styles.expandOnHover : ''}`}>
                                 <p className={styles.resultsHeader}>Where You Show Up Online</p>
@@ -205,7 +225,6 @@ export default function Start({ onChangeToOnline, onChangeData }) {
         </div>
     );
 }
-
 
 Start.propTypes = {
     onChangeToOnline: PropTypes.func,
