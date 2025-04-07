@@ -34,7 +34,7 @@ export default function Online({ data: propData }) {
                 </div>
             </div>
             <div className={styles.holder}>
-                <h1>More Coming, need to keep working on the backend</h1>
+                <h1>More Coming Soon</h1>
             </div>
         </div>
     );
