@@ -8,6 +8,8 @@ I want to use PimEyes, but theres no API available, so I want to see if I could 
 
 Add documentation for where I got all these models and such from
 
+Error logs!!
+
 Add Mobile Support
 
 ## Sources/Agnowlegements

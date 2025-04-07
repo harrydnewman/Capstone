@@ -33,6 +33,9 @@ export default function Online({ data: propData }) {
                     <p className={styles.dataText}><strong>{raceClassification}</strong></p>
                 </div>
             </div>
+            <div className={styles.holder}>
+                <h1>More Coming, need to keep working on the backend</h1>
+            </div>
         </div>
     );
 }
