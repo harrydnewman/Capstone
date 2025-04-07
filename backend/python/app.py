@@ -37,7 +37,7 @@ def upload_image():
 
         image_data = base64.b64decode(base64_data)
     except Exception as e:
-        print("❌ Base64 decode error:", e)
+        print("Base64 decode error:", e)
         return jsonify({"error": "Invalid base64", "details": str(e)}), 400
 
     try:
@@ -47,7 +47,7 @@ def upload_image():
         with open(filepath, "wb") as f:
             f.write(image_data)
 
-        print(f"✅ Saved image to {filepath}")
+        print(f"Saved image to {filepath}")
 
         ageAndRaceClassification = ageandrace(filepath)
 
@@ -61,9 +61,8 @@ def upload_image():
         }), 200
 
     except Exception as e:
-        print("❌ Processing error:", e)
+        print("Processing error:", e)
         return jsonify({"error": "Processing error", "details": str(e)}), 500
 
-# Run the app
 if __name__ == "__main__":
     app.run(debug=True)
