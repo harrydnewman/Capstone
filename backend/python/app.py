@@ -25,7 +25,7 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Upload route
-@app.route("/upload", methods=["POST"])
+@app.route("/ageandrace", methods=["POST"])
 def upload_image():
     if not request.is_json:
         return jsonify({"error": "Expected JSON"}), 400
@@ -58,12 +58,13 @@ def upload_image():
         # Replace this with your actual processing function
         ageAndRaceClassification = ageandrace(filepath)
 
-        os.remove(filepath)
+        # os.remove(filepath)
 
         return jsonify({
             "ageRange": ageAndRaceClassification["AgeRange"],
             "ageAccuracy": ageAndRaceClassification["AgeAccuracy"],
-            "raceClassification": ageAndRaceClassification["Race"]
+            "raceClassification": ageAndRaceClassification["Race"],
+            "fileName": filename
         }), 200
 
     except Exception as e:

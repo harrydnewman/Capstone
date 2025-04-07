@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Start from './Start';
 import Online from './Online';
 import styles from '../styles/Experience.module.css';

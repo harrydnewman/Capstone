@@ -11,6 +11,7 @@ const fetchAgeAndRace = async (base64String) => {
       if (!response.ok) throw new Error('Server error');
   
       const data = await response.json();
+      console.log(data)
       return data;
     } catch (err) {
       console.error('Upload failed:', err);
