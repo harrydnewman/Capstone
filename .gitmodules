@@ -1,3 +1,0 @@
-[submodule "backend/python/Pimeyes-scraper"]
-	path = backend/python/Pimeyes-scraper
-	url = https://github.com/harrydnewman/Pimeyes-scraper.git
