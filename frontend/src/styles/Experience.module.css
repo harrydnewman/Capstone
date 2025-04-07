@@ -1,0 +1,11 @@
+.screenContainer {
+  transition: opacity 0.5s ease;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.fadeOut {
+  opacity: 0;
+}
