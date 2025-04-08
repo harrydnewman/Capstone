@@ -5,6 +5,7 @@ async def browser_init(playwright):
     print("Initializing Browser!")
     browser = await launch_stealth_browser(playwright)
     print("Finished Initializing Browser")
+    
     return browser
 
 async def solve_init():
@@ -20,7 +21,7 @@ async def face_search():
     browser, captcha_token = await asyncio.gather(browser_init(playwright), solve_init())
     print(browser)
     print(captcha_token)
-    await asyncio.sleep(500)
+    await asyncio.sleep(500000)
     # start 2 threads
         # open stealth browser
 

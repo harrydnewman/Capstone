@@ -73,15 +73,12 @@ puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
     // Move the cursor to the button before clicking
     await cursor.move('[aria-label="Upload photo"]');
-    await new Promise(resolve => setTimeout(resolve, Math.floor(500 + Math.random() * 1000)));
+    await new Promise(resolve => setTimeout(resolve, Math.floor(500 + Math.random() * 100)));
 
     await cursor.click('[aria-label="Upload photo"]');
 
     console.log("Upload Photo button clicked!");
 
-    // Solve Captcha here
-
-    return;
 
     // Wait for the upload area to appear
     await page.waitForSelector('[class="dropzone-blue dropzone"]', { visible: true });
