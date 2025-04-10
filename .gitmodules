@@ -1,3 +1,6 @@
 [submodule "backend/python/Pimeyes-scraper"]
 	path = backend/python/Pimeyes-scraper
 	url = https://github.com/harrydnewman/Pimeyes-scraper.git
+[submodule "backend/python/libs/pytorch-grad-cam"]
+	path = backend/python/libs/pytorch-grad-cam
+	url = https://github.com/simonSlamka/pytorch-grad-cam.git
