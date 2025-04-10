@@ -1,5 +1,0 @@
-I ran into some difficulties when setting this up so heres the code so I remember
-
-git clone https://github.com/simonSlamka/pytorch-grad-cam.git
-cd pytorch-grad-cam
-pip install .
