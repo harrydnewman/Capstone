@@ -24,4 +24,5 @@ def get_hair_type(img_path):
     }
     return results
 
-get_hair_type("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/test2.webp")
+# get_hair_type("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/test2.webp")
+get_hair_type("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/bald.jpg")
