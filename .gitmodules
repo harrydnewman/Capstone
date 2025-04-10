@@ -4,3 +4,6 @@
 [submodule "backend/python/libs/pytorch-grad-cam"]
 	path = backend/python/libs/pytorch-grad-cam
 	url = https://github.com/simonSlamka/pytorch-grad-cam.git
+[submodule "backend/python/dlib"]
+	path = backend/python/libs/dlib
+	url = https://github.com/harrydnewman/dlib-mac.git
