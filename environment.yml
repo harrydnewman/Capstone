@@ -1,0 +1,6 @@
+name: venv
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+prefix: /Users/harrisonnewman/anaconda3/envs/venv

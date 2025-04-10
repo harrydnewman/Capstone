@@ -1,0 +1,5 @@
+
+pip install -r requirements.txt
+pip install --upgrade pip setuptools wheel cmake
+pip install -e /Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/libs/pytorch-grad-cam
+pip install -e /Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/backend/python/libs/dlib
