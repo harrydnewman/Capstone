@@ -2,10 +2,12 @@
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 import torch
 from PIL import Image
+import asyncio 
+
 processor = AutoImageProcessor.from_pretrained("dima806/clothes_image_detection", use_fast=True)
 model = AutoModelForImageClassification.from_pretrained("dima806/clothes_image_detection")
 
-def get_clothes(img_path):
+async def get_clothes(img_path):
     image = Image.open(img_path)
 
 
@@ -14,7 +16,7 @@ def get_clothes(img_path):
 
     # Perform a forward pass
     with torch.no_grad():
-        outputs = model(**inputs)
+        outputs = await asyncio.to_thread(lambda: model(**inputs))
 
     # Get predicted class
     logits = outputs.logits
@@ -25,7 +27,3 @@ def get_clothes(img_path):
 
     print(f"Predicted class: {labels[predicted_class_idx]}")
     return labels[predicted_class_idx]
-
-get_clothes("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/test1.jpg")
-get_clothes("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/janedl.png")
-get_clothes("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/bald.jpg")

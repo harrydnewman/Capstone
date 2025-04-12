@@ -1,12 +1,13 @@
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 import torch
 from PIL import Image
+import asyncio
 
 processor = AutoImageProcessor.from_pretrained("ongkn/attraction-classifier", use_fast=True)
 model = AutoModelForImageClassification.from_pretrained("ongkn/attraction-classifier")
 
 
-def get_attractiveness_2(img_path):
+async def get_attractiveness_2(img_path):
     image = Image.open(img_path)
 
 
@@ -15,7 +16,7 @@ def get_attractiveness_2(img_path):
 
     # Perform a forward pass
     with torch.no_grad():
-        outputs = model(**inputs)
+        outputs = await asyncio.to_thread(lambda: model(**inputs))
 
     # Get predicted class
     logits = outputs.logits
@@ -27,6 +28,3 @@ def get_attractiveness_2(img_path):
     print(f"Predicted class: {labels[predicted_class_idx]}")
     return labels[predicted_class_idx]
 
-get_attractiveness_2("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/test1.jpg")
-get_attractiveness_2("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/janedl.png")
-get_attractiveness_2("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/test2.webp")

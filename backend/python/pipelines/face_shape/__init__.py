@@ -2,15 +2,13 @@ from transformers import ViTImageProcessor, AutoModelForImageClassification
 import torch
 from PIL import Image
 import requests
+import asyncio 
 
 # Load the image processor and the model
 processor = ViTImageProcessor.from_pretrained("metadome/face_shape_classification", use_fast=True)
 model = AutoModelForImageClassification.from_pretrained("metadome/face_shape_classification")
 
-# Load an image (for example, from a local file or URL)
-image_path = "/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/janedl.png"  # Replace with the path to your image
-
-def get_face_shape(image_path):
+async def get_face_shape(image_path):
     image = Image.open(image_path)
 
     # Preprocess the image for the model
@@ -18,7 +16,7 @@ def get_face_shape(image_path):
 
     # Perform inference
     with torch.no_grad():
-        outputs = model(**inputs)
+        outputs = await asyncio.to_thread(lambda: model(**inputs))
 
     # Get the prediction
     logits = outputs.logits
@@ -33,8 +31,8 @@ def get_face_shape(image_path):
 
     print(f"Predicted Face Shape: {predicted_label} with confidence {confidence * 100:.2f}%")
 
-    data = {
-        predicted_label: predicted_label,
-        confidence: confidence * 100
-    }
-    return data
+    # data = {
+    #     predicted_label: predicted_label,
+    #     confidence: confidence * 100
+    # }
+    return predicted_label

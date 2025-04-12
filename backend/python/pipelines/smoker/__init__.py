@@ -2,16 +2,12 @@
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 import torch
 from PIL import Image
+import asyncio
 
 processor = AutoImageProcessor.from_pretrained("dima806/smoker_image_classification", use_fast=True)
 model = AutoModelForImageClassification.from_pretrained("dima806/smoker_image_classification")
 
-# Example: read an image
-# image = Image.open("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/janedl.png")
-# image = Image.open("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/test1.jpg")
-
-
-def get_smoker(img_path):
+async def get_smoker(img_path):
     image = Image.open(img_path)
 
 
@@ -20,7 +16,7 @@ def get_smoker(img_path):
 
     # Perform a forward pass
     with torch.no_grad():
-        outputs = model(**inputs)
+        outputs = await asyncio.to_thread(lambda: model(**inputs))
 
     # Get predicted class
     logits = outputs.logits
@@ -31,5 +27,3 @@ def get_smoker(img_path):
 
     print(f"Predicted class: {labels[predicted_class_idx]}")
     return labels[predicted_class_idx]
-
-get_smoker("/Users/harrisonnewman/Documents/NYU/Spring2025/Capstone/Code/MainProject/backend/python/test/TerrieHall.jpg")

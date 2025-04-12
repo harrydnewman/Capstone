@@ -2,11 +2,12 @@
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 import torch
 from PIL import Image
+import asyncio 
 
 processor = AutoImageProcessor.from_pretrained("Minapotheo/hatornot", use_fast=True)
 model = AutoModelForImageClassification.from_pretrained("Minapotheo/hatornot")
 
-def get_hat_or_not(img_path):
+async def get_hat_or_not(img_path):
     image = Image.open(img_path)
 
 
@@ -15,7 +16,7 @@ def get_hat_or_not(img_path):
 
     # Perform a forward pass
     with torch.no_grad():
-        outputs = model(**inputs)
+        outputs = await asyncio.to_thread(lambda: model(**inputs))
 
     # Get predicted class
     logits = outputs.logits

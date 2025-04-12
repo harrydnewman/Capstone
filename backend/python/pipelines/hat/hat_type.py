@@ -2,11 +2,11 @@
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 import torch
 from PIL import Image
-
+import asyncio 
 processor = AutoImageProcessor.from_pretrained("dima806/headgear_image_detection", use_fast=True)
 model = AutoModelForImageClassification.from_pretrained("dima806/headgear_image_detection")
 
-def get_hat_type(img_path):
+async def get_hat_type(img_path):
     image = Image.open(img_path)
 
 
@@ -15,7 +15,7 @@ def get_hat_type(img_path):
 
     # Perform a forward pass
     with torch.no_grad():
-        outputs = model(**inputs)
+        outputs = await asyncio.to_thread(lambda: model(**inputs))
 
     # Get predicted class
     logits = outputs.logits

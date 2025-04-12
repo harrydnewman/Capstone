@@ -1,111 +1,131 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-from pipelines.age_and_race import ageandrace
-# from pipelines.face_search import face_search
-from pipelines.acne import get_acne
-from pipelines.aesthetic import get_aesthetic
-from pipelines.age import get_age
-from pipelines.attractiveness import get_attractiveness
-from pipelines.attractiveness_2 import get_attractiveness_2
-from pipelines.bald import get_bald
-from pipelines.beard import get_beard
-from pipelines.clothes import get_clothes
-from pipelines.emotion import get_emotion
-from pipelines.face_shape import get_face_shape 
-from pipelines.facemask import get_facemask
-from pipelines.gender import get_gender
-
-# none of the hair stuff works well
-from pipelines.hair_length import get_hair_length
-from pipelines.hair_type import get_hair_type
-from pipelines.hat import get_hat
-from pipelines.skin_type import get_skin_type
-from pipelines.smoker import get_smoker
-
+import asyncio
+import websockets
+import json
 import base64
 import os
 import uuid
-from PIL import Image
-import jsonify
 
-# # Initialize Flask app
-app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 32 * 1024 * 1024  # 32 MB upload limit
-app.config['UPLOAD_FOLDER'] = "uploads"
+from pipelines.acne import get_acne
+from pipelines.aesthetic import get_aesthetic
+from pipelines.age import get_age
 
-# # Ensure upload folder exists
-os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+UPLOAD_FOLDER = "uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# # Enable CORS for requests from your React frontend
-CORS(app, origins=["http://localhost:3000"])
+# ---------------------------
+# STUB FUNCTIONS (Replace with real work)
+# ---------------------------
+async def acne(filepath):
+    # await asyncio.sleep(2)  
+    acne = await get_acne(filepath)
+    return acne
 
-# # Allowed file types (currently not used but here for future use)
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+async def aesthetic(filepath):
+    # await asyncio.sleep(2)  
+    aesthetic = await get_aesthetic(filepath)
+    return aesthetic
 
-# # Optional helper (not used right now)
-def allowed_file(filename):
-    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+async def age(filepath):
+    age = await get_age(filepath)
+    return age
 
-# # Upload route
-@app.route("/ageandrace", methods=["POST"])
-def upload_image():
-    if not request.is_json:
-        return jsonify({"error": "Expected JSON"}), 400
+async def function_two(filepath):
+    await asyncio.sleep(4)  # simulate longer processing
+    return "Function Two Result"
 
-    data = request.get_json()
-    base64_data = data.get("file")
+async def function_three(filepath):
+    await asyncio.sleep(3)  # simulate processing time
+    return "Function Three Result"
 
-    if not base64_data:
-        return jsonify({"error": "No image data provided"}), 400
+# async def age(filepath):
 
+
+# ---------------------------
+# Task runner for individual functions
+# ---------------------------
+async def run_function_and_notify(func, filepath, websocket, connection_id, step_name):
     try:
-        # Strip "data:image/jpeg;base64,..." if present
+        result = await func(filepath)
+        await websocket.send(json.dumps({
+            "type": step_name,
+            "message": f"{step_name} complete. Result: {result}"
+        }))
+        print(f"✅ Connection {connection_id}: {step_name} done")
+    except websockets.exceptions.ConnectionClosed:
+        print(f"Connection {connection_id} closed before {step_name} could complete")
+    except Exception as e:
+        print(f"❌ Error in {step_name}: {e}")
+
+async def on_connect(websocket):
+    connection_id = str(uuid.uuid4())
+    print(f"New WebSocket connection: {connection_id}")
+    return connection_id
+
+async def on_disconnect(connection_id):
+    print(f"WebSocket connection closed: {connection_id}")
+
+async def handle_image(websocket, connection_id):
+    async for message in websocket:
+        try:
+            data = json.loads(message)
+        except json.JSONDecodeError:
+            await websocket.send(json.dumps({"error": "Invalid JSON"}))
+            continue
+
+        base64_data = data.get("file")
+        if not base64_data:
+            await websocket.send(json.dumps({"error": "No image data provided"}))
+            continue
+
+        print(f"Received: image from {connection_id}")
+
         if "," in base64_data:
             _, base64_data = base64_data.split(",", 1)
 
-        image_data = base64.b64decode(base64_data)
-    except Exception as e:
-        print("❌ Base64 decode error:", e)
-        return jsonify({"error": "Invalid base64", "details": str(e)}), 400
+        try:
+            image_data = base64.b64decode(base64_data)
+        except Exception as e:
+            await websocket.send(json.dumps({"error": "Invalid base64", "details": str(e)}))
+            continue
 
+        filename = f"{uuid.uuid4().hex}.png"
+        filepath = os.path.join(UPLOAD_FOLDER, filename)
+
+        try:
+            with open(filepath, "wb") as f:
+                f.write(image_data)
+            print(f"✅ Connection {connection_id} saved image to {filepath}")
+        except Exception as e:
+            await websocket.send(json.dumps({"error": "Failed to save image", "details": str(e)}))
+            continue
+
+        # Notify client image is saved
+        await websocket.send(json.dumps({
+            "success": True,
+            "filename": filename
+        }))
+
+        # Run all functions in parallel (fire and forget)
+        tasks = [
+            run_function_and_notify(acne, filepath, websocket, connection_id, "acne"),
+            run_function_and_notify(aesthetic, filepath, websocket, connection_id, "aesthetic"),
+            run_function_and_notify(age, filepath, websocket, connection_id, "age"),
+        ]
+        asyncio.gather(*tasks)  # Not awaited, runs all in parallel
+
+async def connection_handler(websocket):
+    connection_id = await on_connect(websocket)
     try:
-        filename = f"{uuid.uuid4().hex}.jpg"
-        filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+        await handle_image(websocket, connection_id)
+    except websockets.exceptions.ConnectionClosed as e:
+        print(f"Connection {connection_id} closed unexpectedly: {e}")
+    finally:
+        await on_disconnect(connection_id)
 
-        with open(filepath, "wb") as f:
-            f.write(image_data)
+async def main():
+    async with websockets.serve(connection_handler, "localhost", 8765, max_size=None):
+        print("WebSocket server is running on ws://localhost:8765")
+        await asyncio.Future()  # Run forever
 
-        print(f"✅ Saved image to {filepath}")
-
-        # Replace this with your actual processing function
-        ageAndRaceClassification = ageandrace(filepath)
-
-        # os.remove(filepath)
-
-        return jsonify({
-            "ageRange": ageAndRaceClassification["AgeRange"],
-            "ageAccuracy": ageAndRaceClassification["AgeAccuracy"],
-            "raceClassification": ageAndRaceClassification["Race"],
-            "fileName": filename
-        }), 200
-
-    except Exception as e:
-        print("❌ Processing error:", e)
-        return jsonify({"error": "Processing error", "details": str(e)}), 500
-
-# Run the app
 if __name__ == "__main__":
-    app.run(debug=True)
-
-# FACE SEARCH
-    
-# import asyncio
-
-# from pipelines.face_search import face_search
-
-# async def main():
-#     await face_search()
-
-# if __name__ == "__main__":
-#     asyncio.run(main())  # ✅ Fix: Run the async function properly
-#     # app.run(debug=True)
+    asyncio.run(main())
