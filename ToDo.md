@@ -1,5 +1,5 @@
 - Set up python backend server
 - Figure out if I want a DB/How to set that up
-- 
+- Need to delete image once its done
 - Redo frontend 
 - 
