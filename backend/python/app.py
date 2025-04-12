@@ -1,4 +1,5 @@
 import asyncio
+from cycler import V
 import websockets
 import json
 import base64
@@ -8,6 +9,19 @@ import uuid
 from pipelines.acne import get_acne
 from pipelines.aesthetic import get_aesthetic
 from pipelines.age import get_age
+from pipelines.attractiveness import get_attractiveness
+# from pipelines.bald import get_bald
+from pipelines.beard import get_beard
+from pipelines.emotion import get_emotion
+from pipelines.face_shape import get_face_shape
+from pipelines.facemask import get_facemask
+from pipelines.gender import get_gender
+from pipelines.hair_length import get_hair_length
+from pipelines.hair_type import get_hair_type
+# from pipelines.hat import get_hat
+from pipelines.race import get_race
+from pipelines.skin_type import get_skin_type
+from pipelines.smoker import get_smoker
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -29,16 +43,57 @@ async def age(filepath):
     age = await get_age(filepath)
     return age
 
-async def function_two(filepath):
-    await asyncio.sleep(4)  # simulate longer processing
-    return "Function Two Result"
+async def attractiveness(filepath):
+    attractiveness = await get_attractiveness(filepath)
+    return attractiveness
 
-async def function_three(filepath):
-    await asyncio.sleep(3)  # simulate processing time
-    return "Function Three Result"
+# async def bald(filepath):
+#     bald = await get_bald(filepath)
+#     return bald
 
-# async def age(filepath):
+async def beard(filepath):
+    beard = await get_beard(filepath)
+    return beard
 
+async def emotion(filepath):
+    emotion = await get_emotion(filepath)
+    return emotion
+
+async def face_shape(filepath):
+    face_shape = await get_face_shape(filepath)
+    return face_shape
+
+async def facemask(filepath):
+    facemask = await get_facemask(filepath)
+    return facemask
+
+async def gender(filepath):
+    gender = await get_gender(filepath)
+    return gender
+
+async def hair_length(filepath):
+    hair_length = await get_hair_length(filepath)
+    return hair_length
+
+async def hair_type(filepath):
+    hair_type = await get_hair_type(filepath)
+    return hair_type
+
+# async def hat(filepath):
+#     hat = await get_hat(filepath)
+#     return hat
+
+async def race(filepath):
+    race = await get_race(filepath)
+    return race
+
+async def skin_type(filepath):
+    skin_type = await get_skin_type(filepath)
+    return skin_type
+
+async def smoker(filepath):
+    smoker = await get_smoker(filepath)
+    return smoker
 
 # ---------------------------
 # Task runner for individual functions
@@ -110,6 +165,19 @@ async def handle_image(websocket, connection_id):
             run_function_and_notify(acne, filepath, websocket, connection_id, "acne"),
             run_function_and_notify(aesthetic, filepath, websocket, connection_id, "aesthetic"),
             run_function_and_notify(age, filepath, websocket, connection_id, "age"),
+            run_function_and_notify(attractiveness, filepath, websocket, connection_id, "attractiveness"),
+            # run_function_and_notify(bald, filepath, websocket, connection_id, "bald"),
+            run_function_and_notify(beard, filepath, websocket, connection_id, "beard"),
+            run_function_and_notify(emotion, filepath, websocket, connection_id, "emotion"),
+            run_function_and_notify(face_shape, filepath, websocket, connection_id, "face_shape"),
+            run_function_and_notify(facemask, filepath, websocket, connection_id, "facemask"),
+            run_function_and_notify(gender, filepath, websocket, connection_id, "gender"),
+            run_function_and_notify(hair_length, filepath, websocket, connection_id, "hair_length"),
+            run_function_and_notify(hair_type, filepath, websocket, connection_id, "hair_type"),
+            # run_function_and_notify(hat, filepath, websocket, connection_id, "hat"),
+            run_function_and_notify(race, filepath, websocket, connection_id, "race"),
+            run_function_and_notify(skin_type, filepath, websocket, connection_id, "skin_type"),
+            run_function_and_notify(smoker, filepath, websocket, connection_id, "smoker"),
         ]
         asyncio.gather(*tasks)  # Not awaited, runs all in parallel
 
