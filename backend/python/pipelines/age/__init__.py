@@ -4,8 +4,8 @@ import torch
 from PIL import Image
 import asyncio 
 
-processor = AutoImageProcessor.from_pretrained("nateraw/vit-age-classifier", use_fast=True)
-model = AutoModelForImageClassification.from_pretrained("nateraw/vit-age-classifier")
+processor = AutoImageProcessor.from_pretrained("dima806/fairface_age_image_detection", use_fast=True)
+model = AutoModelForImageClassification.from_pretrained("dima806/fairface_age_image_detection")
 
 async def get_age(img_path):
     image = Image.open(img_path)
