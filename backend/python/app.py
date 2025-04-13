@@ -1,10 +1,11 @@
 import asyncio
-from cycler import V
 import websockets
 import json
 import base64
 import os
 import uuid
+from PIL import Image
+import io
 
 from pipelines.acne import get_acne
 from pipelines.aesthetic import get_aesthetic
@@ -27,89 +28,77 @@ UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # ---------------------------
-# STUB FUNCTIONS (Replace with real work)
+# Async functions per pipeline
 # ---------------------------
+
 async def acne(filepath):
-    # await asyncio.sleep(2)  
-    acne = await get_acne(filepath)
-    return acne
+    return await get_acne(filepath)
 
 async def aesthetic(filepath):
-    # await asyncio.sleep(2)  
-    aesthetic = await get_aesthetic(filepath)
-    return aesthetic
+    return await get_aesthetic(filepath)
 
 async def age(filepath):
-    age = await get_age(filepath)
-    return age
+    return await get_age(filepath)
 
 async def attractiveness(filepath):
-    attractiveness = await get_attractiveness(filepath)
-    return attractiveness
+    return await get_attractiveness(filepath)
 
 # async def bald(filepath):
-#     bald = await get_bald(filepath)
-#     return bald
+#     return await get_bald(filepath)
 
 async def beard(filepath):
-    beard = await get_beard(filepath)
-    return beard
+    return await get_beard(filepath)
 
 async def emotion(filepath):
-    emotion = await get_emotion(filepath)
-    return emotion
+    return await get_emotion(filepath)
 
 async def face_shape(filepath):
-    face_shape = await get_face_shape(filepath)
-    return face_shape
+    return await get_face_shape(filepath)
 
 async def facemask(filepath):
-    facemask = await get_facemask(filepath)
-    return facemask
+    return await get_facemask(filepath)
 
 async def gender(filepath):
-    gender = await get_gender(filepath)
-    return gender
+    return await get_gender(filepath)
 
 async def hair_length(filepath):
-    hair_length = await get_hair_length(filepath)
-    return hair_length
+    return await get_hair_length(filepath)
 
 async def hair_type(filepath):
-    hair_type = await get_hair_type(filepath)
-    return hair_type
+    return await get_hair_type(filepath)
 
 # async def hat(filepath):
-#     hat = await get_hat(filepath)
-#     return hat
+#     return await get_hat(filepath)
 
 async def race(filepath):
-    race = await get_race(filepath)
-    return race
+    return await get_race(filepath)
 
 async def skin_type(filepath):
-    skin_type = await get_skin_type(filepath)
-    return skin_type
+    return await get_skin_type(filepath)
 
 async def smoker(filepath):
-    smoker = await get_smoker(filepath)
-    return smoker
+    return await get_smoker(filepath)
 
 # ---------------------------
 # Task runner for individual functions
 # ---------------------------
+
 async def run_function_and_notify(func, filepath, websocket, connection_id, step_name):
     try:
         result = await func(filepath)
         await websocket.send(json.dumps({
             "type": step_name,
-            "message": f"{step_name} complete. Result: {result}"
+            "message": f"{result}"
         }))
         print(f"✅ Connection {connection_id}: {step_name} done")
     except websockets.exceptions.ConnectionClosed:
         print(f"Connection {connection_id} closed before {step_name} could complete")
     except Exception as e:
         print(f"❌ Error in {step_name}: {e}")
+
+# ---------------------------
+# Connection handlers
+# ---------------------------
 
 async def on_connect(websocket):
     connection_id = str(uuid.uuid4())
@@ -147,11 +136,14 @@ async def handle_image(websocket, connection_id):
         filepath = os.path.join(UPLOAD_FOLDER, filename)
 
         try:
-            with open(filepath, "wb") as f:
-                f.write(image_data)
+            # Force image to RGB mode and save
+            image = Image.open(io.BytesIO(image_data))
+            if image.mode != "RGB":
+                image = image.convert("RGB")
+            image.save(filepath)
             print(f"✅ Connection {connection_id} saved image to {filepath}")
         except Exception as e:
-            await websocket.send(json.dumps({"error": "Failed to save image", "details": str(e)}))
+            await websocket.send(json.dumps({"error": "Failed to process image", "details": str(e)}))
             continue
 
         # Notify client image is saved
@@ -160,7 +152,7 @@ async def handle_image(websocket, connection_id):
             "filename": filename
         }))
 
-        # Run all functions in parallel (fire and forget)
+        # Prepare all tasks
         tasks = [
             run_function_and_notify(acne, filepath, websocket, connection_id, "acne"),
             run_function_and_notify(aesthetic, filepath, websocket, connection_id, "aesthetic"),
@@ -179,7 +171,9 @@ async def handle_image(websocket, connection_id):
             run_function_and_notify(skin_type, filepath, websocket, connection_id, "skin_type"),
             run_function_and_notify(smoker, filepath, websocket, connection_id, "smoker"),
         ]
-        asyncio.gather(*tasks)  # Not awaited, runs all in parallel
+
+        # Await all tasks together and handle exceptions
+        await asyncio.gather(*tasks, return_exceptions=True)
 
 async def connection_handler(websocket):
     connection_id = await on_connect(websocket)

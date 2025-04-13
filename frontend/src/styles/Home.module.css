@@ -1,141 +1,54 @@
-.homePage {
-  position: relative;
-  z-index: 1;
-  color: rgb(0, 0, 0);
-  min-height: 100vh;
-  width: 100%;
-}
-
-.mainContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.titles::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.55);
-  z-index: 1;
-}
-.titles {
-  position: relative;
+.main {
+  background-color: #0D0D0D;
   width: 100%;
   height: 100vh;
-  background-image: url("../assets/homepage-background.png");
-  background-size: 300px;
-  background-repeat: repeat;
-  background-position: center;
+  position: relative; /* Needed for absolute positioning inside */
+  color: #F5F5F7;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  
 }
 
-.textContainer {
-  width: fit-content;
-  max-width: 65%;
-  padding: 1.5rem 2rem;
-  background-color: rgba(180, 180, 180, 0.8);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: black !important; /* Ensures text stays black */
-  border-radius: 20px;
+.titleText {
   text-align: center;
-  gap: 1rem;
+  padding-bottom: 10%;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.title h1,
-.subtitle h2 {
-  color: black !important; 
+.titleText h1, .titleText h2 {
+  padding: 0;
   margin: 0;
 }
 
-.title,
-.subtitle {
-  max-width: 100%; 
-  text-align: center;
-  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+.titleText h1 {
+  font-size: 96px;
 }
 
-.title {
-  max-width: 100%;
-  text-align: center;
-  z-index: 2;
+.titleText h2 {
+  font-size: 60px;
 }
 
-.subtitle {
-  max-width: 100%;
-  text-align: center;
-  z-index: 2;
-}
-
-.title h1 {
-  font-size: 2rem;
-  color: black !important; /* Force color to black on h1 */
-}
-
-.subtitle h2 {
-  font-size: 1.3rem;
-  font-weight: normal;
-  color: black !important; /* Force color to black on h2 */
-}
-
-.bottomBar {
+.continueButton {
   position: absolute;
-  top: 86vh;
-  left: 0;
+  bottom: 8%; /* Adjust if you want it tighter or looser at the bottom */
   width: 100%;
-  height: 14vh;
-  background-color: rgba(180, 180, 180, 0.8);
-  z-index: 3;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.buttonContainer {
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  height: 50%;
-}
-
-.enterExperienceButton,
-.seeStatisticsButton {
-  background-color: rgb(127, 169, 249);
+.startButton {
+  background-color: #C2061F;
   border: none;
-  padding: 0.75rem 2rem;
-  height: auto;
   border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.4s;
-  flex: 1;
-  text-align: center;
-  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 60px;
+  width: 40%;
+  color: white;
+  font-size: 25px;
+  transition: transform 0.2s ease;
 }
 
-.enterExperienceButton:hover,
-.seeStatisticsButton:hover {
-    background-color: rgb(92, 139, 227);
+.startButton:hover {
+  cursor: pointer;
   transform: scale(1.05);
 }

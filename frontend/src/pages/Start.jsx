@@ -40,6 +40,7 @@ export default function Start({ onChangeToOnline, onChangeData }) {
 
             const fetch = async () => {
                 const data = await fetchAgeAndRace(image);
+                console.log(data)
                 setData(data)
             };
 
@@ -60,17 +61,17 @@ export default function Start({ onChangeToOnline, onChangeData }) {
         setTimeout(() => setLoading(false), 2000);
         if (data) {
             const ageRangeTimeout = setTimeout(() => {
-                setAgeRange(data.ageRange);
+                setAgeRange(data.age);
                 setAnimateAgeRange(true);
             }, 2000);
 
-            const ageAccuracyTimeout = setTimeout(() => {
-                setAgeAccuracy(data.ageAccuracy);
-                setAnimateAgeAccuracy(true);
-            }, 3000);
+            // const ageAccuracyTimeout = setTimeout(() => {
+            //     setAgeAccuracy(data.ageAccuracy);
+            //     setAnimateAgeAccuracy(true);
+            // }, 3000);
 
             const raceTimeout = setTimeout(() => {
-                setRace(data.raceClassification);
+                setRace(data.race);
                 setAnimateRace(true);
             }, 4000);
 
@@ -79,7 +80,6 @@ export default function Start({ onChangeToOnline, onChangeData }) {
             // Cleanup function
             return () => {
                 clearTimeout(ageRangeTimeout);
-                clearTimeout(ageAccuracyTimeout);
                 clearTimeout(raceTimeout);
                 clearTimeout(showButtonTimeout);
                 clearTimeout(onlineDataTimeout);
@@ -195,10 +195,6 @@ export default function Start({ onChangeToOnline, onChangeData }) {
                         <div className={`${styles.resultsSection} ${ageRange !== null ? styles.visible : ''}`}>
                             <p className={`${styles.resultsHeader} ${animateAgeRange ? styles.animate : ''}`}>Estimated Age Range</p>
                             <p className={`${styles.resultsText} ${animateAgeRange ? styles.animate : ''}`}><strong>{ageRange ?? ''}</strong></p>
-                        </div>
-                        <div className={`${styles.resultsSection} ${ageAccuracy !== null ? styles.visible : ''}`}>
-                            <p className={`${styles.resultsHeader} ${animateAgeAccuracy ? styles.animate : ''}`}>Age Detection Confidence</p>
-                            <p className={`${styles.resultsText} ${animateAgeAccuracy ? styles.animate : ''}`}><strong>{ageAccuracy ?? ''}</strong></p>
                         </div>
                         <div className={`${styles.resultsSection} ${race !== null ? styles.visible : ''}`}>
                             <p className={`${styles.resultsHeader} ${animateRace ? styles.animate : ''}`}>Identified Race</p>

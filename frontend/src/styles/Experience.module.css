@@ -4,6 +4,7 @@
 
 .fadeIn {
   opacity: 1;
+  color: black;
 }
 
 .fadeOut {

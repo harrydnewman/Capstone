@@ -1,8 +1,8 @@
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid rgba(108, 108, 108, 0.53);
-  border-left-color: #000000; /* or any accent color */
+  border: 4px solid rgba(251, 251, 251, 0.53);
+  border-left-color: #ffffff; /* or any accent color */
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: auto;
