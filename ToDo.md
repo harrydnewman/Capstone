@@ -10,6 +10,7 @@
         - For now just change the text output, like if output == "sad", make it == Sad
     - Need to figure out what the accuracy is of these models
     - Need to do next section once this is all done
+      - Come back to online page later, just keep going for now
     - Change animation color from black to white
     - Use real data instead of sample data
     - Add other pages

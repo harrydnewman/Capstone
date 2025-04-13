@@ -1,0 +1,39 @@
+.main {
+  background-color: #333333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 2%;
+  border-radius: 10px;
+  margin: 2%;
+  min-width: 20%;
+}
+
+.modelName {
+  font-size: 32px;
+}
+
+.modelResult {
+  font-size: 35px;
+}
+
+.accuracyDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease;
+}
+
+.accuracyDivActive {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 200px; /* Set higher than needed to allow for expansion */
+}

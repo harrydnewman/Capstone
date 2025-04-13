@@ -5,7 +5,7 @@ export default function Home(){
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/start')
+        navigate('/experience')
     }
     return (
         <div className={styles.main}>

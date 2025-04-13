@@ -4,7 +4,7 @@
     background-color: #0D0D0D;
     color: white;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -51,4 +51,7 @@
   .fade-in {
     opacity: 1;
   }
-  
+  .popUpText h1 {
+    font-size: 70px;
+    text-align: center;
+}
