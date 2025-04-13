@@ -1,13 +1,43 @@
+.main::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.03),
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 2;
+    animation: scanlines 2s linear infinite;
+}
+
+@keyframes scanlines {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 4px;
+    }
+}
+
+
 .main {
     width: 100%;
     height: 100%;
     min-height: 100vh;
     background-color: #0D0D0D;
-    color: white;
+    color: #e0e0e0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    filter: contrast(1.2) brightness(1.1);
     align-items: center;
 }
 
@@ -16,17 +46,29 @@
     margin-bottom: 1%;
     opacity: 0;
     transform: translateY(20px) scale(0.95);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    position: relative;
 }
 
 .title.active {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    animation: glitchFlicker 0.6s ease-out forwards, opacityStutter 0.6s ease-out forwards;
 }
 
+.title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    animation: cardFlash 0.4s ease-out forwards;
+}
 .title h1 {
     font-size: 50px;
     text-align: center;
+    color: #c3d4bc;
 }
 
 .topRow {
@@ -36,12 +78,46 @@
     justify-content: center;
     opacity: 0;
     transform: translateY(20px) scale(0.95);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    position: relative;
+    
 }
 
 .topRow.active {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    animation: glitchFlicker 0.6s ease-out forwards, opacityStutter 0.6s ease-out forwards;
+}
+
+.topRow > * {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    animation: glitchFlicker 0.6s ease-out forwards, opacityStutter 0.6s ease-out forwards;
+    position: relative;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.topRow > *::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    animation: cardFlash 0.4s ease-out forwards;
+}
+
+.topRow::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    animation: cardFlash 0.4s ease-out forwards;
 }
 
 .otherRows {
@@ -50,26 +126,98 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    transition: all 0.5s ease; /* smooth container shift */
+    transition: all 0.2s cubic-bezier(0.7, 0, 0.84, 0); /* fast, snappy */
 }
 
 .animatedCard {
     opacity: 0;
     transform: translateY(20px) scale(0.95);
-    animation: fadeInUpScale 0.6s ease forwards;
+    animation: glitchFlicker 0.6s ease-out forwards, opacityStutter 0.6s ease-out forwards;
+    position: relative;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-@keyframes fadeInUpScale {
+
+@keyframes cardSlam {
     0% {
         opacity: 0;
-        transform: translateY(20px) scale(0.95);
+        transform: translateY(20px) scale(0.5);
     }
-    80% {
+    60% {
         opacity: 1;
-        transform: translateY(0) scale(1.02);
+        transform: translateY(-5px) scale(1.05);
     }
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
 }
+
+.animatedCard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    animation: cardFlash 0.4s ease-out forwards;
+}
+
+@keyframes cardFlash {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes glitchOpacity {
+    0% { opacity: 0; transform: translateY(20px); }
+    40% { opacity: 1; transform: translateY(-2px); }
+    45% { opacity: 0.8; }
+    50% { opacity: 1; }
+    55% { opacity: 0.8; }
+    60% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes opacityStutter {
+    0% { opacity: 0; }
+    20% { opacity: 0.5; }
+    40% { opacity: 0.2; }
+    60% { opacity: 0.7; }
+    80% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+
+@keyframes glitchFlicker {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(0) scale(1.05) skewX(5deg);
+    }
+    20% {
+        opacity: 0.7;
+        transform: translateY(-3px) scale(1.03) skewX(-3deg);
+    }
+    30% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+

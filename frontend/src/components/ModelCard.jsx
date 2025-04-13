@@ -46,9 +46,10 @@ export default function ModelCard({ name, result, showAccuracy, style, className
     };
 
     function formatName(key) {
-        if (key === "Image Appeal") return key;
-        return key.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+        const classificationName = keyToClassificationMap[key.toLowerCase()] || key;
+        return classificationName.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
     }
+    
 
     function formatValue(key, value) {
         const capitalizeWords = (str) =>

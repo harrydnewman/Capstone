@@ -34,29 +34,34 @@ export default function Test() {
     const [shownOtherCardsCount, setShownOtherCardsCount] = useState(0);
 
     useEffect(() => {
-        // Step 1: Trigger title animation
+        const animationDuration = 600;
+        const buffer = 500;
+        const perStep = animationDuration + buffer; // 1000ms clean
+    
         const titleTimer = setTimeout(() => {
             setTitleActive(true);
-        }, 100);
-
-        // Step 2: Trigger top row animation
+        }, 300); // Title fast
+    
         const topRowTimer = setTimeout(() => {
             setTopRowActive(true);
-        }, 600);
-
-        // Step 3: Trigger card animations
+        }, 300 + perStep); // After title anim + buffer
+    
+        const startTime = 300 + perStep * 2; // After top row anim + buffer
+        const interval = perStep; // Consistent per card
+    
         const cardTimers = otherCards.map((_, index) =>
             setTimeout(() => {
                 setShownOtherCardsCount(prev => prev + 1);
-            }, 1000 + index * 800)
+            }, startTime + index * interval)
         );
-
+    
         return () => {
             clearTimeout(titleTimer);
             clearTimeout(topRowTimer);
             cardTimers.forEach(clearTimeout);
         };
     }, []);
+    
 
     return (
         <div className={styles.main}>
@@ -72,7 +77,7 @@ export default function Test() {
                         key={key}
                         name={key}
                         result={value}
-                        showAccuracy={false}
+                        showAccuracy={true}
                     />
                 ))}
             </div>
@@ -84,7 +89,7 @@ export default function Test() {
                         key={key}
                         name={key}
                         result={value}
-                        showAccuracy={false}
+                        showAccuracy={true}
                         style={{ animationDelay: `${index * 0.3}s` }}
                         className={styles.animatedCard}
                     />
