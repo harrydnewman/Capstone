@@ -20,6 +20,10 @@ const sampleData = {
     smoker: "notsmoking"
 }
 
+// This needs a ton of updates
+
+// Also need to add other screens
+
 export default function Online({ data: propData }) {
     const location = useLocation();
     const routerData = location.state?.data;

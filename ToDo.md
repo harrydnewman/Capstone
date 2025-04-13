@@ -11,5 +11,7 @@
     - Need to do next section once this is all done
     - Change animation color from black to white
     - Use real data instead of sample data
+    - Add other pages
+    - STATISTICS PAGE!!!
 Backend:
 - delete image once its done
