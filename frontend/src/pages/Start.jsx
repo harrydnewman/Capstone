@@ -18,14 +18,12 @@ export default function Start({ onChangeToOnline, onChangeData }) {
     const [photoTaken, setPhotoTaken] = useState(false);
     const [data, setData] = useState(null)
     const [ageRange, setAgeRange] = useState(null)
-    const [ageAccuracy, setAgeAccuracy] = useState(null)
     const [race, setRace] = useState(null)
     const [showOnlineDataButton, setShowOnlineDataButton] = useState(false)
     const [onlineData, setOnlineData] = useState(null)
     const [webcamReady, setWebcamReady] = useState(false);
     const [hold, setHold] = useState(false);
     const [animateAgeRange, setAnimateAgeRange] = useState(false);
-    const [animateAgeAccuracy, setAnimateAgeAccuracy] = useState(false);
     const [animateRace, setAnimateRace] = useState(false);
     const webcamRef = useRef(null);
     const navigate = useNavigate();
