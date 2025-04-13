@@ -2,7 +2,6 @@
 
 - Set up python backend server - done
 - Figure out if I want a DB/How to set that up
-- Need to delete image once its done
 - Redo frontend:
   - Need to continue with how AI sees u section
     - Need to format the data
@@ -11,3 +10,5 @@
     - Need to do next section once this is all done
     - Change animation color from black to white
     - Use real data instead of sample data
+Backend:
+- delete image once its done
