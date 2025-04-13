@@ -145,12 +145,7 @@ async def handle_image(websocket, connection_id):
         except Exception as e:
             await websocket.send(json.dumps({"error": "Failed to process image", "details": str(e)}))
             continue
-
-        # Notify client image is saved
-        await websocket.send(json.dumps({
-            "success": True,
-            "filename": filename
-        }))
+       
 
         # Prepare all tasks
         tasks = [

@@ -14,7 +14,7 @@
     },
     {
         "name": "cafeai/cafe_aesthetic",
-        "classification": "Aesthetic of image",
+        "classification": "Image Appeal",
         "outputs": [
             "aesthetic",
             "not_aesthetic" 
@@ -140,12 +140,17 @@
         "accuracy": "96.88%"
     },
     {
-        "name": "",
-        "classification": "",
+        "name": "Anzhc/Race-Classification-FairFace-YOLOv8",
+        "classification": "Race",
         "outputs": [
-            "",
-            ""
+            "Black", 
+            "East Asian", 
+            "Indian", 
+            "Latino_Hispanic", 
+            "Middle Eastern", 
+            "Southeast Asian", 
+            "White"
         ],
-        "accuracy": ""
+        "accuracy": "73.50%"
     }
 ]
