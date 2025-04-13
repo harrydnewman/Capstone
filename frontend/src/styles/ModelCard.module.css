@@ -15,11 +15,12 @@
 
 .modelName {
   font-size: 28px;
-  color: rgb(170, 170, 170);
+  color: rgb(200, 209, 202);
 }
 
 .modelResult {
   font-size: 30px;
+  color: #c3d4bc;
 }
 
 .accuracyDiv {
@@ -43,9 +44,9 @@
 }
 
 .accuracyText {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .accuracyNotes {
-    font-size: 16px;
+  font-size: 16px;
 }
