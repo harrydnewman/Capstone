@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react'; 
 import ModelCard from '../components/ModelCard';
 import styles from '../styles/ShowData.module.css';
 import PropTypes from 'prop-types';
 
-export default function ShowData({ data }) {
+export default function ShowData({ data, onContinue }) {
     const inputData = data || {};
+    const containerRef = useRef(null);
 
     const importantFields = ['age', 'race'];
 
@@ -29,7 +30,7 @@ export default function ShowData({ data }) {
         const topRowTimer = setTimeout(() => setTopRowActive(true), 300 + perStep);
 
         const startTime = 300 + perStep * 2;
-        const interval = perStep;
+        const interval = Math.floor(perStep * 0.7);
 
         const cardTimers = otherCards.map((_, index) =>
             setTimeout(() => {
@@ -41,7 +42,7 @@ export default function ShowData({ data }) {
         const totalCardsTime = startTime + (otherCards.length * interval);
         const buttonTimer = setTimeout(() => {
             setShowContinueButton(true);
-        }, totalCardsTime + 5000); // 5 sec buffer
+        }, totalCardsTime + 4000); // 5 sec buffer
 
         return () => {
             clearTimeout(titleTimer);
@@ -53,11 +54,22 @@ export default function ShowData({ data }) {
     }, [inputData]);
 
     const handleContinueClick = () => {
-        console.log('Button clicked');
+        if (onContinue) {
+            onContinue(); // ✅ calls parent function!
+        }
     };
 
+    useEffect(() => {
+        if (showContinueButton) {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth',
+            });
+        }
+    }, [showContinueButton]);
+
     return (
-        <div className={styles.main}>
+        <div className={styles.main} ref={containerRef}>
             {/* Title */}
             <div className={`${styles.title} ${titleActive ? styles.active : ''}`}>
                 <h1>How AI Sees You</h1>
@@ -108,5 +120,6 @@ ShowData.propTypes = {
             PropTypes.number,
             PropTypes.bool,
         ])
-    )
+    ),
+    onContinue: PropTypes.func, // ✅ Add this
 };

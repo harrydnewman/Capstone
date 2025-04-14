@@ -1,8 +1,42 @@
-/* ====== GLOBAL EFFECTS ====== */
+/* ====== SWEEP OVERLAY ====== */
 
-.main::before {
-    content: "";
+.sweepOverlay {
     position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0D0D0D;
+    z-index: 10;
+    animation: sweepOverlayAnim 1.2s ease forwards;
+}
+
+@keyframes sweepOverlayAnim {
+    0% {
+        bottom: -100%;
+    }
+    50% {
+        bottom: 0;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+/* ====== NEXT CONTENT SECTION ====== */
+
+.nextContent {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInNext 0.8s ease forwards;
+    animation-delay: 1.2s;
+    position: relative;
+}
+
+/* Background effects for next content */
+.nextContent::before {
+    content: "";
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -19,179 +53,20 @@
     animation: scanlines 2s linear infinite;
 }
 
-@keyframes scanlines {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 4px; }
-}
-
-/* ====== LAYOUT ====== */
-
-.main {
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    background-color: #0D0D0D;
-    color: #e0e0e0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    filter: contrast(1.2) brightness(1.1);
-}
-
-/* ====== TITLE ====== */
-
-.title {
-    margin-top: 3%;
-    margin-bottom: 1%;
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-    position: relative;
-}
-
-.title.active {
-    animation: glitchFlicker 0.6s ease-out forwards, opacityStutter 0.6s ease-out forwards;
-}
-
-.title::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    opacity: 0;
-    pointer-events: none;
-    animation: cardFlash 0.4s ease-out forwards;
-}
-
-.title h1 {
-    font-size: 50px;
-    text-align: center;
-    color: #c3d4bc;
-}
-
-/* ====== TOP ROW ====== */
-
-.topRow {
-    width: 100%;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-    position: relative;
-}
-
-.topRow.active {
-    animation: glitchFlicker 0.6s ease-out forwards, opacityStutter 0.6s ease-out forwards;
-}
-
-.topRow::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    opacity: 0;
-    pointer-events: none;
-    animation: cardFlash 0.4s ease-out forwards;
-}
-
-.topRow > * {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-    position: relative;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    animation: glitchFlicker 0.6s ease-out forwards, opacityStutter 0.6s ease-out forwards;
-}
-
-.topRow > *::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    opacity: 0;
-    pointer-events: none;
-    animation: cardFlash 0.4s ease-out forwards;
-}
-
-/* ====== OTHER ROWS ====== */
-
-.otherRows {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    transition: all 0.2s cubic-bezier(0.7, 0, 0.84, 0);
-}
-
-.animatedCard {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-    position: relative;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    animation: glitchFlicker 0.6s ease-out forwards, opacityStutter 0.6s ease-out forwards;
-}
-
-.animatedCard::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    opacity: 0;
-    pointer-events: none;
-    animation: cardFlash 0.4s ease-out forwards;
-}
-
 /* ====== ANIMATIONS ====== */
 
-@keyframes cardFlash {
-    0% { opacity: 0.6; }
-    50% { opacity: 0.2; }
-    100% { opacity: 0; }
+@keyframes fadeInNext {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-@keyframes cardSlam {
-    0% { opacity: 0; transform: translateY(20px) scale(0.5); }
-    60% { opacity: 1; transform: translateY(-5px) scale(1.05); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes glitchOpacity {
-    0% { opacity: 0; transform: translateY(20px); }
-    40% { opacity: 1; transform: translateY(-2px); }
-    45% { opacity: 0.8; }
-    50% { opacity: 1; }
-    55% { opacity: 0.8; }
-    60% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes opacityStutter {
-    0% { opacity: 0; }
-    20% { opacity: 0.5; }
-    40% { opacity: 0.2; }
-    60% { opacity: 0.7; }
-    80% { opacity: 0.4; }
-    100% { opacity: 1; }
-}
-
-@keyframes glitchFlicker {
-    0% { opacity: 0; transform: translateY(20px) scale(0.9); }
-    10% { opacity: 1; transform: translateY(0) scale(1.05) skewX(5deg); }
-    20% { opacity: 0.7; transform: translateY(-3px) scale(1.03) skewX(-3deg); }
-    30% { opacity: 1; transform: translateY(0) scale(1); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes scanlines {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 4px;
+    }
 }
