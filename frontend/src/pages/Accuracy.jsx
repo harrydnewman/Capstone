@@ -35,20 +35,6 @@ export default function Accuracy({ data }) {
     return () => clearTimeout(timer);
   }, [activate]);
 
-  useEffect(() => {
-    if (activate) {
-      const scrollTimer = setTimeout(() => {
-        const topRowElement = document.querySelector(`.${styles.topRow}`);
-        if (topRowElement) {
-          topRowElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 2500); // ⏱️ Scroll after 2.5s
-  
-      return () => clearTimeout(scrollTimer);
-    }
-  }, [activate]);
-
-  
 
   return (
     <div className={styles.main}>

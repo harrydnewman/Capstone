@@ -25,6 +25,7 @@ export default function Test() {
     const [showData, setShowData] = useState(true);
     const [showNext, setShowNext] = useState(false);
     const [showSweep, setShowSweep] = useState(false);
+    const [showAccuracy, setShowAccuracy] = useState(false)
 
     const handleContinue = () => {
         console.log("✅ Continue button clicked from parent Test component");
@@ -38,18 +39,24 @@ export default function Test() {
         setTimeout(() => {
             setShowSweep(false);
         }, 1200); 
+
+        setTimeout(() => {
+            setShowNext(false);
+            setShowAccuracy(true);
+        }, 8500); 
     };
 
     return (
         <div className={styles.main}>
-            {/* {showData && <ShowData data={testData} onContinue={handleContinue} />}
+            {showData && <ShowData data={testData} onContinue={handleContinue} />}
             {showNext && (
                 <div className={styles.nextContent}>
                     <EmotionBlameSequence />
                 </div>
             )}
-            {showSweep && <div className={styles.sweepOverlay} />} */}
-            <Accuracy data={testData}/>
+            {showSweep && <div className={styles.sweepOverlay} />}
+            {showAccuracy && <Accuracy data={testData}/>}
+            
         </div>
     );
 }
