@@ -62,8 +62,8 @@ export default function Explaination() {
             </div>
 
             <div className={styles.section}>
-                <h1>Flawed AI isn’t just a personal issue — it’s a systemic problem.</h1>
-
+                <h1>Flawed AI isn&apos;t just a personal issue — it&apos;s a systemic problem.</h1>
+                <h4>Hate this</h4>
                 <h2>Facial recognition threatens privacy, freedom of assembly, and freedom of movement.</h2>    
                 <h4>EXPLAIN HOW, do I even mention this in my essay?????</h4>
                 <div className={styles.visual}>
@@ -73,9 +73,8 @@ export default function Explaination() {
             </div>
 
             <div className={styles.section}>
-                <h1>The photo you uploaded today? It's a glimpse into how AI sees you.</h1>
-                <h1>But for millions, these systems decide their future.</h1>
-                <h4>CORNNNYYYYYYY</h4>
+                <h1>The photo you uploaded today? It&apos;s a glimpse into how AI sees you.</h1>
+                <h1>But for many, these systems shape decisions that deeply impact their lives.</h1>
             </div>
 
             <h4>Add button to do user experience test here</h4>
@@ -83,3 +82,5 @@ export default function Explaination() {
         </div>
     )
 }
+
+// Wait like x amount of sections between each section, and then scroll down to the next one as it animates in. 

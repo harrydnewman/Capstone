@@ -8,10 +8,12 @@
       - Figure out what the output is of each model
         - Then find/make PNGs for each output (ie cigarette for smoker, cigarette with x for non smoker)
         - For now just change the text output, like if output == "sad", make it == Sad
-    - Need to do next section once this is all done
-      - Come back to online page later, just keep going for now
-    - Change animation color from black to white
     - Use real data instead of sample data
     - STATISTICS PAGE!!!
+    - Set up user testing
+      - Do node.js backend with mongo db maybe? or just integrate the DB into the react project
+    - set up db to store data
+    - Update the first 2 pages
+    - OPTIMIZE FOR MOBILE
 Backend:
 - delete image once its done
