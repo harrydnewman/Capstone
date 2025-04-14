@@ -1,54 +1,111 @@
 .main {
-    width: 100%;
-    height: 100vh;
-    background-color: #0D0D0D;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0D0D0D;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: contrast(1.2) brightness(1.1);
+  overflow: visible;
 }
 
-.popUpText h1 {
-    font-size: 70px;
-    text-align: center;
+.main::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: scanlines 4s linear infinite;
 }
 
-.slideUp {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideUp 1s ease-out forwards;
-  }
-  
-  @keyframes slideUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+@keyframes scanlines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 4px; }
+}
+.cardsActive {
+  opacity: 1;
+  transform: scale(1);
+  margin-bottom: 100px;
+}
+.titleText h1 {
+  font-size: 70px;
+  text-align: center;
+  color: #c3d4bc;
+}
+/* Title stays in flow naturally */
+.titleText {
+  text-align: center;
+  margin: 40vh 0 20px 0; /* Start middle of screen */
+  transition: margin 2s ease;
+}
 
-  .slideUp1 {
-    animation-delay: 0s;
-  }
-  
-  .slideUp2 {
-    animation-delay: 1s;
-  }
-  
-  .slideUp3 {
-    animation-delay: 2s;
-  }
+.titleText.pushUp {
+  margin: 5vh 0 20px 0; /* Final resting position */
+}
 
-  .fade {
-    opacity: 1;
-    transition: opacity 0.6s ease;
-  }
-  
-  .fade-out {
-    opacity: 0;
-  }
-  
-  .fade-in {
-    opacity: 1;
-  }
-  
+
+
+
+
+
+.topRow {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.otherRows {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.cardsDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.cardsDiv .topRow > *,
+.cardsDiv .otherRows > * {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  will-change: opacity, transform;
+}
+
+.cardsActive .topRow > *,
+.cardsActive .otherRows > * {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: glitchOpacity 3s cubic-bezier(0.3, 0, 0.3, 1) forwards;
+
+}
+
+@keyframes glitchOpacity {
+  0% { opacity: 0; transform: translateY(20px); }
+  40% { opacity: 1; transform: translateY(-2px); }
+  45% { opacity: 0.8; }
+  50% { opacity: 1; }
+  55% { opacity: 0.8; }
+  60% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 1; transform: translateY(0); }
+}

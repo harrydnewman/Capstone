@@ -1,0 +1,92 @@
+.main {
+    background-color: #323232;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 1%;
+    border-radius: 10px;
+    margin: 1%;
+    width: 20%;
+    color: white;
+    transition: padding 2s ease, margin 2s ease;
+    overflow: hidden;
+    height: auto;
+  }
+  
+  .modelName {
+    font-size: 28px;
+    color: rgb(200, 209, 202);
+  }
+  
+  .modelResult {
+    font-size: 30px;
+    color: #c3d4bc;
+  }
+  
+  .accuracyDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0; /* ✅ start hidden */
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 1%;
+    transition: max-height 1.2s ease; /* ✅ only grow the height smoothly */
+    transform: none; /* ✅ remove slide effect */
+  }
+  
+  .accuracyDivActive {
+    max-height: 200px; /* ✅ allow expansion */
+  }
+  
+  .accuracyText {
+    font-size: 30px;
+  }
+  
+  .accuracyNotes {
+    font-size: 16px;
+  }
+  
+  .accuracyActive {
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    transition: padding 2s ease, margin 2s ease;
+  }
+  
+  .accuracyActiveGlitch {
+    animation: glitchOpacity 2s cubic-bezier(0.3, 0, 0.3, 1) forwards;
+    animation-delay: 1.2s; /* ✅ after grow completes */
+    opacity: 0;
+  }
+  
+  /* ✅ Glitch-only animation, no initial slide */
+  @keyframes glitchOpacity {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    25% { opacity: 0; }
+    30% { opacity: 1; }
+    35% { opacity: 0.6; }
+    40% { opacity: 1; }
+    45% { opacity: 0.7; }
+    50% { opacity: 1; }
+    55% { opacity: 0.5; }
+    60% { opacity: 1; }
+    65% { opacity: 0.8; }
+    70% { opacity: 1; }
+    100% { opacity: 1; }
+  }
+  
+  
+  @keyframes opacityStutter {
+    0% { opacity: 0; }
+    20% { opacity: 0.5; }
+    40% { opacity: 0.2; }
+    60% { opacity: 0.7; }
+    80% { opacity: 0.4; }
+    100% { opacity: 1; }
+  }
+  

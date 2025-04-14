@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Test.module.css';
 import ShowData from './ShowData';
 import EmotionBlameSequence from './EmotionBlameSequence';
+import Accuracy from './Accuracy';
 
 export default function Test() {
     const testData = {
@@ -41,13 +42,14 @@ export default function Test() {
 
     return (
         <div className={styles.main}>
-            {showData && <ShowData data={testData} onContinue={handleContinue} />}
+            {/* {showData && <ShowData data={testData} onContinue={handleContinue} />}
             {showNext && (
                 <div className={styles.nextContent}>
                     <EmotionBlameSequence />
                 </div>
             )}
-            {showSweep && <div className={styles.sweepOverlay} />}
+            {showSweep && <div className={styles.sweepOverlay} />} */}
+            <Accuracy data={testData}/>
         </div>
     );
 }

@@ -1,44 +1,95 @@
-import styles from '../styles/Accuracy.module.css'
-import { useEffect, useState } from "react";
-import ModelCard from "../components/ModelCard"
+import styles from '../styles/Accuracy.module.css';
+import ModelCard from "../components/ModelCard";
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 
-export default function Accuracy() {
-    const [showAccuracy, setShowAccuraccy] = useState(false)
+export default function Accuracy({ data }) {
+  const inputData = data || {};
+  const [showAccuracy, setShowAccuracy] = useState(false)
+  const [activate, setActivate] = useState(false);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowAccuraccy(true);
-        }, 4000);
+  const importantFields = ['age', 'race'];
 
-        return () => clearTimeout(timer);
-    }, []);
-    
-    const fakeModelData = {
-        name: "Age",
-        result: "25-30 years",
-        accuracy: "92.4%",
-        showAccuracy: showAccuracy
-    };
+  const filteredEntries = Object.entries(inputData).filter(
+    ([, value]) => value !== null && value !== "N/A"
+  );
 
-    const fakeModelData2 = {
-        name: "Race",
-        result: "White",
-        accuracy: "53.4%",
-        showAccuracy: showAccuracy
-    };
-    return (
-        // <EmotionBlameSequence/>
-        <div className={styles.main}>
+  const ageAndRace = filteredEntries.filter(([key]) => importantFields.includes(key));
+  const otherCards = filteredEntries.filter(([key]) => !importantFields.includes(key));
+
+  
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setActivate(true);
+    }, 2000); // Slow intro
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+        setShowAccuracy(true);
+    }, 3000); // Slow intro
+
+    return () => clearTimeout(timer);
+  }, [activate]);
+
+  useEffect(() => {
+    if (activate) {
+      const scrollTimer = setTimeout(() => {
+        const topRowElement = document.querySelector(`.${styles.topRow}`);
+        if (topRowElement) {
+          topRowElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 2500); // ⏱️ Scroll after 2.5s
+  
+      return () => clearTimeout(scrollTimer);
+    }
+  }, [activate]);
+
+  
+
+  return (
+    <div className={styles.main}>
+      <div className={`${styles.titleText} ${activate ? styles.pushUp : ''}`}>
+        <h1>Don’t blame us.</h1>
+        <h1>Blame the models.</h1>
+      </div>
+
+      <div className={`${styles.cardsDiv} ${activate ? styles.cardsActive : ''}`}>
+        <div className={styles.topRow}>
+          {ageAndRace.map(([key, value]) => (
             <ModelCard
-                name={fakeModelData.name}
-                result={fakeModelData.result}
-                accuracy={fakeModelData.accuracy}
-                showAccuracy={fakeModelData.showAccuracy} />
-            <ModelCard
-                name={fakeModelData2.name}
-                result={fakeModelData2.result}
-                accuracy={fakeModelData2.accuracy}
-                showAccuracy={fakeModelData2.showAccuracy} />
+              key={key}
+              name={key}
+              result={value}
+              showAccuracy={showAccuracy}
+            />
+          ))}
         </div>
-    )
+
+        <div className={styles.otherRows}>
+          {otherCards.map(([key, value]) => (
+            <ModelCard
+              key={key}
+              name={key}
+              result={value}
+              showAccuracy={showAccuracy}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
+
+Accuracy.propTypes = {
+  data: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.bool,
+    ])
+  )
+};

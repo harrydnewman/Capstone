@@ -1,6 +1,5 @@
 .main {
   background-color: #323232;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +10,11 @@
   margin: 1%;
   width: 20%;
   color: white;
+  transition: padding 0.6s ease, margin 0.6s ease, height 0.6s ease;
+  overflow: hidden; /* Important: clip overflow smoothly */
+  height: auto; /* Start with auto height */
 }
+
 
 .modelName {
   font-size: 28px;
@@ -33,8 +36,8 @@
   transform: translateY(20px);
   max-height: 0;
   overflow: hidden;
-  margin-top: 5%;
-  transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease;
+  margin-top: 1%;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out, max-height 0.5s ease-out;
 }
 
 .accuracyDivActive {
@@ -49,4 +52,32 @@
 
 .accuracyNotes {
   font-size: 16px;
+}
+
+.accuracyActive {
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.accuracyActiveGlitch {
+  animation: glitchOpacity 1.5s cubic-bezier(0.3, 0, 0.3, 1) forwards;
+  animation-delay: 0.5s; /* ✅ after grow completes */
+  opacity: 0;
+}
+
+/* ✅ Glitch-only animation, no initial slide */
+@keyframes glitchOpacity {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  25% { opacity: 0; }
+  30% { opacity: 1; }
+  35% { opacity: 0.6; }
+  40% { opacity: 1; }
+  45% { opacity: 0.7; }
+  50% { opacity: 1; }
+  55% { opacity: 0.5; }
+  60% { opacity: 1; }
+  65% { opacity: 0.8; }
+  70% { opacity: 1; }
+  100% { opacity: 1; }
 }

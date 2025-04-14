@@ -101,11 +101,15 @@ export default function ModelCard({ name, result, showAccuracy, style, className
     const accuracyNotes = modelData?.accuracyNotes;
 
     return (
-        <div className={`${styles.main} ${className || ''}`} style={style}>
+        <div className={`${styles.main} ${className || ''} ${animateAccuracy ? styles.accuracyActive : ''}`} style={style}>
             <h2 className={styles.modelName}>{formattedName}</h2>
             <h1 className={styles.modelResult}>{formattedResult}</h1>
             {showAccuracy && (
-                <div className={`${styles.accuracyDiv} ${animateAccuracy ? styles.accuracyDivActive : ''}`}>
+                <div className={`${styles.accuracyDiv} 
+  ${animateAccuracy ? styles.accuracyDivActive : ''} 
+  ${animateAccuracy ? styles.accuracyActiveGlitch : ''}
+`}>
+
                     <h2 className={styles.modelName}>Accuracy</h2>
                     <h1 className={styles.modelResult}>{finalAccuracy}</h1>
                     {accuracyNotes && <p className={styles.accuracyNotes}>{accuracyNotes}</p>}
