@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from '../styles/Test.module.css';
 import ShowData from './ShowData';
 import EmotionBlameSequence from './EmotionBlameSequence';
