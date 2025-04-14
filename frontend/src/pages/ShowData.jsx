@@ -38,7 +38,6 @@ export default function ShowData({ data, onContinue }) {
             }, startTime + index * interval)
         );
 
-        // ✅ After all cards are shown, wait 5s then show button
         const totalCardsTime = startTime + (otherCards.length * interval);
         const buttonTimer = setTimeout(() => {
             setShowContinueButton(true);
@@ -65,7 +64,7 @@ export default function ShowData({ data, onContinue }) {
 
     const handleContinueClick = () => {
         if (onContinue) {
-            onContinue(); // ✅ calls parent function!
+            onContinue(); 
         }
     };
 
