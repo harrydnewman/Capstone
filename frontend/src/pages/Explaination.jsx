@@ -1,5 +1,6 @@
 import styles from '../styles/Explaination.module.css'
 
+import Scope from '../components/ExplainationComponents/Scope'
 export default function Explaination() {
     return (
         <div className={styles.main}>
@@ -10,14 +11,16 @@ export default function Explaination() {
                 <h1>When these systems fail, the consequences aren&apos;t just wrong answers, they&apos;re life-changing decisions.</h1>
             </div>
 
-            <div className={styles.section}>
+            <Scope/>
+
+            {/* <div className={styles.section}>
                 <h1>How Big Is This Problem?</h1>
                 <h2>Facial recognition is everywhere.</h2>
                 <h2>In 2021, at least 20 U.S. federal law enforcement agencies were already using facial recognition.</h2>
                 <div className={styles.visual}>
                     <p>Show federal agencies using AI facial recognition here</p>
                 </div>
-                {/* maybe keep this */}
+                {/* maybe keep this 
                 <h2>Talk about local law enforcement departments using the tech</h2>
                 <div className={styles.visual}>
                     <p>Show map if possible to find the data relatively quickly</p>
@@ -79,8 +82,10 @@ export default function Explaination() {
 
             <h4>Add button to do user experience test here</h4>
             <h4>Also set up basically like a quick reflection that was like: Were these results accurate?</h4>
+             */}
         </div>
     )
 }
 
-// Wait like x amount of sections between each section, and then scroll down to the next one as it animates in. 
+// Wait like x amount of sections between each section, and then scroll down to the next one as it animates in.
+// Set up everything first, then do the animations and shit 
