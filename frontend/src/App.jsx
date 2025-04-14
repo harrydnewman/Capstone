@@ -7,6 +7,8 @@ import Online from './pages/Online';
 import Privacy from './pages/Privacy';
 import Statistics from './pages/Statistics';
 import Test from './pages/Test';
+import Explaination from './pages/Explaination';
+
 export default function App() {
   return (
     <div className="App">
@@ -19,6 +21,7 @@ export default function App() {
           <Route path='/privacy' element={<Privacy/>}/>
           <Route path='/statistics' element={<Statistics/>}/>
           <Route path='/test' element={<Test/>}/>
+          <Route path='/explaination' element={<Explaination/>}/>
         </Routes>
       </Router>
     </div>
