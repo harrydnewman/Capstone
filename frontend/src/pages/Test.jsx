@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/Test.module.css';
 import ShowData from './ShowData';
+import EmotionBlameSequence from './EmotionBlameSequence';
 
 export default function Test() {
     const testData = {
@@ -26,26 +27,27 @@ export default function Test() {
 
     const handleContinue = () => {
         console.log("✅ Continue button clicked from parent Test component");
-
         setShowSweep(true);
 
         setTimeout(() => {
             setShowData(false);
             setShowNext(true);
-        }, 1200); // match animation duration
+        }, 600); 
+
+        setTimeout(() => {
+            setShowSweep(false);
+        }, 1200); 
     };
 
     return (
         <div className={styles.main}>
             {showData && <ShowData data={testData} onContinue={handleContinue} />}
-
-            {showSweep && <div className={styles.sweepOverlay} />}
-
             {showNext && (
                 <div className={styles.nextContent}>
-                    <h1>Next</h1>
+                    <EmotionBlameSequence />
                 </div>
             )}
+            {showSweep && <div className={styles.sweepOverlay} />}
         </div>
     );
 }

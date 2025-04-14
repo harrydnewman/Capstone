@@ -1,5 +1,26 @@
-/* ====== SWEEP OVERLAY ====== */
+.main {
+    /* ✅ Keep scroll but hide scrollbar visually */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
 
+.main::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+html:has(.main),
+body:has(.main) {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+html:has(.main)::-webkit-scrollbar,
+body:has(.main)::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* ====== SWEEP OVERLAY ====== */
 .sweepOverlay {
     position: fixed;
     bottom: -100%;
@@ -7,8 +28,9 @@
     width: 100%;
     height: 100%;
     background-color: #0D0D0D;
-    z-index: 10;
+    z-index: 9999; /* <== Increase z-index to ensure it sits above everything */
     animation: sweepOverlayAnim 1.2s ease forwards;
+    pointer-events: none; /* So it doesn’t block interaction */
 }
 
 @keyframes sweepOverlayAnim {
@@ -23,13 +45,15 @@
     }
 }
 
+
+
 /* ====== NEXT CONTENT SECTION ====== */
 
 .nextContent {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInNext 0.8s ease forwards;
-    animation-delay: 1.2s;
+    animation-delay: 0.6s; /* ✅ matches first setTimeout */
     position: relative;
 }
 

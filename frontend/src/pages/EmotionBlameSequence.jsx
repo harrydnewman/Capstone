@@ -1,44 +1,52 @@
-import styles from "../styles/Test.module.css";
+import styles from "../styles/EmotionBlame.module.css";
 import Emotions from "../components/Emotions";
 import Blame from "../components/Blame";
 import { useEffect, useState } from "react";
 
 export default function EmotionBlameSequence() {
     const [showEmotions, setShowEmotions] = useState(true);
-    const [fadeOutEmotions, setFadeOutEmotions] = useState(false);
+    const [fadeInEmotions, setFadeInEmotions] = useState(false);
+    const [flickerOutEmotions, setFlickerOutEmotions] = useState(false);
     const [showBlame, setShowBlame] = useState(false);
-
+  
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setFadeOutEmotions(true); 
-        }, 4000);
-
-        return () => clearTimeout(timer);
+      const fadeInTimer = setTimeout(() => {
+        setFadeInEmotions(true);
+      }, 100);
+  
+      const flickerOutTimer = setTimeout(() => {
+        setFlickerOutEmotions(true);
+      }, 4500);
+  
+      return () => {
+        clearTimeout(fadeInTimer);
+        clearTimeout(flickerOutTimer);
+      };
     }, []);
-
+  
     useEffect(() => {
-        if (fadeOutEmotions) {
-            const timeout = setTimeout(() => {
-                setShowEmotions(false);
-                setShowBlame(true);
-            }, 600);
-
-            return () => clearTimeout(timeout);
-        }
-    }, [fadeOutEmotions]);
-
+      if (flickerOutEmotions) {
+        const timeout = setTimeout(() => {
+          setShowEmotions(false);
+          setShowBlame(true);
+        }, 600); // match flickerOut animation
+        return () => clearTimeout(timeout);
+      }
+    }, [flickerOutEmotions]);
+  
     return (
-        <div className={styles.main}>
-            {showEmotions && (
-                <div className={`${styles.fade} ${fadeOutEmotions ? styles.fadeOut : styles.fadeIn}`}>
-                    <Emotions />
-                </div>
-            )}
-            {showBlame && (
-                <div className={`${styles.fade} ${styles.fadeIn}`}>
-                    <Blame />
-                </div>
-            )}
-        </div>
+      <div className={styles.sequenceWrapper}>
+        {showEmotions && (
+          <div className={`${styles.fade} ${fadeInEmotions ? styles.fadeIn : ''}`}>
+            <Emotions flickerOut={flickerOutEmotions} />
+          </div>
+        )}
+        {showBlame && (
+          <div className={`${styles.fade} ${styles.fadeIn}`}>
+            <Blame />
+          </div>
+        )}
+      </div>
     );
-}
+  }
+  
