@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'; 
 import styles from '../../styles/ExplainationComponents/ExplainationSections.module.css'
 import Traits from './Components/Traits'
-export default function Section1(){
+import PropTypes from 'prop-types';
+
+export default function Section1({ onFinish }) {
     const [showSection2, setShowSection2] = useState(false);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
             setShowSection2(true);
-        }, 7000); 
+        }, 10000); 
 
         return () => clearTimeout(timeout); 
     }, []);
@@ -18,8 +20,13 @@ export default function Section1(){
                 top: document.body.scrollHeight,
                 behavior: 'smooth',
             });
+
+            // 🔔 notify parent when Section1 finishes showing everything
+            if (onFinish) {
+                onFinish();
+            }
         }
-    }, [showSection2]);
+    }, [showSection2, onFinish]);
 
     return (
         <div className={styles.wrapper}>
@@ -40,3 +47,7 @@ export default function Section1(){
         
     )
 }
+
+Section1.propTypes = {
+    onFinish: PropTypes.func, // optional function
+  };

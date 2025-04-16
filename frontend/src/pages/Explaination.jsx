@@ -1,18 +1,56 @@
+import { useEffect, useState } from 'react'; 
 import styles from '../styles/Explaination.module.css'
+import TitleSection from '../components/ExplainationComponents/TitleSection';
 import Section1 from '../components/ExplainationComponents/Section1'
 import Section2 from '../components/ExplainationComponents/Section2';
-import { useEffect, useState } from 'react'; 
 
 export default function Explaination() {
+    const [showSection1, setShowSection1] = useState(false)
+    const [showSection2, setShowSection2] = useState(false)
+
+    const section1Finish = () => {
+        setTimeout(() => {
+            console.log("Section 1 Done")
+            setShowSection2(true)
+        }, 4000)
+    }
+
+    useEffect(() => {
+        const timeouts = [];
+      
+        timeouts.push(setTimeout(() => setShowSection1(true), 5000));
+      
+        return () => timeouts.forEach(clearTimeout);
+      }, []);
+      
+      useEffect(() => {
+        if (showSection1) {
+          scrollToBottom();
+        }
+      }, [showSection1]);
+
+      useEffect(() => {
+        if (showSection2) {
+          scrollToBottom();
+        }
+      }, [showSection2]);
+      
+      const scrollToBottom = () => {
+        setTimeout(() => {
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth',
+          });
+        }, 100); 
+      };
     return (
         <div className={styles.main}>
-            {/* <div className={styles.titleSection}>
-                <h1>None of these models are fully reliable.</h1>
-                <h1>Yet, AI systems built on similar data and techniques are used every day in hiring, policing, and immigration screening.</h1>
-                <h1>When these systems fail, the consequences aren&apos;t just wrong answers, they&apos;re life-changing decisions.</h1>
-            </div> */}
+            <TitleSection/>
+
+            {showSection1 && <Section1 onFinish={section1Finish} />}
+            {showSection2 && <Section2/>}
             {/* <Section1/> */}
-            <Section2/>
+            {/* <Section2/> */}
         </div>
     )
 }
