@@ -1,4 +1,7 @@
-.sectionOneDiv {
+/* SECTION ONE */
+
+.sectionOneDiv,
+.sectionOneDivPart2 {
   text-align: center;
   height: 100vh;
   width: 100%;
@@ -6,6 +9,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.sectionOneDiv {
   padding: 10%;
 }
 
@@ -23,7 +29,7 @@
 }
 
 .sectionOneDiv h1:nth-of-type(3) {
-  animation-delay: 5.5s; /* Give time for Traits to finish (5x0.4s = 2.0s) */
+  animation-delay: 5.5s; /* Appears after Traits finish */
 }
 
 .traitsDiv {
@@ -34,7 +40,7 @@
 .traitsDiv h1 {
   opacity: 0;
   animation: glitchOpacity 0.8s ease-in forwards;
-  animation-delay: 2.5s; /* base delay for all */
+  animation-delay: 2.5s; /* Base delay */
 }
 
 .traitsDiv h1:nth-child(1) {
@@ -58,76 +64,191 @@
 }
 
 .sectionOneDivPart2 {
-  text-align: center;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 5%;
 }
 
 .sectionOneDivPart2 h1 {
   opacity: 0;
   animation: glitchOpacity 0.8s ease-in forwards;
-  /* animation-delay: 10s;  */
   font-size: 60px;
   color: #e0e0e0;
 }
 
 .sectionOneDivPart2 h1:nth-child(1) {
-  animation-delay: calc(1s + 0s);
+  animation-delay: 1s;
 }
 
 .sectionOneDivPart2 h1:nth-child(2) {
-  animation-delay: calc(1s + 1s);
+  animation-delay: 2s;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
+/* Section 2 */
+.sectionTwoTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+}
+
+.sectionTwoTitle h1 {
+    opacity: 0;
+    animation: glitchOpacity 0.8s ease-in forwards;
   }
+  
+  .sectionTwoTitle h1:nth-child(1) {
+    animation-delay: 1s;
+  }
+  
+  .sectionTwoTitle h1:nth-child(2) {
+    animation-delay: 3s;
+  }
+
+
+.sectionTwoBodyOne {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 10%;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
 }
 
+.sectionTwoBodyOne h1 {
+    opacity: 0;
+    animation: glitchOpacity 1s ease-in forwards;
+  }
+  
+  .sectionTwoBodyOne h1:nth-child(1) {
+    animation-delay: 2s;
+  }
+  
+  .sectionTwoBodyOne h1:nth-child(2) {
+    animation-delay: 4s;
+  }
+
+  .sectionTwoBodyOne h1:nth-child(3) {
+    animation-delay: 6s;
+  }
+
+  .sectionTwoBodyOne h1:nth-child(4) {
+    animation-delay: 8s;
+  }
+
+.h1Emphasis {
+    color: #e0e0e0 !important;
+}
+
+.BarChartContainerDiv {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: glitchOpacity 1s ease-in forwards;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+.BarChartContainerDiv h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #c3d4bc;
+}
+
+.sectionTwoBodyTwo {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: start;
+    justify-content: center;
+    width: 100%;    
+    height: 90vh;
+    padding: 10%;
+    padding-top: 0;
+}
+
+
+.sectionTwoBodyTwo h1 {
+    opacity: 0;
+    animation: glitchOpacity 0.8s ease-in forwards;
+  }
+  
+  .sectionTwoBodyTwo h1:nth-child(1) {
+    animation-delay: 1s;
+  }
+  
+  .sectionTwoBodyTwo h1:nth-child(2) {
+    animation-delay: 3s;
+  }
+
+  .sectionTwoBodyTwo h1:nth-child(3) {
+    animation-delay: 5s;
+  }
+  
+  .sectionTwoBodyTwo h1:nth-child(4) {
+    animation-delay: 7s;
+  }
+
+
+  .sectionTwoBodyThree {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: start;
+    justify-content: center;
+    width: 100%;    
+    height: 100vh;
+    padding: 10%;
+}
+
+.sectionTwoBodyThree h1 {
+    opacity: 0;
+    animation: glitchOpacity 0.8s ease-in forwards;
+  }
+
+  .sectionTwoBodyThree h1:nth-child(1) {
+    animation-delay: 1s;
+  }
+  
+  .sectionTwoBodyThree h1:nth-child(2) {
+    animation-delay: 3s;
+  }
+
+/* Animations */
 @keyframes glitchOpacity {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  25% {
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  35% {
-    opacity: 0.6;
-  }
-  40% {
-    opacity: 1;
-  }
-  45% {
-    opacity: 0.7;
-  }
-  50% {
-    opacity: 1;
-  }
-  55% {
-    opacity: 0.5;
-  }
-  60% {
-    opacity: 1;
-  }
-  65% {
-    opacity: 0.8;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  25% { opacity: 0; }
+  30% { opacity: 1; }
+  35% { opacity: 0.6; }
+  40% { opacity: 1; }
+  45% { opacity: 0.7; }
+  50% { opacity: 1; }
+  55% { opacity: 0.5; }
+  60% { opacity: 1; }
+  65% { opacity: 0.8; }
+  70% { opacity: 1; }
+  100% { opacity: 1; }
 }
+
+/* .typing {
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #e0e0e0; 
+    width: fit-content;
+    animation: typing 3s steps(22) 1s forwards, blink 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 22ch } 
+  }
+  
+  @keyframes blink {
+    50% { border-color: transparent }
+  } */
