@@ -10,11 +10,30 @@ export default function UserTesting() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Survey Submitted:', formData);
-        setSubmitted(true);
-    };
+      
+        try {
+          const response = await fetch('http://localhost:3100/survey', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+      
+          if (response.ok) {
+            console.log('✅ Survey successfully submitted');
+            setSubmitted(true);
+          } else {
+            console.error('❌ Server error while submitting survey');
+          }
+        } catch (err) {
+          console.error('❌ Network error:', err);
+        }
+      };
+      
 
     return (
         <div className={styles.main}>
