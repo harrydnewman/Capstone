@@ -66,14 +66,22 @@ body:has(.main)::-webkit-scrollbar {
 .title {
     margin-top: 1%;
     margin-bottom: 1%;
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
+    /* Remove these 👇 */
+    /* opacity: 0;
+    transform: translateY(20px) scale(0.95); */
     position: relative;
 }
 
-.title.active {
+.glowText span {
+    color: #c3d4bc;
+    display: inline-block;
+    filter: drop-shadow(0 0 5px white);
     animation: glitchFlicker 0.6s ease-out forwards, opacityStutter 0.6s ease-out forwards;
-}
+  }
+/* 
+.title.active {
+    
+} */
 
 .title::before {
     content: "";
@@ -82,7 +90,7 @@ body:has(.main)::-webkit-scrollbar {
     left: 0;
     width: 100%;
     height: 100%;
-    background: white;
+    /* background: white; */
     opacity: 0;
     pointer-events: none;
     animation: cardFlash 0.4s ease-out forwards;

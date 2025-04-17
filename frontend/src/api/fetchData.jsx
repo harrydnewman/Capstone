@@ -1,4 +1,4 @@
-const fetchAgeAndRace = async (base64String) => {
+const fetchData = async (base64String, onProgress) => {
   const TOTAL_TASKS = 14;
   const TIMEOUT_MS = 10000; // 10 seconds timeout
 
@@ -29,6 +29,7 @@ const fetchAgeAndRace = async (base64String) => {
           console.warn('hair_type missing, setting to null by timeout fallback.');
           results.hair_type = null;
           tasksCompleted++;
+          if (onProgress) onProgress(tasksCompleted, TOTAL_TASKS)
         }
 
         maybeResolve(); // Resolve with partial data
@@ -62,9 +63,11 @@ const fetchAgeAndRace = async (base64String) => {
         if (data.type) {
           results[data.type] = data.message;
           tasksCompleted++;
-
+        
           console.log(`Task ${data.type} completed. Total completed: ${tasksCompleted}/${TOTAL_TASKS}`);
-
+        
+          if (onProgress) onProgress(tasksCompleted, TOTAL_TASKS); // 💡 External callback
+        
           maybeResolve();
         }
       } catch (err) {
@@ -81,4 +84,4 @@ const fetchAgeAndRace = async (base64String) => {
   });
 };
 
-export default fetchAgeAndRace;
+export default fetchData;

@@ -20,3 +20,10 @@ export default function Home(){
         </div>
     )
 }
+
+        // {/* <div className={styles.footer}>
+        //     <p>Harrison Newman ● </p>
+        //     <p>New York University ● </p>
+        //     <p>Interactive Media A ● </p>
+        // </div> */}
+        // {/* </> */}

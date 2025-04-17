@@ -1,0 +1,141 @@
+.main {
+    color: #c3d4bc;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+}
+
+.webcamDiv {
+    width: 60%;
+    height: 75vh;
+    border-radius: 10px;
+    animation: webcamGlitch 0.7s ease-out forwards;
+}
+
+
+
+.buttonWrapper {
+    width: 100%;
+    /* background-color: green; */
+    display: flex;
+    height: 20vh;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.button {
+    border: none;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 5px;
+    width: 20%;
+    font-weight: 600;
+    height: 60px;
+    margin: 20px;
+    background-color: #323232;
+    color: #c3d4bc;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    /* transform: translateY(20px) scale(0.95); */
+    animation: glitchFlicker 0.6s ease-out forwards, opacityStutter 0.6s ease-out forwards;
+    animation-delay: 0.2s;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.button:hover {
+    transform: scale(1.05); 
+    animation: opacityStutter 0.4s ease-out forwards;
+}
+
+ 
+.button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    animation: cardFlash 0.4s ease-out forwards; /* ✅ this is good */
+}
+
+.flashOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    animation: flashAnim 0.7s ease-out;
+    z-index: 9999;
+  }
+
+  @keyframes flashAnim {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+
+@keyframes opacityStutter {
+    0% { opacity: 0; }
+    20% { opacity: 0.5; }
+    40% { opacity: 0.2; }
+    60% { opacity: 0.7; }
+    80% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+@keyframes cardFlash {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.2; }
+    100% { opacity: 0; }
+}
+
+@keyframes webcamGlitch {
+    0% {
+      opacity: 0;
+      filter: none;
+    }
+    10% {
+      opacity: 0.3;
+      filter: contrast(130%) brightness(110%);
+    }
+    20% {
+      opacity: 0.1;
+      filter: contrast(90%) brightness(90%);
+    }
+    40% {
+      opacity: 0.5;
+      filter: contrast(120%) brightness(105%);
+    }
+    60% {
+      opacity: 0.2;
+      filter: contrast(100%) brightness(100%);
+    }
+    80% {
+      opacity: 0.7;
+      filter: contrast(110%) brightness(95%);
+    }
+    100% {
+      opacity: 1;
+      filter: none;
+    }
+  }
+  

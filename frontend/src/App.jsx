@@ -9,7 +9,7 @@ import Statistics from './pages/Statistics';
 import Test from './pages/Test';
 import Explaination from './pages/Explaination';
 import UserTesting from './pages/UserTesting';
-
+import NewStart from './pages/newStart';
 export default function App() {
   return (
     <div className="App">
@@ -24,6 +24,7 @@ export default function App() {
           <Route path='/test' element={<Test/>}/>
           <Route path='/explaination' element={<Explaination/>}/>
           <Route path='/usertesting' element={<UserTesting/>}/>
+          <Route path='/newstart' element={<NewStart/>}/>
         </Routes>
       </Router>
     </div>

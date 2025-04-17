@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from '../styles/Start.module.css'
 import Webcam from "react-webcam";
 import Spinner from "../components/Spinner";
-import fetchAgeAndRace from "../api/fetchAgeAndRace";
+import fetchAgeAndRace from "../api/fetchData";
 import LittleSpinner from "../components/littleSpinner";
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';

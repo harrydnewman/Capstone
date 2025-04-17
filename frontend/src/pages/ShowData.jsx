@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'; 
+import { useEffect, useState, useRef } from 'react';
 import ModelCard from '../components/ModelCard';
 import styles from '../styles/ShowData.module.css';
 import PropTypes from 'prop-types';
@@ -50,7 +50,7 @@ export default function ShowData({ data, onContinue }) {
             clearTimeout(buttonTimer);
             cardTimers.forEach(clearTimeout);
         };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inputData]);
 
     // useEffect(() => {
@@ -61,11 +61,11 @@ export default function ShowData({ data, onContinue }) {
     //     setShowContinueButton(true);
     // // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, [inputData]);
-    
+
 
     const handleContinueClick = () => {
         if (onContinue) {
-            onContinue(); 
+            onContinue();
         }
     };
 
@@ -82,8 +82,30 @@ export default function ShowData({ data, onContinue }) {
         <div className={styles.main} ref={containerRef}>
             {/* Title */}
             <div className={`${styles.title} ${titleActive ? styles.active : ''}`}>
-                <h1>How AI Sees You</h1>
-            </div>
+  <h1 className={styles.glowText}>
+    {"How AI Sees You".split("").map((char, i) => {
+      const text = "How AI Sees You";
+      const maxProgress = 14;
+      const percentPerChar = maxProgress / text.length;
+      {/* const charThreshold = (i + 1) * percentPerChar; */}
+
+      return (
+        <span
+          key={i}
+          style={{
+            opacity: titleActive ? 1 : 0.1,
+            filter: `drop-shadow(0 0 ${titleActive ? 4 : 0}px white)`,
+            transition: "all 0.3s ease",
+            display: "inline-block",
+            marginRight: char === " " ? "0.01em" : "0",
+          }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      );
+    })}
+  </h1>
+</div>
 
             {/* Age + Race Row */}
             <div className={`${styles.topRow} ${topRowActive ? styles.active : ''}`}>
@@ -114,7 +136,7 @@ export default function ShowData({ data, onContinue }) {
             {/* Continue Button */}
             {showContinueButton && (
                 <div className={styles.continueWrapper}>
-                    <Button onClick={handleContinueClick} text={"Continue"}/>
+                    <Button onClick={handleContinueClick} text={"Continue"} />
                 </div>
             )}
         </div>
