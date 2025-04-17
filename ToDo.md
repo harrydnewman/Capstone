@@ -16,4 +16,4 @@
     - Update the first 2 pages
     - OPTIMIZE FOR MOBILE
 Backend:
-- delete image once its done
+- should be done

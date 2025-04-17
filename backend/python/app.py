@@ -107,6 +107,16 @@ async def on_connect(websocket):
 
 async def on_disconnect(connection_id):
     print(f"WebSocket connection closed: {connection_id}")
+    file_path = f"./uploads/{connection_id}.png"
+    
+    if os.path.exists(file_path):
+        try:
+            os.remove(file_path)
+            print(f"Deleted image: {file_path}")
+        except Exception as e:
+            print(f"Error deleting file {file_path}: {e}")
+    else:
+        print(f"No image found for connection: {file_path}")
 
 async def handle_image(websocket, connection_id):
     async for message in websocket:
@@ -132,7 +142,7 @@ async def handle_image(websocket, connection_id):
             await websocket.send(json.dumps({"error": "Invalid base64", "details": str(e)}))
             continue
 
-        filename = f"{uuid.uuid4().hex}.png"
+        filename = f"{connection_id}.png"
         filepath = os.path.join(UPLOAD_FOLDER, filename)
 
         try:

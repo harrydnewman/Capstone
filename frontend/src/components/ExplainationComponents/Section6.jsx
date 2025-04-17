@@ -1,10 +1,12 @@
 import styles from '../../styles/ExplainationComponents/ExplainationSections.module.css'
 import { useEffect, useState } from 'react';
 import Button from '../Button';
+import { useNavigate } from 'react-router-dom';
 
 export default function Section6(){
     const [showEnd, setShowEnd] = useState(false)
     const [showButtons, setShowButtons] = useState(false)
+    const navigate = useNavigate();
 
     useEffect(() => {
         const timeouts = [];
@@ -31,11 +33,11 @@ export default function Section6(){
     };
 
     const userSurveyClick = () => {
-        console.log("go to user survey")
+        navigate("/usertesting")
     }
 
     const restartButtonClick = () => {
-        console.log("restart button clicked")
+        navigate("/")
     }
 
 
