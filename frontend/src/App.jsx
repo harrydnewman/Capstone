@@ -8,6 +8,7 @@ import Privacy from './pages/Privacy';
 import Statistics from './pages/Statistics';
 import Test from './pages/Test';
 import Explaination from './pages/Explaination';
+import UserTesting from './pages/UserTesting';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route path='/statistics' element={<Statistics/>}/>
           <Route path='/test' element={<Test/>}/>
           <Route path='/explaination' element={<Explaination/>}/>
+          <Route path='/usertesting' element={<UserTesting/>}/>
         </Routes>
       </Router>
     </div>
