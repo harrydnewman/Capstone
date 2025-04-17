@@ -5,6 +5,7 @@ import Section1 from '../components/ExplainationComponents/Section1'
 import Section2 from '../components/ExplainationComponents/Section2';
 import Section3 from '../components/ExplainationComponents/Section3';
 import Section4 from '../components/ExplainationComponents/Section4';
+import Section5 from '../components/ExplainationComponents/Section5';
 
 export default function Explaination() {
     const [showSection1, setShowSection1] = useState(false)
@@ -68,6 +69,7 @@ export default function Explaination() {
 {showSection2 && <Section2/>}  */}
             {/* <Section3 onFinish={section3Finish}/> */}
             {/* <Section4 onFinish={section4Finish}/> */}
+            <Section5/>
         </div>
     )
 }
