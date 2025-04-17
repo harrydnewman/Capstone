@@ -67,7 +67,7 @@ export default function Explaination() {
             {showSection1 && <Section1 onFinish={section1Finish} />}
 {showSection2 && <Section2/>}  */}
             {/* <Section3 onFinish={section3Finish}/> */}
-            <Section4 onFinish={section4Finish}/>
+            {/* <Section4 onFinish={section4Finish}/> */}
         </div>
     )
 }
