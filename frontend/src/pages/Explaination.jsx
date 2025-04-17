@@ -32,6 +32,13 @@ export default function Explaination() {
         }, 15500)
     }
 
+    const section5Finish = () => {
+        setTimeout(() => {
+            console.log("Section 5 Done")
+            // setShowSection2(true)
+        }, 5000)
+    }
+
 
     useEffect(() => {
         const timeouts = [];
@@ -69,10 +76,12 @@ export default function Explaination() {
 {showSection2 && <Section2/>}  */}
             {/* <Section3 onFinish={section3Finish}/> */}
             {/* <Section4 onFinish={section4Finish}/> */}
-            <Section5/>
+            <Section5 onFinish={section5Finish}/>
+
+            {/* Section 5 */}
         </div>
     )
 }
 
-// Wait like x amount of sections between each section, and then scroll down to the next one as it animates in.
-// Set up everything first, then do the animations and shit 
+// Section 5 has some bugs i think
+// Needs mobile optimization so bad bruh
