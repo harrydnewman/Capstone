@@ -3,6 +3,7 @@ import styles from '../styles/Explaination.module.css'
 import TitleSection from '../components/ExplainationComponents/TitleSection';
 import Section1 from '../components/ExplainationComponents/Section1'
 import Section2 from '../components/ExplainationComponents/Section2';
+import Section3 from '../components/ExplainationComponents/Section3';
 
 export default function Explaination() {
     const [showSection1, setShowSection1] = useState(false)
@@ -14,6 +15,14 @@ export default function Explaination() {
             setShowSection2(true)
         }, 4000)
     }
+
+    const section3Finish = () => {
+        setTimeout(() => {
+            console.log("Section 3 Done")
+            // setShowSection2(true)
+        }, 10000)
+    }
+
 
     useEffect(() => {
         const timeouts = [];
@@ -45,10 +54,11 @@ export default function Explaination() {
       };
     return (
         <div className={styles.main}>
-            <TitleSection/>
+            {/* <TitleSection/>
 
             {showSection1 && <Section1 onFinish={section1Finish} />}
-            {showSection2 && <Section2/>}
+            {showSection2 && <Section2/>} */}
+            <Section3 onFinish={section3Finish}/>
             {/* <Section1/> */}
             {/* <Section2/> */}
         </div>
