@@ -19,8 +19,7 @@ export default function Section3({onFinish}){
                 top: document.body.scrollHeight,
                 behavior: 'smooth',
             });
-
-            // 🔔 notify parent when Section1 finishes showing everything
+            
             if (onFinish) {
                 onFinish();
             }

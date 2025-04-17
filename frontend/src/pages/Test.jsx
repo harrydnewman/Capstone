@@ -49,13 +49,13 @@ export default function Test() {
     return (
         <div className={styles.main}>
             {showData && <ShowData data={testData} onContinue={handleContinue} />}
-            {showNext && (
+{showNext && (
                 <div className={styles.nextContent}>
                     <EmotionBlameSequence />
                 </div>
             )}
             {showSweep && <div className={styles.sweepOverlay} />}
-            {showAccuracy && <Accuracy data={testData}/>}
+            {showAccuracy && <Accuracy data={testData}/>} 
             
         </div>
     );

@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import ModelCard from '../components/ModelCard';
 import styles from '../styles/ShowData.module.css';
 import PropTypes from 'prop-types';
+import Button from '../components/Button';
 
 export default function ShowData({ data, onContinue }) {
     const inputData = data || {};
@@ -113,9 +114,7 @@ export default function ShowData({ data, onContinue }) {
             {/* Continue Button */}
             {showContinueButton && (
                 <div className={styles.continueWrapper}>
-                    <button className={styles.continueButton} onClick={handleContinueClick}>
-                        Continue
-                    </button>
+                    <Button onClick={handleContinueClick} text={"Continue"}/>
                 </div>
             )}
         </div>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styles from '../../../styles/ExplainationComponents/ExplainationSections.module.css'
 import BureauofAlcoholTobaccoFirearmsandExplosives from '../../../assets/Agencies/BureauofAlcoholTobaccoFirearmsandExplosives.png';
 import BureauofDiplomaticSecurity from '../../../assets/Agencies/BureauofDiplomaticSecurity.png';
@@ -45,6 +46,12 @@ const agencies = [
   
 
 export default function Agencies() {
+    useEffect(() => {
+        agencies.forEach((agency) => {
+          const img = new Image();
+          img.src = agency.img;
+        });
+      }, []);
     return (
         <div className={styles.agenciesDiv}>
             {agencies.map((agency, idx) => (

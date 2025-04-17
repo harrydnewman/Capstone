@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'; 
 import styles from '../../styles/ExplainationComponents/ExplainationSections.module.css'
 import Graph from './Components/Graph';
-export default function Section2(){
+import PropTypes from 'prop-types';
+
+export default function Section2({ onFinish }){
     const [showBody1, setShowBody1] = useState(false)
     const [showGraph, setShowGraph] = useState(false)
     const [showBody2, setShowBody2] = useState(false)
@@ -39,8 +41,9 @@ export default function Section2(){
       useEffect(() => {
         if (showBody3) {
           scrollToBottom();
+          if (onFinish) onFinish();
         }
-      }, [showBody3]);
+      }, [showBody3, onFinish]);
       
       const scrollToBottom = () => {
         setTimeout(() => {
@@ -87,8 +90,11 @@ export default function Section2(){
                 <h1>The more familiar a face is to the data, the fewer mistakes it makes.</h1>
             </div>
             }
-           {/* body 2 */}
         </div>
-        // 
     )
 }
+
+
+Section2.propTypes = {
+  onFinish: PropTypes.func,
+};
