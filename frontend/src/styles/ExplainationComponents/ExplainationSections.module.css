@@ -209,17 +209,15 @@
     padding: 10%;
   }
   
-  /* Animate h1 elements individually */
   .sectionThreeBody h1 {
     opacity: 0;
     animation: glitchOpacity 0.8s ease-in forwards;
   }
   
-  /* Proper sequential delays */
   .sectionThreeBody h1:nth-child(1) { animation-delay: 1s; }
   .sectionThreeBody h1:nth-child(2) { animation-delay: 2.5s; }
-  .sectionThreeBody h1:nth-child(3) { animation-delay: 4s; } /* quote wrapper */
-  .sectionThreeBody h1:nth-child(4) { animation-delay: 8s; } /* This will not work—h1 inside .quote needs separate rules */
+  .sectionThreeBody h1:nth-child(3) { animation-delay: 4s; } 
+  .sectionThreeBody h1:nth-child(4) { animation-delay: 8s; } 
 
   .quote {
     background-color: gray;
@@ -250,7 +248,53 @@
   }
 
   
+/* ========== SECTION FOUR ========== */
+.sectionFourTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    padding: 10%;
+  }
 
+  .sectionFourTitle h1 {
+    opacity: 0;
+    animation: glitchOpacity 0.8s ease-in forwards;
+  }
+  
+  .sectionFourTitle h1:nth-child(1) { animation-delay: 1s; }
+  .sectionFourTitle h1:nth-child(2) { animation-delay: 2.5s; }
+
+  .sectionFourBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    padding: 10%;
+  }
+
+  .sectionFourBody h1 {
+    opacity: 0;
+    animation: glitchOpacity 0.8s ease-in forwards;
+  }
+  
+  .sectionFourBody h1:nth-child(1) { animation-delay: 1s; }
+  .sectionFourBody h1:nth-child(2) { animation-delay: 2.5s; }
+
+  .sectionFourGif img {
+    background-color: grey;
+    height: 60vh;
+    opacity: 0;
+  }
+  
+  .gifAnimationTrigger {
+    animation: glitchOpacity 0.8s ease-in forwards;
+    animation-delay: 0.5s; /* feel free to tweak */
+  }
   /* ========== SHARED STYLES ========== */
   
   .h1Emphasis {
