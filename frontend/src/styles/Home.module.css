@@ -3,22 +3,37 @@
   width: 100%;
   height: 100vh;
   position: relative; /* Needed for absolute positioning inside */
-  color: #F5F5F7;
+  color: #c3d4bc;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   
-}
+} 
 
 .titleText {
   text-align: center;
-  padding-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
 }
+
 
 .titleText h1, .titleText h2 {
   padding: 0;
   margin: 0;
+  opacity: 0;
+  animation: glitchOpacity 0.8s ease-in forwards;
+}
+
+.titleText h1 {
+  animation-delay: 1s;
+}
+
+.titleText h2 {
+  animation-delay: 2s;
 }
 
 .titleText h1 {
@@ -29,26 +44,58 @@
   font-size: 60px;
 }
 
-.continueButton {
-  position: absolute;
-  bottom: 8%; /* Adjust if you want it tighter or looser at the bottom */
+.buttonWrapper {
   width: 100%;
+  height: 20%;
+  min-height: 70px;
   display: flex;
+  align-items: center;
   justify-content: center;
+  margin: 10px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: glitchOpacity 0.8s ease-in forwards;
+  animation-delay: 3s;
 }
 
-.startButton {
-  background-color: #C2061F;
-  border: none;
-  border-radius: 10px;
-  height: 60px;
-  width: 40%;
-  color: white;
-  font-size: 25px;
-  transition: transform 0.2s ease;
-}
-
-.startButton:hover {
-  cursor: pointer;
-  transform: scale(1.05);
+@keyframes glitchOpacity {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0.6;
+  }
+  40% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
 }
