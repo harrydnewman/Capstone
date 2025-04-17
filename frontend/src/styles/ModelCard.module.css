@@ -42,8 +42,9 @@
 
 .accuracyDivActive {
   opacity: 1;
+  width: 100%;
   transform: translateY(0);
-  max-height: 200px; /* Set higher than needed to allow for expansion */
+  max-height: 200px;
 }
 
 .accuracyText {
@@ -81,4 +82,27 @@
   65% { opacity: 0.8; }
   70% { opacity: 1; }
   100% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .modelName {
+    font-size: 16px;
+  }
+
+  .modelResult {
+    font-size: 18px;
+  };
+  .main {
+    width: 43%;
+  }
+
+  .accuracyNotes {
+    font-size: 9.6px;
+    width: 100%;
+  }
+
+  .accuracyActive {
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+  }
 }

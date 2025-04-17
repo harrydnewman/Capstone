@@ -7,12 +7,14 @@
   height: 100vh;
   align-items: center;
   justify-content: center;
-  text-align: center;
+
   padding: 10%;
 }
 
 .titleSection h1 {
   opacity: 0;
+  text-align: left;
+  width: 100%;
   animation: glitchOpacity 0.8s ease-in forwards;
 }
 
@@ -56,7 +58,7 @@
 }
 .sectionOneDiv h1:nth-of-type(3) {
   animation-delay: 7s;
-} /* After Traits */
+} 
 
 .traitsDiv {
   display: flex;
@@ -209,7 +211,13 @@
 
 .BarChartContainerDiv {
   width: 100%;
+  /* padding: 0 1rem; */
+  /* overflow-x: auto; */
+  /* box-sizing: border-box; */
+  /* height: 100vh; */
   height: 100vh;
+  margin-top: 30px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -219,11 +227,16 @@
   opacity: 0;
 }
 
+.BarChartWrapper {
+  min-width: 600px; /* Prevents squish on small screens */
+}
+
 .BarChartContainerDiv h2 {
   text-align: center;
   margin-bottom: 10px;
   color: #c3d4bc;
 }
+
 
 /* ========== SECTION THREE ========== */
 
@@ -541,6 +554,7 @@
   padding: 10%;
 }
 
+
 .sectionSixTitle h1 {
   opacity: 0;
   animation: glitchOpacity 0.8s ease-in forwards;
@@ -686,3 +700,102 @@
     50% { border-color: transparent }
   }
   */
+
+  @media (max-width: 1000px) {
+
+   
+    .titleSection h1 {
+      font-size: 25px;
+    }
+  }
+  @media (max-width: 768px) {
+    /* TITLE */
+    .titleSection {
+      padding: 5%;
+     
+    }
+    .titleSection h1, .sectionFiveTitle h1, .sectionSixTitle h1, .sectionSixEnd h1, .sectionFiveBodyTwo h1, .sectionThreeTitle h1, .sectionFiveBodyThree h1, .sectionTwoTitle h1, .sectionFiveAgencies h1, .sectionFiveBody h1, .sectionFourTitle h1, .sectionFourBody h1, .quote h1, .sectionThreeBody h1, .sectionTwoBodyOne h1, .sectionTwoBodyTwo h1,  .sectionTwoBodyThree h1{
+      font-size: 20px;
+    }
+
+    .buttonsDiv { 
+      flex-direction: column;
+      justify-content: end;
+      height: 40%;
+    }
+
+    /* .sectionSixEnd {
+      display: flex;
+      align-items: end !important;
+      justify-content: end;
+      padding-bottom: 0;
+    }
+
+    .sectionSixEnd h1{
+      display: flex;
+      align-items: center !important;
+      justify-content: center !important;
+    } */
+
+    .agenciesDiv {
+      gap: 5px;
+      width: 100% !important;
+    }
+
+    .agency {
+      width: 70px;
+      height: 70px;
+    }
+
+    .sectionFourGif img {
+      width: 100vw;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quote { 
+      width: 90%;
+    }
+
+    .BarChartContainerDiv h2 { 
+      font-size: 15px;
+    }
+    /* SECTION 1 */
+    .sectionOneDiv h1 {
+      font-size: 19px;
+      margin-bottom: 15px;
+    }
+
+    .sectionOneDivPart2 h1 {
+      font-size: 25px;
+    }
+
+    .traitsDiv {
+      gap: 10px;
+      flex-wrap: wrap;     
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .traitsDiv h1 { 
+      font-size: 19px;
+    }
+
+    .BarChartContainerDiv {
+      padding: 10px;
+    }
+  
+    .BarChartContainerDiv h2 {
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .BarChartWrapper {
+      max-height: 300px;
+    }
+
+  }
+  

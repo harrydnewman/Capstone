@@ -102,3 +102,8 @@
   80% { opacity: 1; transform: translateY(0); }
   100% { opacity: 0; transform: translateY(0); }
 }
+@media (max-width: 768px) {
+.popUpText h1 {
+  font-size: 35px;
+}
+}

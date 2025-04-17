@@ -1,11 +1,10 @@
 .main {
-  /* ✅ Keep scroll but hide scrollbar visually */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
 }
 
 .main::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none; 
 }
 
 html:has(.main),
@@ -24,7 +23,7 @@ body:has(.main)::-webkit-scrollbar {
   background-color: #0D0D0D;
   width: 100%;
   height: 100vh;
-  position: relative; /* Needed for absolute positioning inside */
+  position: relative; 
   color: #c3d4bc;
   display: flex;
   flex-direction: column;
@@ -68,11 +67,12 @@ body:has(.main)::-webkit-scrollbar {
 
 .buttonWrapper {
   width: 100%;
-  height: 20%;
+  height: 15%;
   min-height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 1%;
   margin: 10px;
   margin-bottom: 20px;
   opacity: 0;
@@ -125,5 +125,17 @@ body:has(.main)::-webkit-scrollbar {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .titleText h1 {
+    font-size: 45px;
+  }
+  .titleText h2 {
+    font-size: 30px;
+  }
+  .buttonWrapper {
+    padding-top: 10%;
   }
 }

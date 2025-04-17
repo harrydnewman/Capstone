@@ -3,7 +3,7 @@ import styles from '../styles/Test.module.css';
 import ShowData from './ShowData';
 import EmotionBlameSequence from './EmotionBlameSequence';
 import Accuracy from './Accuracy';
-import NewStart from './newStart';
+import Start from './start';
 import LoadingScreen from './LoadingScreen';
 import fetchData from '../api/fetchData';
 
@@ -83,7 +83,7 @@ export default function Experience() {
         
 
         <div className={styles.main}>
-        {showWebcam && <NewStart onPhotoCaptured={(img) => setPhoto(img)} />}
+        {showWebcam && <Start onPhotoCaptured={(img) => setPhoto(img)} />}
         {showLoading && <LoadingScreen progress={progress}/>}
            {showData && <ShowData data={data} onContinue={handleContinue} />}
 

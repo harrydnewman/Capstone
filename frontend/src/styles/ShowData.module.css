@@ -285,3 +285,10 @@ body:has(.main)::-webkit-scrollbar {
     30% { opacity: 1; transform: translateY(0) scale(1); }
     100% { opacity: 1; transform: translateY(0) scale(1); }
 }
+
+@media (max-width: 768px) {
+    .title h1 {
+      font-size: 38px;
+    }
+  }
+  

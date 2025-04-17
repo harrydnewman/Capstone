@@ -35,9 +35,9 @@ const data = [
 //     }
 //   }
 
-const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
-    return <text x={x + width / 2} y={y} fill="#c1c1c1" textAnchor="middle" dy={-6}>{`${value}%`}</text>;
-  };
+// const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
+//     return <text x={x + width / 2} y={y} fill="#c1c1c1" textAnchor="middle" dy={-6}>{`${value}%`}</text>;
+//   };
 
 function CustomTooltip({ payload, label, active }) {
     if (active && payload && payload.length) {
@@ -68,32 +68,42 @@ export default class Graph extends PureComponent {
   render() {
     return (
       <div className={styles.BarChartContainerDiv}>
-      <h2>
-      Facial Recognition Error Rates by Demographic
-    </h2>
-      <ResponsiveContainer width="90%" height="100%">
-        <BarChart
-          width={500}
-          height={300}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" tick={{ fill: "#e0e0e0" }} />
-          <YAxis domain={[0, 40]} />
-          <Tooltip content={<CustomTooltip />}/>
-          <Legend />
-          <Bar dataKey="Microsoft" fill="#F14F21" activeBar={<Rectangle fill="#F14F21" stroke="#e0e0e0" />} label={renderCustomBarLabel}/>
-          <Bar dataKey="IBM" fill="#1F9CE0" activeBar={<Rectangle fill="#1F9CE0" stroke="#e0e0e0" />} label={renderCustomBarLabel}/>
-          <Bar dataKey="Face++" fill="#7BB411" activeBar={<Rectangle fill="#7BB411" stroke="#e0e0e0" />} label={renderCustomBarLabel} />
-        </BarChart>
-      </ResponsiveContainer>
-      </div>
+  <h2>Facial Recognition Error Rates by Demographic</h2>
+  <div className={styles.BarChartWrapper}></div>
+  <ResponsiveContainer width="100%" height={600}>
+  <BarChart
+    data={data}
+    margin={{
+      top: 40, // more space for legend
+      right: 30,
+      left: 10,
+      bottom: 80, // for angled labels
+    }}
+  >
+    <CartesianGrid strokeDasharray="3 3" />
+    <XAxis
+      dataKey="name"
+      tick={{ fill: "#e0e0e0", fontSize: 10 }}
+      angle={-30}
+      textAnchor="end"
+      interval={0}
+    />
+    <YAxis domain={[0, 40]} />
+    <Legend verticalAlign="top" height={36} />
+    <Tooltip content={<CustomTooltip />} />
+    {/* <Bar dataKey="Microsoft" fill="#F14F21" label={renderCustomBarLabel} />
+    <Bar dataKey="IBM" fill="#1F9CE0" label={renderCustomBarLabel} />
+    <Bar dataKey="Face++" fill="#7BB411" label={renderCustomBarLabel} /> */}
+    <Bar dataKey="Microsoft" fill="#F14F21"  />
+    <Bar dataKey="IBM" fill="#1F9CE0"  />
+    <Bar dataKey="Face++" fill="#7BB411" />
+  </BarChart>
+</ResponsiveContainer>
+
+
+  </div>
+
+
     );
   }
 }

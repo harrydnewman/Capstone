@@ -2,10 +2,10 @@
 .button {
     border: none;
     padding: 5px;
-    font-size: 20px;
+    font-size: 28px;
     border-radius: 5px;
-    width: 20%;
-    font-weight: 600;
+    width: 30%;
+    font-weight: 500;
     height: 60px;
     margin: 20px;
     background-color: #323232;
@@ -17,11 +17,11 @@
     animation-delay: 0.2s;
     position: relative;
     cursor: pointer;
-    transition: transform 1s ease; /* ✅ Only transform */
+    transition: transform 1s ease; 
 }
 
 .button:hover {
-    transform: scale(1.07); /* ✅ Simple grow */
+    transform: scale(1.07); 
     /* No box-shadow change */
     animation: opacityStutter 0.4s ease-out forwards;
 }
@@ -37,7 +37,7 @@
     background: white;
     opacity: 0;
     pointer-events: none;
-    animation: cardFlash 0.4s ease-out forwards; /* ✅ this is good */
+    animation: cardFlash 0.4s ease-out forwards; 
 }
 
 
@@ -55,3 +55,10 @@
     50% { opacity: 0.2; }
     100% { opacity: 0; }
 }
+
+@media (max-width: 768px) {
+    .button  {
+      width: 80%;
+      font-size: 20px;
+    }
+  }

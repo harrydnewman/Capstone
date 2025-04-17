@@ -40,6 +40,17 @@ export default function Section6(){
         navigate("/")
     }
 
+    const section6EndClass = () => {
+        if(!showButtons){
+            section6EndClass == `styles.section6EndPre`
+            return section6EndClass
+        }
+        else {
+            section6EndClass == `styles.section6EndPost`
+            return section6EndClass
+        }
+    }
+
 
     return (
         <div>

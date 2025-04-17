@@ -43,15 +43,15 @@
   text-align: center;
   color: #c3d4bc;
 }
-/* Title stays in flow naturally */
+
 .titleText {
   text-align: center;
-  margin: 40vh 0 20px 0; /* Start middle of screen */
+  margin: 40vh 0 20px 0; 
   transition: margin 2s ease;
 }
 
 .titleText.pushUp {
-  margin: 5vh 0 20px 0; /* Final resting position */
+  margin: 5vh 0 20px 0; 
 }
 
 
@@ -121,4 +121,9 @@
   55% { opacity: 0.8; }
   60% { opacity: 1; transform: translateY(0); }
   100% { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 768px) {
+.titleText h1 {
+  font-size: 35px;
+}
 }

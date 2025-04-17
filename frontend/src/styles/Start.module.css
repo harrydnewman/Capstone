@@ -1,256 +1,67 @@
-.container {
-  display: flex;
+.main {
+  color: #c3d4bc;
   width: 100%;
   height: 100vh;
-  transition: all 0.7s ease;
-  background-color: #0D0D0D;
-}
-
-.box {
-  transition: width 0.7s ease;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  /* border: 1px solid #ccc; */
-  height: 100vh;
-  background-color: #0D0D0D;
+  justify-content: end;
 }
 
-.webcamContainer {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.takeButtonDiv {
-  margin-top: 1%;
-  transition: transform 0.5s linear;
-}
-
-.takeButtonShown {
-  width: 55%;
-  height: 6%;
-}
-
-
-.takeButtonHidden {
-  width: 0%;
-  height: 0%;
-  display: none;
-  pointer-events: none;
-}
-
-.takeButton {
-  width: 100%;
-  height: 100%;
-  background-color: #C2061F;
-  border: 0;
-  border-radius: 10px;
-  transition: transform 0.5s linear;
-}
-
-.takeButton:hover {
-  cursor: pointer;
-}
-
-.takeButtonDiv:hover .takeButton {
-  transform: scale(1.05);
-}
-
-.takeButtonTextShown {
-  color: white;
-  font-size: 20px;
-  width: 100%;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.takeButtonTextHidden {
-  display: none;
-  opacity: 0;
-  pointer-events: none;
-}
-
-video {
-  transform: scaleX(-1);
-}
-
-@keyframes expandFadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.95) translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.resultsDiv {
-  animation: expandFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  animation-fill-mode: both;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  text-align: center;
-}
-
-.resultsSection {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  transition: opacity 0.6s ease, height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-    margin 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  margin: 0;
-  color: white;
-}
-
-.resultsSection.visible {
-  opacity: 1;
-  height: 100px;
-  margin-top: 5%;
-}
-
-@keyframes growFadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.resultsHeader,
-.resultsText {
-  opacity: 0;
-  transform: scale(0.9);
-}
-
-.resultsSection.visible .resultsHeader,
-.resultsSection.visible .resultsText {
-  animation: growFadeIn 0.6s ease-out;
-  animation-fill-mode: both;
-}
-
-.resultsSection.visible .resultsHeader {
-  animation-delay: 0.1s;
-}
-
-.resultsSection.visible .resultsText {
-  animation-delay: 0.2s;
-}
-
-.resultsHeader {
-  font-size: 30px;
-}
-
-.resultsText {
-  font-size: 40px;
-}
-
-.resultsDiv,
-.resultsSection,
-.resultsHeader,
-.resultsText {
-  will-change: transform, opacity;
-}
-
-.whereYouShowUpOnlineButtonDiv {
-  margin-top: 1%;
-  transition: transform 0.5s linear;
-  width: 100%;
-  animation: growFadeIn 1s ease-out;
-  animation-delay: 0.1s;
-  animation-fill-mode: both;
-}
-
-.whereYouShowUpOnlineButton {
-  width: 50%;
-  height: 6vh;
-  background-color: rgb(197, 201, 206);
-  border: 0;
-  border-radius: 10px;
-}
-
-.dataLoaded {
-  background-color: rgb(86, 146, 212);
-}
-
-.dataLoaded:hover {
-  cursor: pointer;
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
-}
-
-.loadingOnlineDataButtonDiv {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-  gap: 10px; 
-}
-
-.loadingOnlineDataButtonDiv p {
-  padding: 0;
-  margin: 0;
-  line-height: 1;
-}
-
-
-.whereYouShowUpOnlineButtonTextShown {
-  color: white;
-  font-size: 25px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.whereYouShowUpOnlineButtonTextHidden {
-  display: hidden;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.leftExpanded {
-  width: 100%;
-  
-}
-
-.leftCollapsed {
-  width: 40%;
-}
-
-
-.leftFullCollapsed {
-  width: 0%;
-}
-
-.rightFullExpanded {
-  width: 100%;
-}
-
-.rightExpanded {
+.webcamDiv {
   width: 60%;
+  height: 75vh;
+  border-radius: 10px;
+  animation: webcamGlitch 0.7s ease-out forwards;
 }
 
-.rightCollapsed {
-  width: 0%;
+.buttonWrapper {
+  width: 100%;
+  /* background-color: green; */
+  display: flex;
+  height: 20vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  border: none;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 20%;
+  font-weight: 600;
+  height: 60px;
+  margin: 20px;
+  background-color: #323232;
+  color: #c3d4bc;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  /* transform: translateY(20px) scale(0.95); */
+  animation: glitchFlicker 0.6s ease-out forwards,
+    opacityStutter 0.6s ease-out forwards;
+  animation-delay: 0.2s;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  animation: opacityStutter 0.4s ease-out forwards;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  animation: cardFlash 0.4s ease-out forwards; /* ✅ this is good */
 }
 
 .flashOverlay {
@@ -277,65 +88,73 @@ video {
     opacity: 0;
   }
 }
-.webcamDiv {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  background-color: #0D0D0D !important;
-  
+
+@keyframes opacityStutter {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  40% {
+    opacity: 0.2;
+  }
+  60% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.mediaContainer {
-  position: relative;
-  width: 60%;
-  height: 85%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@keyframes cardFlash {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
-.leftCollapsed .mediaContainer {
-  width: 90%;
+@keyframes webcamGlitch {
+  0% {
+    opacity: 0;
+    filter: none;
+  }
+  10% {
+    opacity: 0.3;
+    filter: contrast(130%) brightness(110%);
+  }
+  20% {
+    opacity: 0.1;
+    filter: contrast(90%) brightness(90%);
+  }
+  40% {
+    opacity: 0.5;
+    filter: contrast(120%) brightness(105%);
+  }
+  60% {
+    opacity: 0.2;
+    filter: contrast(100%) brightness(100%);
+  }
+  80% {
+    opacity: 0.7;
+    filter: contrast(110%) brightness(95%);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+  }
 }
 
-.mediaContainer > div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.fadeIn {
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-
-.fadeOut {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-}
-
-.fadeInDelayed {
-  opacity: 1;
-  transition: opacity 0.8s ease;
-  transition-delay: 0.6s; 
-}
-
-.fadeInDelayedMore {
-  opacity: 1;
-  transition: opacity 0.8s ease;
-  transition-delay: 0.8s; 
-}
-
-.animate {
-  animation: growFadeIn 0.6s ease-out;
-  animation-fill-mode: both;
+@media (max-width: 768px) {
+  .webcamDiv {
+    width: 90%;
+  };
 }

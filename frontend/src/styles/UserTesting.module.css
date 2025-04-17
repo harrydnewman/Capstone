@@ -115,3 +115,16 @@
     50% { opacity: 0.2; }
     100% { opacity: 0; }
 }
+
+@media (max-width: 768px) {
+    .main h1 {
+        font-size: 30px;
+    }
+    .questionLabel {
+        font-size: 15px;
+    }
+
+    .button {
+        width: 50%;
+    }
+}

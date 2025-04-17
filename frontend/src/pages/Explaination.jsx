@@ -107,6 +107,9 @@ export default function Explaination() {
     return (
         <div className={styles.main}>
         <TitleSection/>
+
+
+        {/* old code: */}
         {showSection1 && <Section1 onFinish={section1Finish}/>}
         {showSection2 && <Section2 onFinish={section2Finish}/>}
         {showSection3 && <Section3 onFinish={section3Finish}/>}
