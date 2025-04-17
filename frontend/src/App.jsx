@@ -6,7 +6,6 @@ import Experience from './pages/Experience';
 import Online from './pages/Online';
 import Privacy from './pages/Privacy';
 import Statistics from './pages/Statistics';
-import Test from './pages/Test';
 import Explaination from './pages/Explaination';
 import UserTesting from './pages/UserTesting';
 import NewStart from './pages/newStart';
@@ -21,7 +20,6 @@ export default function App() {
           <Route path='/online' element={<Online/>}/>
           <Route path='/privacy' element={<Privacy/>}/>
           <Route path='/statistics' element={<Statistics/>}/>
-          <Route path='/test' element={<Test/>}/>
           <Route path='/explaination' element={<Explaination/>}/>
           <Route path='/usertesting' element={<UserTesting/>}/>
           <Route path='/newstart' element={<NewStart/>}/>

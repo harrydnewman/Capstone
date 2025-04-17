@@ -37,7 +37,6 @@
 .cardsActive {
   opacity: 1;
   transform: scale(1);
-  margin-bottom: 100px;
 }
 .titleText h1 {
   font-size: 70px;
