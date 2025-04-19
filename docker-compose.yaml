@@ -10,7 +10,7 @@ services:
     container_name: frontend
     image: harrydnewman/capstone-frontend:latest
     ports:
-      - "3000:3000"
+      - "3000:80"
     restart: unless-stopped
   backend-python:
     platform: linux/amd64

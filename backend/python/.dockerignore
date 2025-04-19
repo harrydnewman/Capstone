@@ -1,6 +1,9 @@
 venv
+node_modules
+.git
 __pycache__
-*.pyc
+*.log
+datasets
+uploads
+extracted_faces
 .DS_Store
-Dockerfile
-.dockerignore
