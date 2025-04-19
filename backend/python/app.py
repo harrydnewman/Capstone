@@ -1,7 +1,5 @@
+import logging
 import sys
-print("🔥 app.py has started"); sys.stdout.flush()
-
-
 import asyncio
 import websockets
 import json
@@ -11,69 +9,89 @@ import uuid
 from PIL import Image
 import io
 
-print("📦 importing acne", flush=True)
+# ---------------------------
+# Logger config
+# ---------------------------
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+logger = logging.getLogger(__name__)
+
+# ---------------------------
+# Initial logs and imports
+# ---------------------------
+
+logger.info("🔥 app.py has started")
+
+logger.info("📦 importing acne")
 from pipelines.acne import get_acne
-print("✅ acne imported", flush=True)
+logger.info("✅ acne imported")
 
-print("📦 importing aesthetic", flush=True)
+logger.info("📦 importing aesthetic")
 from pipelines.aesthetic import get_aesthetic
-print("✅ aesthetic imported", flush=True)
+logger.info("✅ aesthetic imported")
 
-print("📦 importing age", flush=True)
+logger.info("📦 importing age")
 from pipelines.age import get_age
-print("✅ age imported", flush=True)
+logger.info("✅ age imported")
 
-print("📦 importing attractiveness", flush=True)
+logger.info("📦 importing attractiveness")
 from pipelines.attractiveness import get_attractiveness
-print("✅ attractiveness imported", flush=True)
+logger.info("✅ attractiveness imported")
 
-# print("📦 importing bald", flush=True)
+# logger.info("📦 importing bald")
 # from pipelines.bald import get_bald
-# print("✅ bald imported", flush=True)
+# logger.info("✅ bald imported")
 
-print("📦 importing beard", flush=True)
+logger.info("📦 importing beard")
 from pipelines.beard import get_beard
-print("✅ beard imported", flush=True)
+logger.info("✅ beard imported")
 
-print("📦 importing emotion", flush=True)
+logger.info("📦 importing emotion")
 from pipelines.emotion import get_emotion
-print("✅ emotion imported", flush=True)
+logger.info("✅ emotion imported")
 
-print("📦 importing face_shape", flush=True)
+logger.info("📦 importing face_shape")
 from pipelines.face_shape import get_face_shape
-print("✅ face_shape imported", flush=True)
+logger.info("✅ face_shape imported")
 
-print("📦 importing facemask", flush=True)
+logger.info("📦 importing facemask")
 from pipelines.facemask import get_facemask
-print("✅ facemask imported", flush=True)
+logger.info("✅ facemask imported")
 
-print("📦 importing gender", flush=True)
+logger.info("📦 importing gender")
 from pipelines.gender import get_gender
-print("✅ gender imported", flush=True)
+logger.info("✅ gender imported")
 
-print("📦 importing hair_length", flush=True)
+logger.info("📦 importing hair_length")
 from pipelines.hair_length import get_hair_length
-print("✅ hair_length imported", flush=True)
+logger.info("✅ hair_length imported")
 
-print("📦 importing hair_type", flush=True)
+logger.info("📦 importing hair_type")
 from pipelines.hair_type import get_hair_type
-print("✅ hair_type imported", flush=True)
+logger.info("✅ hair_type imported")
 
-# print("📦 importing hat", flush=True)
+# logger.info("📦 importing hat")
 # from pipelines.hat import get_hat
-# print("✅ hat imported", flush=True)
+# logger.info("✅ hat imported")
 
-print("📦 importing race", flush=True)
+logger.info("📦 importing race")
 from pipelines.race import get_race
-print("✅ race imported", flush=True)
+logger.info("✅ race imported")
 
-print("📦 importing skin_type", flush=True)
+logger.info("📦 importing skin_type")
 from pipelines.skin_type import get_skin_type
-print("✅ skin_type imported", flush=True)
+logger.info("✅ skin_type imported")
 
-print("📦 importing smoker", flush=True)
+logger.info("📦 importing smoker")
 from pipelines.smoker import get_smoker
-print("✅ smoker imported", flush=True)
+logger.info("✅ smoker imported")
+
+# ---------------------------
+# Setup
+# ---------------------------
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -82,56 +100,25 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # Async functions per pipeline
 # ---------------------------
 
-async def acne(filepath):
-    return await get_acne(filepath)
-
-async def aesthetic(filepath):
-    return await get_aesthetic(filepath)
-
-async def age(filepath):
-    return await get_age(filepath)
-
-async def attractiveness(filepath):
-    return await get_attractiveness(filepath)
-
-# async def bald(filepath):
-#     return await get_bald(filepath)
-
-async def beard(filepath):
-    return await get_beard(filepath)
-
-async def emotion(filepath):
-    return await get_emotion(filepath)
-
-async def face_shape(filepath):
-    return await get_face_shape(filepath)
-
-async def facemask(filepath):
-    return await get_facemask(filepath)
-
-async def gender(filepath):
-    return await get_gender(filepath)
-
-async def hair_length(filepath):
-    return await get_hair_length(filepath)
-
-async def hair_type(filepath):
-    return await get_hair_type(filepath)
-
-# async def hat(filepath):
-#     return await get_hat(filepath)
-
-async def race(filepath):
-    return await get_race(filepath)
-
-async def skin_type(filepath):
-    return await get_skin_type(filepath)
-
-async def smoker(filepath):
-    return await get_smoker(filepath)
+async def acne(filepath): return await get_acne(filepath)
+async def aesthetic(filepath): return await get_aesthetic(filepath)
+async def age(filepath): return await get_age(filepath)
+async def attractiveness(filepath): return await get_attractiveness(filepath)
+# async def bald(filepath): return await get_bald(filepath)
+async def beard(filepath): return await get_beard(filepath)
+async def emotion(filepath): return await get_emotion(filepath)
+async def face_shape(filepath): return await get_face_shape(filepath)
+async def facemask(filepath): return await get_facemask(filepath)
+async def gender(filepath): return await get_gender(filepath)
+async def hair_length(filepath): return await get_hair_length(filepath)
+async def hair_type(filepath): return await get_hair_type(filepath)
+# async def hat(filepath): return await get_hat(filepath)
+async def race(filepath): return await get_race(filepath)
+async def skin_type(filepath): return await get_skin_type(filepath)
+async def smoker(filepath): return await get_smoker(filepath)
 
 # ---------------------------
-# Task runner for individual functions
+# Task runner
 # ---------------------------
 
 async def run_function_and_notify(func, filepath, websocket, connection_id, step_name):
@@ -141,11 +128,11 @@ async def run_function_and_notify(func, filepath, websocket, connection_id, step
             "type": step_name,
             "message": f"{result}"
         }))
-        print(f"✅ Connection {connection_id}: {step_name} done")
+        logger.info(f"✅ Connection {connection_id}: {step_name} done")
     except websockets.exceptions.ConnectionClosed:
-        print(f"Connection {connection_id} closed before {step_name} could complete")
+        logger.warning(f"Connection {connection_id} closed before {step_name} could complete")
     except Exception as e:
-        print(f"❌ Error in {step_name}: {e}")
+        logger.error(f"❌ Error in {step_name}: {e}", exc_info=True)
 
 # ---------------------------
 # Connection handlers
@@ -153,21 +140,21 @@ async def run_function_and_notify(func, filepath, websocket, connection_id, step
 
 async def on_connect(websocket):
     connection_id = str(uuid.uuid4())
-    print(f"New WebSocket connection: {connection_id}")
+    logger.info(f"🔌 New WebSocket connection: {connection_id}")
     return connection_id
 
 async def on_disconnect(connection_id):
-    print(f"WebSocket connection closed: {connection_id}")
+    logger.info(f"🔌 WebSocket connection closed: {connection_id}")
     file_path = f"./uploads/{connection_id}.png"
     
     if os.path.exists(file_path):
         try:
             os.remove(file_path)
-            print(f"Deleted image: {file_path}")
+            logger.info(f"🧹 Deleted image: {file_path}")
         except Exception as e:
-            print(f"Error deleting file {file_path}: {e}")
+            logger.error(f"Error deleting file {file_path}: {e}", exc_info=True)
     else:
-        print(f"No image found for connection: {file_path}")
+        logger.info(f"No image found to delete for connection: {file_path}")
 
 async def handle_image(websocket, connection_id):
     async for message in websocket:
@@ -182,7 +169,7 @@ async def handle_image(websocket, connection_id):
             await websocket.send(json.dumps({"error": "No image data provided"}))
             continue
 
-        print(f"Received: image from {connection_id}")
+        logger.info(f"📩 Received image from {connection_id}")
 
         if "," in base64_data:
             _, base64_data = base64_data.split(",", 1)
@@ -197,18 +184,17 @@ async def handle_image(websocket, connection_id):
         filepath = os.path.join(UPLOAD_FOLDER, filename)
 
         try:
-            # Force image to RGB mode and save
             image = Image.open(io.BytesIO(image_data))
             if image.mode != "RGB":
                 image = image.convert("RGB")
             image.save(filepath)
-            print(f"✅ Connection {connection_id} saved image to {filepath}")
+            logger.info(f"✅ Saved image for {connection_id} to {filepath}")
         except Exception as e:
             await websocket.send(json.dumps({"error": "Failed to process image", "details": str(e)}))
+            logger.error(f"❌ Failed to save/process image: {e}", exc_info=True)
             continue
-       
 
-        # Prepare all tasks
+        # Kick off analysis
         tasks = [
             run_function_and_notify(acne, filepath, websocket, connection_id, "acne"),
             run_function_and_notify(aesthetic, filepath, websocket, connection_id, "aesthetic"),
@@ -228,7 +214,6 @@ async def handle_image(websocket, connection_id):
             run_function_and_notify(smoker, filepath, websocket, connection_id, "smoker"),
         ]
 
-        # Await all tasks together and handle exceptions
         await asyncio.gather(*tasks, return_exceptions=True)
 
 async def connection_handler(websocket):
@@ -236,27 +221,25 @@ async def connection_handler(websocket):
     try:
         await handle_image(websocket, connection_id)
     except websockets.exceptions.ConnectionClosed as e:
-        print(f"Connection {connection_id} closed unexpectedly: {e}")
+        logger.warning(f"⚠️ Connection {connection_id} closed unexpectedly: {e}")
     finally:
         await on_disconnect(connection_id)
 
-
+# ---------------------------
+# Entry point
+# ---------------------------
 
 async def main():
-    print("🧠 Entered main()")
+    logger.info("🧠 Entered main()")
     async with websockets.serve(connection_handler, "0.0.0.0", 8765, max_size=None):
-        print("WebSocket server is running on ws://0.0.0.0:8765")
-        await asyncio.Future() 
+        logger.info("📡 WebSocket server is running on ws://0.0.0.0:8765")
+        await asyncio.Future()
 
-print(f"🐛 __name__ is {__name__}", flush=True)
+logger.info(f"🐛 __name__ is {__name__}")
 
 if __name__ == "__main__":
-    import asyncio
-    print("🚀 Calling asyncio.run(main())", flush=True)
+    logger.info("🚀 Calling asyncio.run(main())")
     try:
         asyncio.run(main())
     except Exception as e:
-        import traceback
-        print(f"💥 Failed to start WebSocket server: {e}", flush=True)
-        traceback.print_exc()
-
+        logger.error("💥 Failed to start WebSocket server", exc_info=True)

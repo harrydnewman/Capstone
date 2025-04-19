@@ -18,4 +18,14 @@ services:
       - "8765:8765"
     volumes:
       - ./backend/uploads:/app/uploads
+    restart: always
+
+  express-server:
+    build:
+      context: ./backend/node
+      dockerfile: Dockerfile
+    ports:
+      - "3100:3100"
     restart: unless-stopped
+    env_file:
+      - ./backend/node/.env
