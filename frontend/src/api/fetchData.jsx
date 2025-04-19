@@ -1,6 +1,6 @@
 const fetchData = async (base64String, onProgress) => {
   const TOTAL_TASKS = 14;
-  const TIMEOUT_MS = 30000; // 10 seconds timeout
+  const TIMEOUT_MS = 20000; // 20 seconds timeout
 
   return new Promise((resolve, reject) => {
     const socket = new WebSocket(import.meta.env.VITE_WS_URL);
