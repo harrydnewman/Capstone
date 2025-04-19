@@ -1,16 +1,19 @@
 
 services:
   frontend:
+    platform: linux/amd64
     build:
       context: ./frontend
       dockerfile: Dockerfile
       args:
         VITE_WS_URL: ws://localhost:8765
     container_name: frontend
+    image: harrydnewman/capstone-frontend:latest
     ports:
-      - "3000:80"
+      - "3000:3000"
     restart: unless-stopped
   backend-python:
+    platform: linux/amd64
     build:
       context: ./backend/python
       dockerfile: Dockerfile
@@ -18,12 +21,15 @@ services:
       - "8765:8765"
     volumes:
       - ./backend/uploads:/app/uploads
+    image: harrydnewman/capstone-backend:latest
     restart: always
 
-  express-server:
+  backend-express:
+    platform: linux/amd64
     build:
       context: ./backend/node
       dockerfile: Dockerfile
+    image: harrydnewman/backend-express:latest
     ports:
       - "3100:3100"
     restart: unless-stopped

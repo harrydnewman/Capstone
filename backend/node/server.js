@@ -9,8 +9,6 @@ const uri = process.env.MONGO_URI;
 app.use(cors());
 app.use(express.json());
 
-console.log("🧪 MONGO_URI:", process.env.MONGO_URI);
-
 
 // Create client
 const client = new MongoClient(uri, {
