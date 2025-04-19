@@ -4,7 +4,7 @@ import torch
 from PIL import Image
 import asyncio 
 
-processor = AutoImageProcessor.from_pretrained("cafeai/cafe_aesthetic", use_fast=True)
+processor = AutoImageProcessor.from_pretrained("cafeai/cafe_aesthetic")
 model = AutoModelForImageClassification.from_pretrained("cafeai/cafe_aesthetic")
 
 async def get_aesthetic(img_path):

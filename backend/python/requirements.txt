@@ -6,3 +6,4 @@ torch==2.6.0
 transformers==4.51.2
 ultralytics==8.3.107
 websockets==15.0.1
+hf_xet==1.0.3

@@ -1,4 +1,6 @@
-print("🔥 app.py has started")
+import sys
+print("🔥 app.py has started"); sys.stdout.flush()
+
 
 import asyncio
 import websockets
@@ -9,22 +11,69 @@ import uuid
 from PIL import Image
 import io
 
+print("📦 importing acne", flush=True)
 from pipelines.acne import get_acne
+print("✅ acne imported", flush=True)
+
+print("📦 importing aesthetic", flush=True)
 from pipelines.aesthetic import get_aesthetic
+print("✅ aesthetic imported", flush=True)
+
+print("📦 importing age", flush=True)
 from pipelines.age import get_age
+print("✅ age imported", flush=True)
+
+print("📦 importing attractiveness", flush=True)
 from pipelines.attractiveness import get_attractiveness
+print("✅ attractiveness imported", flush=True)
+
+# print("📦 importing bald", flush=True)
 # from pipelines.bald import get_bald
+# print("✅ bald imported", flush=True)
+
+print("📦 importing beard", flush=True)
 from pipelines.beard import get_beard
+print("✅ beard imported", flush=True)
+
+print("📦 importing emotion", flush=True)
 from pipelines.emotion import get_emotion
+print("✅ emotion imported", flush=True)
+
+print("📦 importing face_shape", flush=True)
 from pipelines.face_shape import get_face_shape
+print("✅ face_shape imported", flush=True)
+
+print("📦 importing facemask", flush=True)
 from pipelines.facemask import get_facemask
+print("✅ facemask imported", flush=True)
+
+print("📦 importing gender", flush=True)
 from pipelines.gender import get_gender
+print("✅ gender imported", flush=True)
+
+print("📦 importing hair_length", flush=True)
 from pipelines.hair_length import get_hair_length
+print("✅ hair_length imported", flush=True)
+
+print("📦 importing hair_type", flush=True)
 from pipelines.hair_type import get_hair_type
+print("✅ hair_type imported", flush=True)
+
+# print("📦 importing hat", flush=True)
 # from pipelines.hat import get_hat
+# print("✅ hat imported", flush=True)
+
+print("📦 importing race", flush=True)
 from pipelines.race import get_race
+print("✅ race imported", flush=True)
+
+print("📦 importing skin_type", flush=True)
 from pipelines.skin_type import get_skin_type
+print("✅ skin_type imported", flush=True)
+
+print("📦 importing smoker", flush=True)
 from pipelines.smoker import get_smoker
+print("✅ smoker imported", flush=True)
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -191,17 +240,23 @@ async def connection_handler(websocket):
     finally:
         await on_disconnect(connection_id)
 
+
+
 async def main():
     print("🧠 Entered main()")
     async with websockets.serve(connection_handler, "0.0.0.0", 8765, max_size=None):
         print("WebSocket server is running on ws://0.0.0.0:8765")
         await asyncio.Future() 
 
+print(f"🐛 __name__ is {__name__}", flush=True)
+
 if __name__ == "__main__":
     import asyncio
-    print("🚀 Calling asyncio.run(main())")
+    print("🚀 Calling asyncio.run(main())", flush=True)
     try:
         asyncio.run(main())
     except Exception as e:
-        print(f"💥 Failed to start WebSocket server: {e}")
+        import traceback
+        print(f"💥 Failed to start WebSocket server: {e}", flush=True)
+        traceback.print_exc()
 
