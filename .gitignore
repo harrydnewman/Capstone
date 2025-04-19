@@ -30,6 +30,8 @@ __pycache__
 extracted_faces
 .venv
 venv
+.env.development
+.env.production
 
 # test files
 harrypassport.jpg

@@ -3,7 +3,7 @@ const fetchData = async (base64String, onProgress) => {
   const TIMEOUT_MS = 10000; // 10 seconds timeout
 
   return new Promise((resolve, reject) => {
-    const socket = new WebSocket('ws://localhost:8765');
+    const socket = new WebSocket(import.meta.env.VITE_WS_URL);
     const results = {};
     let tasksCompleted = 0;
     let timeoutHandle;

@@ -3,7 +3,7 @@ import styles from '../styles/Test.module.css';
 import ShowData from './ShowData';
 import EmotionBlameSequence from './EmotionBlameSequence';
 import Accuracy from './Accuracy';
-import Start from './start';
+import Start from './Start';
 import LoadingScreen from './LoadingScreen';
 import fetchData from '../api/fetchData';
 

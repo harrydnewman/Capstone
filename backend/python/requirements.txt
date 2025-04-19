@@ -1,7 +1,7 @@
-huggingface_hub==0.30.2
+huggingface-hub==0.30.2
 Pillow==11.2.1
 python-dotenv==1.1.0
-Requests==2.32.3
+requests==2.32.3
 torch==2.6.0
 transformers==4.51.2
 ultralytics==8.3.107

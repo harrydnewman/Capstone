@@ -1,3 +1,5 @@
+print("🔥 app.py has started")
+
 import asyncio
 import websockets
 import json
@@ -190,9 +192,16 @@ async def connection_handler(websocket):
         await on_disconnect(connection_id)
 
 async def main():
-    async with websockets.serve(connection_handler, "localhost", 8765, max_size=None):
-        print("WebSocket server is running on ws://localhost:8765")
-        await asyncio.Future()  # Run forever
+    print("🧠 Entered main()")
+    async with websockets.serve(connection_handler, "0.0.0.0", 8765, max_size=None):
+        print("WebSocket server is running on ws://0.0.0.0:8765")
+        await asyncio.Future() 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    import asyncio
+    print("🚀 Calling asyncio.run(main())")
+    try:
+        asyncio.run(main())
+    except Exception as e:
+        print(f"💥 Failed to start WebSocket server: {e}")
+
