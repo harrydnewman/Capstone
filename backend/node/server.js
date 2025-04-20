@@ -9,7 +9,6 @@ const uri = process.env.MONGO_URI;
 app.use(cors());
 app.use(express.json());
 
-
 // Create client
 const client = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1
@@ -25,7 +24,7 @@ async function startServer() {
     const db = client.db('capstone-project');
     const collection = db.collection('user-feedback');
 
-    app.get('/', async (req, res) => {
+    app.get('/usertestdata', async (req, res) => {
       const data = await collection.find().toArray();
       res.json(data);
     });

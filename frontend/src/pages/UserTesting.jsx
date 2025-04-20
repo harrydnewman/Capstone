@@ -24,7 +24,7 @@ export default function UserTesting() {
         console.log('Survey Submitted:', formData);
 
         try {
-            const response = await fetch('http://localhost:3100/survey', {
+            const response = await fetch('https://thebiaseffect.net/survey/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
