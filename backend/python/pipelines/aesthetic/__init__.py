@@ -1,4 +1,3 @@
-# Load model directly
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 import torch
 from PIL import Image

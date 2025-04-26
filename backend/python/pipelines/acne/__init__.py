@@ -19,8 +19,7 @@ async def get_acne(img_path):
     # Get predicted class index
     logits = outputs.logits
     predicted_class_idx = logits.argmax(-1).item()
-
-    # Define mapping from model labels to human-readable labels
+ 
     level_mapping = {
         -1: "Clear Skin",
          0: "Occasional Spots",
@@ -30,7 +29,6 @@ async def get_acne(img_path):
          4: "Very Severe Acne"
     }
 
-    # Sometimes model.config.id2label returns 'level -1' as a string, so let's clean it up
     labels = model.config.id2label
     raw_label = labels[predicted_class_idx]
 

@@ -1,9 +1,0 @@
-[submodule "backend/python/Pimeyes-scraper"]
-	path = backend/python/Pimeyes-scraper
-	url = https://github.com/harrydnewman/Pimeyes-scraper.git
-[submodule "backend/python/libs/pytorch-grad-cam"]
-	path = backend/python/pipelines/attraction/pytorch-grad-cam
-	url = https://github.com/simonSlamka/pytorch-grad-cam.git
-[submodule "backend/python/dlib"]
-	path = backend/python/libs/dlib
-	url = https://github.com/harrydnewman/dlib-mac.git
