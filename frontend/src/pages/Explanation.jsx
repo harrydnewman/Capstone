@@ -8,7 +8,7 @@ import Section4 from '../components/ExplainationComponents/Section4';
 import Section5 from '../components/ExplainationComponents/Section5';
 import Section6 from '../components/ExplainationComponents/Section6';
 
-export default function Explaination() {
+export default function Explanation() {
     const [showSection1, setShowSection1] = useState(false)
     const [showSection2, setShowSection2] = useState(false)
     const [showSection3, setShowSection3] = useState(false)

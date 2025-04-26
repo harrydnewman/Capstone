@@ -65,7 +65,7 @@ const scrollToBottom = () => {
 
 
   const goToExplaination = () => {
-    navigate("/explaination")
+    navigate("/explanation")
   }
 
 

@@ -65,7 +65,7 @@ export default function Section2({ onFinish }){
             {showBody1 && 
                 <div className={styles.sectionTwoBodyOne}>
                 <h1>Facial classification systems are often trained on scraped public images.</h1>
-                <h1>These datasets tend to mirror existing online imbalances</h1>
+                <h1>These datasets tend to mirror existing online imbalances.</h1>
                 <h1 className={styles.h1Emphasis}>Overrepresenting white, male, Western faces while underrepresenting everyone else.</h1>
                 <h1>Facial analysis AI performs best on lighter-skinned men and worst on darker-skinned women, revealing clear racial and gender bias.</h1>
             </div>

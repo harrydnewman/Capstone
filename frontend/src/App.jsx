@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Home from './pages/Home'
 import Experience from './pages/Experience';
-import Explaination from './pages/Explaination';
+import Explanation from './pages/Explanation';
 import UserTesting from './pages/UserTesting';
 export default function App() {
   return (
@@ -11,7 +11,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/experience' element={<Experience/>}/>
-          <Route path='/explaination' element={<Explaination/>}/>
+          <Route path='/explanation' element={<Explanation/>}/>
           <Route path='/usertesting' element={<UserTesting/>}/>
         </Routes>
       </Router>

@@ -46,7 +46,7 @@ useEffect(() => {
     <div>
     <div className={styles.sectionFourTitle}>
                 <h1>Sites like Clearview AI and PimEyes have scraped billions of photos from the internet.</h1>
-                <h1>From Instagram, LinkedIn, Pinterest, even YouTube thumbnails.</h1>
+                <h1>From Instagram, LinkedIn, Pinterest, and even YouTube thumbnails.</h1>
             </div>
         {showSection2 && 
             <div className={styles.sectionFourBody}>
