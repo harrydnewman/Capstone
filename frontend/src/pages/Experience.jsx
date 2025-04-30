@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from '../styles/Test.module.css';
+import styles from '../styles/Experience.module.css';
 import ShowData from './ShowData';
 import EmotionBlameSequence from './EmotionBlameSequence';
 import Accuracy from './Accuracy';
@@ -26,76 +26,76 @@ export default function Experience() {
         setTimeout(() => {
             setShowData(false);
             setShowNext(true);
-        }, 600); 
+        }, 600);
 
         setTimeout(() => {
             setShowSweep(false);
-        }, 1200); 
+        }, 1200);
 
         setTimeout(() => {
             setShowNext(false);
             setShowAccuracy(true);
-        }, 8500); 
+        }, 8500);
     };
 
     useEffect(() => {
         if (photo) {
-          setShowSweep(true);
-      
-          setTimeout(() => {
-            setShowWebcam(false);
-            setShowSweep(false);
-            setShowLoading(true);
-          }, 1400);
-      
-          console.log("new photo");
-          console.log(photo);
-      
-          async function getDataAndSet() {
-            const result = await fetchData(photo, (completed) => setProgress(completed));
-            setData(result); // ✅ Now you set the actual result
-          }
-      
-          getDataAndSet();
-        }
-      }, [photo]);
+            setShowSweep(true);
 
-     useEffect(() => {
-        if(data){
+            setTimeout(() => {
+                setShowWebcam(false);
+                setShowSweep(false);
+                setShowLoading(true);
+            }, 1400);
+
+            console.log("new photo");
+            console.log(photo);
+
+            async function getDataAndSet() {
+                const result = await fetchData(photo, (completed) => setProgress(completed));
+                setData(result); // ✅ Now you set the actual result
+            }
+
+            getDataAndSet();
+        }
+    }, [photo]);
+
+    useEffect(() => {
+        if (data) {
             console.log("new data")
             console.log(data)
         }
-     }, [data])
+    }, [data])
 
-     useEffect(() => {
-        if(progress == 14){
+    useEffect(() => {
+        if (progress == 14) {
             console.log("progress is done")
             setTimeout(() => {
                 setShowLoading(false)
-            setShowData(true)
-              }, 2000);
-            
+                setShowData(true)
+            }, 2000);
+
         }
-     }, [progress])
-     
+    }, [progress])
+
 
     return (
-        
+
 
         <div className={styles.main}>
-        {showWebcam && <Start onPhotoCaptured={(img) => setPhoto(img)} />}
-        {showLoading && <LoadingScreen progress={progress}/>}
-           {showData && <ShowData data={data} onContinue={handleContinue} />}
+            {showWebcam && <Start onPhotoCaptured={(img) => setPhoto(img)} />}
+            {showLoading && <LoadingScreen progress={progress} />}
+            {showData && <ShowData data={data} onContinue={handleContinue} />}
 
-{showSweep && <div className={styles.sweepOverlay} />}
-{showNext && 
-               <div className={styles.nextContent}>
+            {showSweep && <div className={styles.sweepOverlay} />}
+            {showNext &&
+                <div className={styles.nextContent}>
                     <EmotionBlameSequence />
-               </div>
-            } 
-            {showAccuracy && <Accuracy data={data}/>}
+                </div>
+            }
+            {showAccuracy && <Accuracy data={data} />}
 
-            
-         </div>
+
+        </div>
     );
 }

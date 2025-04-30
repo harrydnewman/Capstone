@@ -1,4 +1,5 @@
 import styles from '../styles/LoadingScreen.module.css';
+import PropTypes from "prop-types";
 
 export default function LoadingScreen({ progress }) {
   const text = "How AI Sees You";
@@ -31,3 +32,7 @@ export default function LoadingScreen({ progress }) {
     </div>
   );
 }
+
+LoadingScreen.propTypes = {
+    progress: PropTypes.number,
+};

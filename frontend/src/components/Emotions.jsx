@@ -12,8 +12,7 @@ export default function Emotions({ flickerOut = false, fadeInActive = false }) {
             ${fadeInActive ? styles.fadeIn : ''} 
             ${flickerOut ? styles.flickerOut : ''}
           `}
-        >
-          Suprised?
+        >Surprised?
         </h1>
         <h1
           className={`

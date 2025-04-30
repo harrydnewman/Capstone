@@ -1,51 +1,25 @@
 import styles from '../styles/Start.module.css'
 import Webcam from "react-webcam";
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Button from '../components/Button';
+import PropTypes from "prop-types";
 
 export default function Start({ onPhotoCaptured }) {
-    const [expanded, setExpanded] = useState(false);
-    const [showTakeButton, setShowTakeButton] = useState(true)
-    const [image, setImage] = useState(null);
-    const [flashActive, setFlashActive] = useState(false);
-    const [loading, setLoading] = useState(null);
-    const [photoTaken, setPhotoTaken] = useState(false);
-    const [data, setData] = useState(null)
-    const [ageRange, setAgeRange] = useState(null)
-    const [race, setRace] = useState(null)
-    const [showOnlineDataButton, setShowOnlineDataButton] = useState(false)
-    const [onlineData, setOnlineData] = useState(null)
-    const [webcamReady, setWebcamReady] = useState(false);
-    const [hold, setHold] = useState(false);
-    const [animateAgeRange, setAnimateAgeRange] = useState(false);
-    const [animateRace, setAnimateRace] = useState(false);
-    const webcamRef = useRef(null);
+      const webcamRef           = useRef(null);
+  const [flashActive, setFlashActive] = useState(false);
 
     const FLASH_DURATION = 400;
-
-
-    const capture = React.useCallback(
-        () => {
-            const imageSrc = webcamRef.current.getScreenshot();
-            setImage(imageSrc)
-        },
-        [webcamRef]
-    );
 
     const takePhoto = async () => {
     setFlashActive(true);
     const imageSrc = webcamRef.current.getScreenshot();
-    setImage(imageSrc);
     
-    setShowTakeButton(prev => !prev);
     setTimeout(() => {
         setFlashActive(false)
         if (onPhotoCaptured) {
             onPhotoCaptured(imageSrc); // base64 image string
         }
     }, FLASH_DURATION);
-    setLoading(true);
-    setPhotoTaken(true);
 };
 
 
@@ -57,7 +31,6 @@ export default function Start({ onPhotoCaptured }) {
             <Webcam
                 ref={webcamRef}
                 screenshotFormat="image/png"
-                onUserMedia={() => setWebcamReady(true)}
                 style={{
                     width: "100%",
                     height: "100%",
@@ -72,3 +45,7 @@ export default function Start({ onPhotoCaptured }) {
         </div>
     )
 }
+
+Start.propTypes = {
+    onPhotoCaptured: PropTypes.func,
+};

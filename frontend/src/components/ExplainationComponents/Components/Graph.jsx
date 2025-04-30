@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { PureComponent } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import styles from '../../../styles/ExplainationComponents/ExplainationSections.module.css'
 
 const data = [
@@ -28,16 +28,6 @@ const data = [
     'Face++': 34.5,
   }
 ];
-
-// function changeTooltip(label) {
-//     if (label == 'Lighter-skinned men') {
-//         return "Hi HI HI"
-//     }
-//   }
-
-// const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
-//     return <text x={x + width / 2} y={y} fill="#c1c1c1" textAnchor="middle" dy={-6}>{`${value}%`}</text>;
-//   };
 
 function CustomTooltip({ payload, label, active }) {
     if (active && payload && payload.length) {

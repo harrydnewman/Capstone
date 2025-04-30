@@ -12,5 +12,5 @@ export default function Button({ onClick, text }) {
 
   Button.propTypes = {
       onClick: PropTypes.func,
-      text: PropTypes.text 
+      text: PropTypes.string
   };
