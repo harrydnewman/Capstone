@@ -8,6 +8,10 @@ export default function Home(){
     const handleClick = () => {
         navigate('/experience')
     }
+
+    const handleAboutClick = () => {
+        navigate('/about')
+    }
     return (
         <div className={styles.main}>
             <div className={styles.titleText}>
@@ -17,6 +21,11 @@ export default function Home(){
             <div className={styles.buttonWrapper}>
                 <Button onClick={handleClick} text={"Begin"}/>
             </div>
+            <div className={styles.aboutButtonDiv}>
+                <button className= {styles.aboutButton} onClick={handleAboutClick}><p>About</p></button>
+            </div>
+
+            
         </div>
     )
 }
