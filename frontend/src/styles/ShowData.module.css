@@ -160,7 +160,6 @@ body:has(.main)::-webkit-scrollbar {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    background-color: green;
     justify-content: center;
     transition: all 0.2s cubic-bezier(0.7, 0, 0.84, 0);
 }
@@ -288,8 +287,25 @@ body:has(.main)::-webkit-scrollbar {
 }
 
 @media (max-width: 768px) {
-    .title h1 {
-      font-size: 38px;
+    .title {
+        margin-top: 5%; 
     }
+  .topRow {
+    gap: 10px;
+    margin-bottom: 0px;
+  }
+  .otherRows {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    gap: 10px;
+  }
+  .title h1 {
+    font-size: 38px;
+  }
   }
   
+  @media (max-height: 700px) {
+    .topRow {
+        margin-bottom: 5px;
+      }
+  }

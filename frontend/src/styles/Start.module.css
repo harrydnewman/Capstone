@@ -10,7 +10,8 @@
 
 .webcamDiv {
   width: 60%;
-  height: 75vh;
+  height: 80vh;
+  margin-top: 3%;
   border-radius: 10px;
   animation: webcamGlitch 0.7s ease-out forwards;
   background-color: gray;

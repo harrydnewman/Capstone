@@ -718,6 +718,10 @@
       font-size: 20px;
     }
 
+    .sectionTwoTitle h1{
+      width: 80%;
+    }
+
     .buttonsDiv { 
       flex-direction: column;
       justify-content: end;
@@ -747,8 +751,12 @@
       height: 70px;
     }
 
+    .agency span {
+      font-size: 7px;
+    }
+
     .sectionFourGif img {
-      width: 100vw;
+      width: 80vw;
       height: auto;
       display: flex;
       align-items: center;

@@ -110,7 +110,7 @@
   margin-bottom: 20px;
   opacity: 0;
   animation: glitchOpacity 0.8s ease-in forwards;
-  animation-delay: 3s;
+  animation-delay: 1s;
 }
 
 @keyframes glitchOpacity {

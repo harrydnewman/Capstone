@@ -13,10 +13,15 @@ export default function Section5({onFinish}) {
     useEffect(() => {
         const timeouts = [];
 
-        timeouts.push(setTimeout(() => setShowBody1(true), 4000));
-        timeouts.push(setTimeout(() => setShowAgencies(true), 10000));
-        timeouts.push(setTimeout(() => setShowBody2(true), 20000));
-        timeouts.push(setTimeout(() => setShowBody3(true), 25000));
+        // timeouts.push(setTimeout(() => setShowBody1(true), 4000));
+        // timeouts.push(setTimeout(() => setShowAgencies(true), 10000));
+        // timeouts.push(setTimeout(() => setShowBody2(true), 20000));
+        // timeouts.push(setTimeout(() => setShowBody3(true), 25000));
+
+        timeouts.push(setTimeout(() => setShowBody1(true), 0));
+        timeouts.push(setTimeout(() => setShowAgencies(true), 6000));
+        timeouts.push(setTimeout(() => setShowBody2(true), 16000));
+        timeouts.push(setTimeout(() => setShowBody3(true), 21000));
 
         return () => timeouts.forEach(clearTimeout);
     }, []);
@@ -60,9 +65,9 @@ export default function Section5({onFinish}) {
 
     return (
         <div>
-            <div className={styles.sectionFiveTitle}>
+            {/* <div className={styles.sectionFiveTitle}>
                 <h1>Power Without Oversight</h1>
-            </div>
+            </div> */}
             {showBody1 && 
             <div className={styles.sectionFiveBody}>
                 <h1>These systems are already in use</h1>

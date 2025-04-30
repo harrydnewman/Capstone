@@ -14,8 +14,8 @@ export default function Section2({ onFinish }){
       
         timeouts.push(setTimeout(() => setShowBody1(true), 5000));
         timeouts.push(setTimeout(() => setShowGraph(true), 15000));
-        timeouts.push(setTimeout(() => setShowBody2(true), 25000));
-        timeouts.push(setTimeout(() => setShowBody3(true), 35000));
+        timeouts.push(setTimeout(() => setShowBody2(true), 20000));
+        timeouts.push(setTimeout(() => setShowBody3(true), 30000));
       
         return () => timeouts.forEach(clearTimeout);
       }, []);

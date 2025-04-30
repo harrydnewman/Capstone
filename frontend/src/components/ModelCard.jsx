@@ -49,7 +49,7 @@ export default function ModelCard({ name, result, showAccuracy, style, className
         const classificationName = keyToClassificationMap[key.toLowerCase()] || key;
         return classificationName.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
     }
-    
+
 
     function formatValue(key, value) {
         const capitalizeWords = (str) =>
@@ -110,7 +110,7 @@ export default function ModelCard({ name, result, showAccuracy, style, className
   ${animateAccuracy ? styles.accuracyActiveGlitch : ''}
 `}>
 
-                    <h2 className={styles.modelName}>Accuracy</h2>
+                    <h2 className={styles.modelName}>Model Accuracy</h2>
                     <h1 className={styles.modelResult}>{finalAccuracy}</h1>
                     {accuracyNotes && <p className={styles.accuracyNotes}>{accuracyNotes}</p>}
                 </div>

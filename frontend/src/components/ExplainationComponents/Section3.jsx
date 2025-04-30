@@ -36,11 +36,11 @@ export default function Section3({onFinish}){
             {showSection2 && 
             <div className={styles.sectionThreeBody}>
                 <h1>People have been arrested, interrogated, and detained because of incorrect matches.</h1>
-                <h1>Robert Williams was arrested in Detroit after AI said he looked like someone on surveillance footage.</h1>
-                <div className={styles.quote}>
+                <h1>Robert Williams, a black man, was arrested in Detroit after AI said he looked like someone on surveillance footage.</h1>
+                {/* <div className={styles.quote}>
                     <h1 className={styles.topText}>“The cop told me, &apos;The computer says it&apos;s you.&apos;”</h1>
                     <h1 className={styles.bottomText}>- Robert Williams</h1>
-                </div>
+                </div> */}
                 <h1>He spent 30 hours in jail. The only evidence? A faulty match.</h1>
             </div>
             }
