@@ -26,7 +26,7 @@ useEffect(() => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowSection2(true);
-    }, 5000);
+    }, 8000);
 
     return () => clearTimeout(timeout);
   }, []);

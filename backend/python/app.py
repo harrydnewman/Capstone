@@ -124,6 +124,9 @@ async def smoker(filepath): return await get_smoker(filepath)
 async def run_function_and_notify(func, filepath, websocket, connection_id, step_name):
     try:
         result = await func(filepath)
+        if result is None:
+            logger.warning(f"⚠️ Connection {connection_id}: {step_name} returned nothing, skipping emit")
+            return
         await websocket.send(json.dumps({
             "type": step_name,
             "message": f"{result}"

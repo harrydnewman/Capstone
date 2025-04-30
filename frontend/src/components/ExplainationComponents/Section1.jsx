@@ -9,7 +9,7 @@ export default function Section1({ onFinish }) {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setShowSection2(true);
-        }, 10000); 
+        }, 15000); 
 
         return () => clearTimeout(timeout); 
     }, []);

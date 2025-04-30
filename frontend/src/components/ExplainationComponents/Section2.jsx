@@ -12,10 +12,10 @@ export default function Section2({ onFinish }){
     useEffect(() => {
         const timeouts = [];
       
-        timeouts.push(setTimeout(() => setShowBody1(true), 5000));
-        timeouts.push(setTimeout(() => setShowGraph(true), 15000));
-        timeouts.push(setTimeout(() => setShowBody2(true), 20000));
-        timeouts.push(setTimeout(() => setShowBody3(true), 30000));
+        timeouts.push(setTimeout(() => setShowBody1(true), 7000));
+        timeouts.push(setTimeout(() => setShowGraph(true), 20000));
+        timeouts.push(setTimeout(() => setShowBody2(true), 32000));
+        timeouts.push(setTimeout(() => setShowBody3(true), 48000));
       
         return () => timeouts.forEach(clearTimeout);
       }, []);

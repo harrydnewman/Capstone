@@ -11,8 +11,8 @@ export default function Section6(){
     useEffect(() => {
         const timeouts = [];
 
-        timeouts.push(setTimeout(() => setShowEnd(true), 7000));
-        timeouts.push(setTimeout(() => setShowButtons(true), 11000));
+        timeouts.push(setTimeout(() => setShowEnd(true), 12000));
+        timeouts.push(setTimeout(() => setShowButtons(true), 15000));
 
         return () => timeouts.forEach(clearTimeout);
     }, []);
@@ -38,17 +38,6 @@ export default function Section6(){
 
     const restartButtonClick = () => {
         navigate("/")
-    }
-
-    const section6EndClass = () => {
-        if(!showButtons){
-            section6EndClass == `styles.section6EndPre`
-            return section6EndClass
-        }
-        else {
-            section6EndClass == `styles.section6EndPost`
-            return section6EndClass
-        }
     }
 
 

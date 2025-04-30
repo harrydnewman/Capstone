@@ -20,21 +20,21 @@ export default function Explanation() {
         setTimeout(() => {
             console.log("Section 1 Done")
             setShowSection2(true)
-        }, 4000)
+        }, 8000)
     }
 
     const section2Finish = () => {
         setTimeout(() => {
             console.log("Section 2 Done")
             setShowSection3(true)
-        }, 5000)
+        }, 8000)
     }
 
     const section3Finish = () => {
         setTimeout(() => {
             console.log("Section 3 Done")
             setShowSection4(true)
-        }, 10000)
+        }, 13000)
     }
 
     const section4Finish = () => {
@@ -48,14 +48,14 @@ export default function Explanation() {
         setTimeout(() => {
             console.log("Section 5 Done")
             setShowSection6(true)
-        }, 5000)
+        }, 8000)
     }
 
 
     useEffect(() => {
         const timeouts = [];
       
-        timeouts.push(setTimeout(() => setShowSection1(true), 5000));
+        timeouts.push(setTimeout(() => setShowSection1(true), 10000));
       
         return () => timeouts.forEach(clearTimeout);
       }, []);
@@ -106,16 +106,15 @@ export default function Explanation() {
       };
     return (
         <div className={styles.main}>
+        
+
         <TitleSection/>
-
-
-        {/* old code: */}
         {showSection1 && <Section1 onFinish={section1Finish}/>}
         {showSection2 && <Section2 onFinish={section2Finish}/>}
         {showSection3 && <Section3 onFinish={section3Finish}/>}
         {showSection4 && <Section4 onFinish={section4Finish}/>}
         {showSection5 && <Section5 onFinish={section5Finish}/>}
-        {showSection6 && <Section6/>}
+        {showSection6 && <Section6/>} 
         </div>
     )
 }

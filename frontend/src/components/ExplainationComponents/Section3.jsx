@@ -8,7 +8,7 @@ export default function Section3({onFinish}){
     useEffect(() => {
         const timeout = setTimeout(() => {
             setShowSection2(true);
-        }, 5000); 
+        }, 8000); 
 
         return () => clearTimeout(timeout); 
     }, []);

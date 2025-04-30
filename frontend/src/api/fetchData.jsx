@@ -13,6 +13,7 @@ const fetchData = async (base64String, onProgress) => {
         clearTimeout(timeoutHandle);
         console.log('All tasks completed, closing socket.');
         socket.close();
+        
         resolve(results);
       }
     };

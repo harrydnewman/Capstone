@@ -19,9 +19,9 @@ export default function Section5({onFinish}) {
         // timeouts.push(setTimeout(() => setShowBody3(true), 25000));
 
         timeouts.push(setTimeout(() => setShowBody1(true), 0));
-        timeouts.push(setTimeout(() => setShowAgencies(true), 6000));
-        timeouts.push(setTimeout(() => setShowBody2(true), 16000));
-        timeouts.push(setTimeout(() => setShowBody3(true), 21000));
+        timeouts.push(setTimeout(() => setShowAgencies(true), 9000));
+        timeouts.push(setTimeout(() => setShowBody2(true), 19000));
+        timeouts.push(setTimeout(() => setShowBody3(true), 29000));
 
         return () => timeouts.forEach(clearTimeout);
     }, []);
