@@ -37,7 +37,7 @@ export default function Section6(){
     }
 
     const restartButtonClick = () => {
-        navigate("/")
+        navigate("/experience")
     }
 
 
