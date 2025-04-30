@@ -1,9 +1,21 @@
-venv
-node_modules
-.git
-__pycache__
+# Python
+__pycache__/
+*.py[cod]
 *.log
-datasets
-uploads
-extracted_faces
+
+# Node
+node_modules/
+
+# Virtual environments
+venv/
+
+# System files
 .DS_Store
+
+# Git
+.git/
+
+# Project-specific stuff
+datasets/
+uploads/
+extracted_faces/
