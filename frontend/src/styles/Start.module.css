@@ -13,6 +13,7 @@
   height: 75vh;
   border-radius: 10px;
   animation: webcamGlitch 0.7s ease-out forwards;
+  background-color: gray;
 }
 
 .buttonWrapper {
@@ -154,7 +155,13 @@
 }
 
 @media (max-width: 768px) {
+  .main {
+    justify-content: start;
+  }
   .webcamDiv {
     width: 90%;
-  };
+  }
+  .buttonWrapper {
+    align-items: start;
+  }
 }

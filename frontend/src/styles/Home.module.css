@@ -129,13 +129,16 @@ body:has(.main)::-webkit-scrollbar {
 }
 
 @media (max-width: 768px) {
+  .titleText {
+    height: 65vh;
+  }
   .titleText h1 {
-    font-size: 45px;
+    font-size: 40px;
   }
   .titleText h2 {
-    font-size: 30px;
+    font-size: 25px;
   }
   .buttonWrapper {
-    padding-top: 10%;
+    align-items: end;
   }
 }

@@ -160,6 +160,7 @@ body:has(.main)::-webkit-scrollbar {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    background-color: green;
     justify-content: center;
     transition: all 0.2s cubic-bezier(0.7, 0, 0.84, 0);
 }
