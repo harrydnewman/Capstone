@@ -15,7 +15,7 @@ export default function ModelCard({ name, result, showAccuracy, style, className
         { name: "imfarzanansari/skintelligent-acne", classification: "acne", outputs: ["Clear Skin", "Occasional Spots", "Mild Acne", "Moderate Acne", "Severe Acne", "Very Severe Acne"], accuracy: "Unknown", accuracyNotes: "(Accuracy rates not disclosed)" },
         { name: "cafeai/cafe_aesthetic", classification: "Image Appeal", outputs: ["aesthetic", "not_aesthetic"], accuracy: "Unknown", accuracyNotes: "(Accuracy rates not disclosed)" },
         { name: "dima806/fairface_age_image_detection", classification: "Age", outputs: ["0-2", "3-9", "10-19", "20-29", "30-39", "40-49", "50-59", "60-69", "more than 70"], accuracy: "58.92%" },
-        { name: "dima806/attractive_faces_celebs_detection", classification: "Attractiveness", outputs: ["attractive", "not attractive"], accuracy: "83.79%" },
+        { name: "dima806/attractive_faces_celebs_detection", classification: "Attractiveness", outputs: ["attractive", "not attractive"], accuracy: "83.79%", accuracyNotes: "(Trained using photos of celebrities)" },
         { name: "dima806/beard_face_image_detection", classification: "Beard", outputs: ["Beard", "No Beard"], accuracy: "100%", accuracyNotes: "(Not Verified)" },
         { name: "dima806/facial_emotions_image_detection", classification: "Emotion", outputs: ["sad", "disgust", "angry", "neutral", "fear", "surprise", "happy"], accuracy: "90.92%" },
         { name: "metadome/face_shape_classification", classification: "Face Shape", outputs: ["Heart", "Oblong", "Oval", "Round", "Square"], accuracy: "85.30%" },
