@@ -23,6 +23,15 @@ export default function ShowData({ data, onContinue }) {
     const [showContinueButton, setShowContinueButton] = useState(false);
 
     useEffect(() => {
+        if (shownOtherCardsCount > 8) {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth',
+            });
+        }
+    }, [shownOtherCardsCount])
+
+    useEffect(() => {
         const animationDuration = 600;
         const buffer = 500;
         const perStep = animationDuration + buffer;
@@ -76,7 +85,7 @@ export default function ShowData({ data, onContinue }) {
                 behavior: 'smooth',
             });
         }
-    }, [showContinueButton]);
+      }, [showContinueButton]);
 
     return (
         <div className={styles.main} ref={containerRef}>

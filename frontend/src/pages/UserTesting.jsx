@@ -7,6 +7,10 @@ export default function UserTesting() {
     const [submitted, setSubmitted] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'auto' });   // or 'smooth' if you prefer
+      }, []);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });

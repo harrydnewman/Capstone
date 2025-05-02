@@ -47,6 +47,16 @@ export default function Accuracy({ data }) {
       clearTimeout(buttonTimer);
     };
   }, [activate]);
+
+  useEffect(() => {
+    if(showAccuracy){
+      const OFFSET      = 20; 
+          const targetY     =
+            document.documentElement.scrollHeight - window.innerHeight - OFFSET;
+      
+          window.scrollTo({ top: Math.max(targetY, 0), behavior: "smooth" });
+    }
+  }, [showAccuracy])
   
   useEffect(() => {
     if (showContinue) {
