@@ -54,7 +54,7 @@ export default function UserTesting() {
                 <h1>User Testing Survey</h1>
 
                 <div className={styles.formSection}>
-                    <label className={styles.questionLabel}>What is your name?</label>
+                    <label className={styles.questionLabel}>What is your name? (Optional)</label>
                     <textarea name="name" onChange={handleChange} className={styles.formTextArea} rows={1} />
                 </div>
 
@@ -64,7 +64,7 @@ export default function UserTesting() {
                 </div>
 
                 <div className={styles.formSection}>
-                    <label className={styles.questionLabel}>2.1 Do you think this tool effectively shows how facial recognition AI is used by governments and corporations?</label>
+                    <label className={styles.questionLabel}>2.1 Do you think this project effectively shows how facial recognition AI is used by governments and corporations?</label>
                     <select name="representation" onChange={handleChange} className={styles.formSelect}>
                         <option value="">Select an option</option>
                         <option value="veryClearly">Yes, very clearly</option>

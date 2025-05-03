@@ -304,5 +304,16 @@
         margin-top: 6%;
         margin-bottom: 4%;
       }
+      /* .continueWrapper {
+        margin: 6px 0;
+      } */
+
+      .continueWrapper {
+        margin-bottom: 0px !important;
+      }
+
+      .continueButton {
+        margin-bottom: 0px !important;
+      }
 }
 
